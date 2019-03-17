@@ -186,7 +186,7 @@ th {
 body {
   position: relative;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
+  font-size: 16x;
   line-height: 2;
   color: #555;
   background: #fff;
@@ -203,7 +203,7 @@ body {
 }
 @media (min-width: 1600px) {
   body {
-    font-size: 16px;
+    font-size: 18x;
   }
 }
 h1,
@@ -1237,7 +1237,7 @@ i.post-body {
 .post-body .figure .caption {
   margin: -20px auto 15px;
   text-align: center;
-  font-size: 14px;
+  font-size: 16x;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1944,7 +1944,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffc46e;
+  background: #55f62d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2874,12 +2874,13 @@ hr {
 .posts-expand {
   padding-top: 0;
 }
-.posts-expand .post-title,
+.posts-expand .post-title {
+  text-align: center;
+}
 .posts-expand .post-meta {
   text-align: left;
 }
 @media (max-width: 767px) {
-  .posts-expand .post-title,
   .posts-expand .post-meta {
     text-align: center;
   }
@@ -2894,6 +2895,7 @@ hr {
   margin-top: 0;
 }
 .posts-expand .post-meta {
+  text-align: center;
   margin-top: 5px;
   margin-bottom: 20px;
 }
@@ -2917,7 +2919,7 @@ hr {
 }
 @media (max-width: 767px) {
   .posts-expand .post-body {
-    font-size: 12px;
+    font-size: 14x;
   }
 }
 .posts-expand .post-body img {
@@ -2939,11 +2941,11 @@ hr {
 }
 .post-button {
   margin-top: 20px;
-  text-align: left;
+  text-align: center;
 }
 .post-button a {
   padding: 0;
-  font-size: 14px;
+  font-size: 16x;
   background: none;
   border: none;
   border-bottom: 2px solid #666;
@@ -2951,12 +2953,12 @@ hr {
 }
 @media (max-width: 767px) {
   .post-button a {
-    font-size: 12px;
+    font-size: 14x;
   }
 }
 @media (min-width: 1600px) {
   .post-button a {
-    font-size: 16px;
+    font-size: 18x;
   }
 }
 .post-button a:hover {
@@ -3018,7 +3020,7 @@ hr {
 }
 .footer-inner {
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .footer-inner {
