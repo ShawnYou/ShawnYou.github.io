@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-22T13:14:50.286Z</updated>
+  <updated>2019-03-22T13:16:31.631Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,20 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>工厂模式</title>
-    <link href="http://yoursite.com/2019/03/22/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/03/22/工厂模式/</id>
-    <published>2019-03-22T13:14:01.000Z</published>
-    <updated>2019-03-22T13:14:50.286Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>关于单利模式的几种变体</title>
@@ -50,6 +36,20 @@
     
     
       <category term="design pattern" scheme="http://yoursite.com/tags/design-pattern/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>工厂模式</title>
+    <link href="http://yoursite.com/2019/03/22/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/03/22/工厂模式/</id>
+    <published>2019-03-22T13:14:01.000Z</published>
+    <updated>2019-03-22T13:14:50.286Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
     
   </entry>
   
