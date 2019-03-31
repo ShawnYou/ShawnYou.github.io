@@ -116,15 +116,15 @@
 
 <meta name="keywords" content="Design">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于单例模式的几种变体形式">
-<meta property="og:url" content="http://yoursite.com/2019/03/22/singleton/index.html">
+<meta property="og:title" content="迪米特法则|如何降低类间耦合">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/dimite/index.html">
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/static/images/singleton-1.jpg">
-<meta property="og:updated_time" content="2019-03-23T14:54:41.764Z">
+<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
+<meta property="og:updated_time" content="2019-03-31T05:56:51.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于单例模式的几种变体形式">
-<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/static/images/singleton-1.jpg">
+<meta name="twitter:title" content="迪米特法则|如何降低类间耦合">
+<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
 
 
 
@@ -154,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/22/singleton/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/22/dimite/">
 
 
 
 
 
-  <title>关于单例模式的几种变体形式 | 攻城虱</title>
+  <title>迪米特法则|如何降低类间耦合 | 攻城虱</title>
   
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/singleton/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/dimite/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shawn You">
@@ -346,7 +346,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于单例模式的几种变体形式</h1>
+          <h1 class="post-title" itemprop="name headline">迪米特法则|如何降低类间耦合</h1>
         
 
         <div class="post-meta">
@@ -358,7 +358,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T21:14:01+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T21:54:12+08:00">
                 2019-03-22
               </time>
             
@@ -398,7 +398,7 @@
 
           
           
-             <span id="/2019/03/22/singleton/" class="leancloud_visitors" data-flag-title="关于单例模式的几种变体形式">
+             <span id="/2019/03/22/dimite/" class="leancloud_visitors" data-flag-title="迪米特法则|如何降低类间耦合">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  846
+                  768
                 </span>
               
 
@@ -461,138 +461,31 @@
       
 
       
-        <p><img src="http://posw9yxeh.bkt.clouddn.com/static/images/singleton-1.jpg" alt><br><a id="more"></a></p>
-<p>单例模式是一种简单的的设计模式。虽然简单，但是应用却是十分的广泛。所有有必要针对单例模式的知识点进行梳理。</p>
-<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><blockquote>
-<p>确保类只有一个实例，并自动实例化向整个系统提供全局的访问点。从定义上可以推断出单例模式更倾向于节约资源，利于资源的重用从而节约时间。所以应用单例模式的对象应该具有以下特点：</p>
+        <p><img src="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg" alt><br><a id="more"></a></p>
+<p>软件开发一直在推崇一个概念-低耦合、高内聚。 那什么样的代码设计才算得上低耦合、高内聚的代码。本文通过迪米特法则来讲解一下如何进行低耦合的代码设计。</p>
+<blockquote>
+<p>迪米特法则也叫最小知识原则（Least Knowledge Principle）,即一个类应该对自己需要耦合和调用的类保持最少的认识。也就是一个类对自己依赖的类知道的越少越好。因而迪米特法则应该遵循一下的要义</p>
+<ol>
+<li>被依赖者，只应该暴露应该暴露的方法</li>
+<li>依赖者，只依赖应该依赖的对象</li>
+</ol>
 </blockquote>
+<h3 id="一个案例"><a href="#一个案例" class="headerlink" title="一个案例"></a>一个案例</h3><p>David Bock根据迪米特法则给出了一个超市购物的案例。<br>三个关键信息：消费者、钱包、收银员<br>定义了三个类，分别是Customer、Wallet、PaperBoy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Customer &#123;</span><br><span class="line">    private String firstName;</span><br><span class="line">    private String lastName;</span><br><span class="line">    private Wallet myWallet;</span><br><span class="line">    public String getFirstName()&#123;</span><br><span class="line">        return firstName;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getLastName()&#123;</span><br><span class="line">        return lastName;</span><br><span class="line">    &#125;</span><br><span class="line">    public Wallet getWallet()&#123;</span><br><span class="line">        return myWallet;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Wallet &#123;</span><br><span class="line">    private float value;</span><br><span class="line">    public float getTotalMoney() &#123;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setTotalMoney(float newValue) &#123;</span><br><span class="line">        value = newValue;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addMoney(float deposit) &#123;</span><br><span class="line">        value += deposit;</span><br><span class="line">    &#125;</span><br><span class="line">    public void subtractMoney(float debit) &#123;</span><br><span class="line">        value -= debit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Paperboy &#123;</span><br><span class="line">    public void charge(Customer myCustomer, double payment) &#123;</span><br><span class="line">        Wallet theWallet = myCustomer.getWallet();</span><br><span class="line">        if (theWallet.getTotalMoney() &gt; payment) &#123;</span><br><span class="line">            theWallet.subtractMoney(payment);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //money not enough</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从这三个类可以看出， PaperBoy承担了大多数的功能实现。PaperBoy从消费者那里拿到了钱包，核点钱包的的金钱并自己从中拿去购物的费用。paperBoy既与Customer发生直接交互，又与Wallet发生间接交互，不符合最小知识原则（迪米特法则）。案例主要存在以下问题</p>
 <ul>
-<li>频繁地创建、销毁且性能无法优化</li>
-<li>消耗大量资源（读取配置、产生依赖对象），可以在应用启动时直接产生一个单例对象</li>
-<li>避免资源的多重占用 </li>
-<li>设置全局的访问点，优化和共享资源访问</li>
+<li>Wallet暴露太多方法，其实Customer只要能够用钱包进行付钱就行了。所以这违反了迪米特法则的第一条（被依赖者，只暴露应该暴露的方法）</li>
+<li>让PaperBoy与Wallet直接交互是错误的行为，Wallet是Customer的私有财物，ParperBoy是无权过问Wallet的情况的， 所以从职责的角度上来看，这是不符合逻辑，违反了迪米特法则的第二条（依赖者，只依赖应该依赖的对象）</li>
 </ul>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h3 id="单例模式设计的几点考虑"><a href="#单例模式设计的几点考虑" class="headerlink" title="单例模式设计的几点考虑"></a>单例模式设计的几点考虑</h3><ul>
-<li>延迟加载</li>
-<li>线程安全</li>
-<li>并发性能</li>
-<li>序列化/反序列化安全</li>
+<h3 id="如何进行修改"><a href="#如何进行修改" class="headerlink" title="如何进行修改"></a>如何进行修改</h3><ul>
+<li>PaperBoy不再与钱包发生直接关系，直接向customer要钱</li>
+<li>钱包只暴露付钱的方法给Customer。 方法暴露越多，后期需求变更的影响越大。</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>延迟加载</th>
-<th>线程安全</th>
-<th>并发性能</th>
-<th>序列化/反序列化安全</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>饿汉式</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-</tr>
-<tr>
-<td>懒汉式(不加锁)</td>
-<td>Y</td>
-<td>N</td>
-<td>Y</td>
-<td>N</td>
-</tr>
-<tr>
-<td>懒汉式(加锁)</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-<td>N</td>
-</tr>
-<tr>
-<td>DCL</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-</tr>
-<tr>
-<td>静态内部类</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-</tr>
-<tr>
-<td>枚举</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-</tr>
-</tbody>
-</table>
-<h3 id="单例模式实现"><a href="#单例模式实现" class="headerlink" title="单例模式实现"></a>单例模式实现</h3><ol>
-<li>饿汉式</li>
-</ol>
-<p>类加载时完成初始化</p>
-<ul>
-<li><p>类加载慢</p>
-</li>
-<li><p>获取对象速度快</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton singleton = new Singleton();</span><br><span class="line"></span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>懒汉式</li>
-</ol>
-<p>获取对象的时候完成初始化，实现懒加载。但是线程不安全，高并发下会出现多个实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance = null;</span><br><span class="line"></span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if( instance == null)&#123;</span><br><span class="line">            instance = new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li>懒汉式（加锁）</li>
-</ol>
-<p>线程安全的懒汉式单例模式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class SafeSingleton &#123;</span><br><span class="line"></span><br><span class="line">    private static SafeSingleton instance = null;</span><br><span class="line"></span><br><span class="line">    private SafeSingleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static synchronized SafeSingleton getInstance()&#123;</span><br><span class="line">        if(instance == null)&#123;</span><br><span class="line">            instance = new SafeSingleton();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>双重检查DCL</li>
-</ol>
-<ul>
-<li><p>synchronized同步代码块保证只创建一个对象。</p>
-</li>
-<li><p>条件判断使对象创建过后，不在进入同步块，减少锁的粒度。</p>
-</li>
-<li><p>volatitle防止指令重排序(否则出现一个线程创建一般的对象呗另一个线程访问，造成空指针)。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private volatile static Singleton instance;</span><br><span class="line"></span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance == null)&#123;</span><br><span class="line">            synchronized (Singleton.class)&#123;</span><br><span class="line">                if(instance == null)&#123;</span><br><span class="line">                    instance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>静态内部类</li>
-</ol>
-<ul>
-<li><p>利用ClassLoader的机制保证了线程安全</p>
-</li>
-<li><p>相比饿汉式单例模式，实现懒加载，只有显示调用SingleHolder才会触发初始化。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private static class SingletonHolder&#123;</span><br><span class="line"></span><br><span class="line">        private static final Singleton instance = new Singleton();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static final Singleton getInstance()&#123;</span><br><span class="line">        return SingletonHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>枚举</li>
-</ol>
-<ul>
-<li>线程安全（虚拟机加载枚举的时候，会使用ClassLoader的loadClass方法，这个方法使用同步代码块保证线程安全）</li>
-</ul>
-<ul>
-<li>解决反序列化破坏单例的问题:<ul>
-<li>普通序列化过程中，通过反射调用默认构造函数来初始化对象，反序列化的对象是新建的</li>
-<li>枚举的反序列化不是通过构造函数实现，因此不会发生于由于反序列化导致的单例破坏问题</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    public void getInstance()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="如何设计优秀的单例模式"><a href="#如何设计优秀的单例模式" class="headerlink" title="如何设计优秀的单例模式"></a>如何设计优秀的单例模式</h3><h3 id="引申"><a href="#引申" class="headerlink" title="引申"></a>引申</h3><ol>
-<li>双重校验DCL为什么使用volatile</li>
-<li>synchronized与volatile的区别</li>
-</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class PaperBoy &#123;</span><br><span class="line">    private Customer customer;</span><br><span class="line"></span><br><span class="line">    public PaperBoy(Customer customer)&#123;</span><br><span class="line">        this.customer = customer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void charge(float payment)&#123;</span><br><span class="line">        customer.pay(payment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Customer &#123;</span><br><span class="line">    private String firstName;</span><br><span class="line">    private String lastName;</span><br><span class="line">    private Wallet myWallet;</span><br><span class="line"></span><br><span class="line">    public Customer(String firstName, String lastName, Wallet myWallet) &#123;</span><br><span class="line">        this.firstName = firstName;</span><br><span class="line">        this.lastName = lastName;</span><br><span class="line">        this.myWallet = myWallet;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getFirstName()&#123;</span><br><span class="line">        return firstName;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getLastName()&#123;</span><br><span class="line">        return lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void pay(float payment)&#123;</span><br><span class="line">        myWallet.pay(payment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Wallet &#123;</span><br><span class="line">    private float value;</span><br><span class="line">    private float getTotalMoney() &#123;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setTotalMoney(float newValue) &#123;</span><br><span class="line">        value = newValue;</span><br><span class="line">    &#125;</span><br><span class="line">    private void addMoney(float deposit) &#123;</span><br><span class="line">        value += deposit;</span><br><span class="line">    &#125;</span><br><span class="line">    private void subtractMoney(float debit) &#123;</span><br><span class="line">        value -= debit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void pay(float payment)&#123;</span><br><span class="line">        if(getTotalMoney()&gt;payment)&#123;</span><br><span class="line">            subtractMoney(payment);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>迪米特法则核心观念— 类间解耦、弱耦合</p>
 
       
     </div>
@@ -623,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/22/templateMethod/" rel="next" title="模板模式">
-                <i class="fa fa-chevron-left"></i> 模板模式
+              <a href="/2019/03/22/parentReplace/" rel="next" title="里氏替换原则">
+                <i class="fa fa-chevron-left"></i> 里氏替换原则
               </a>
             
           </div>
@@ -633,8 +526,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/25/dimite/" rel="prev" title="迪米特法则|如何降低类间耦合">
-                迪米特法则|如何降低类间耦合 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/22/singleResponsibility/" rel="prev" title="单一职责原则">
+                单一职责原则 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -792,7 +685,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式设计的几点考虑"><span class="nav-number">3.</span> <span class="nav-text">单例模式设计的几点考虑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式实现"><span class="nav-number">4.</span> <span class="nav-text">单例模式实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何设计优秀的单例模式"><span class="nav-number">5.</span> <span class="nav-text">如何设计优秀的单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引申"><span class="nav-number">6.</span> <span class="nav-text">引申</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个案例"><span class="nav-number">1.</span> <span class="nav-text">一个案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何进行修改"><span class="nav-number">2.</span> <span class="nav-text">如何进行修改</span></a></li></ol></div>
             
 
           </div>
