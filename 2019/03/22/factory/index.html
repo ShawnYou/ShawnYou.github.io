@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Design, OOP,">
+  <meta name="keywords" content="Design,">
 
 
 
@@ -114,17 +114,17 @@
 
 
 
-<meta name="keywords" content="Design, OOP">
+<meta name="keywords" content="Design">
 <meta property="og:type" content="article">
-<meta property="og:title" content="工厂模式">
+<meta property="og:title" content="工厂模式|如何优雅的new对象">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/factory/index.html">
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/images/factory/factory.jpg">
-<meta property="og:updated_time" content="2019-03-23T10:00:07.508Z">
+<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/images/factory/factory-1.jpg">
+<meta property="og:updated_time" content="2019-03-31T04:05:53.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工厂模式">
-<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/images/factory/factory.jpg">
+<meta name="twitter:title" content="工厂模式|如何优雅的new对象">
+<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/images/factory/factory-1.jpg">
 
 
 
@@ -160,7 +160,7 @@
 
 
 
-  <title>工厂模式 | 攻城虱</title>
+  <title>工厂模式|如何优雅的new对象 | 攻城虱</title>
   
 
 
@@ -346,7 +346,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">工厂模式</h1>
+          <h1 class="post-title" itemprop="name headline">工厂模式|如何优雅的new对象</h1>
         
 
         <div class="post-meta">
@@ -398,7 +398,7 @@
 
           
           
-             <span id="/2019/03/22/factory/" class="leancloud_visitors" data-flag-title="工厂模式">
+             <span id="/2019/03/22/factory/" class="leancloud_visitors" data-flag-title="工厂模式|如何优雅的new对象">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  139
+                  2.2k
                 </span>
               
 
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  9
                 </span>
               
             </div>
@@ -461,13 +461,107 @@
       
 
       
-        <p><img src="http://posw9yxeh.bkt.clouddn.com/images/factory/factory.jpg" alt><br><a id="more"></a></p>
-<p>工厂模式有三种实现形式，分别为简单工厂模式、工厂方法模式、抽象工厂模式。</p>
-<p>下面深入了解一下这三种模式，能够理解这三种模式的区别于联系，能够在实际的场景中合理、灵活的运用他们。</p>
-<p>工厂模式的变体<br>简单工厂<br>工厂方法<br>抽象工厂</p>
-<p>简单工厂模式、工厂方法模式、抽象工厂模式之前的区别于联系</p>
-<p>工厂模式的应用场景</p>
-<p>工厂模式的实现</p>
+        <p><img src="http://posw9yxeh.bkt.clouddn.com/images/factory/factory-1.jpg" alt><br><a id="more"></a></p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>在面向对象编程（OOP）中，通过new去实例化一个对象是再正常不过的事情。但是每当new一个对象，后面都会跟一个具体类，这使得代码与具体类过度耦合，让我们陷入面向实现编程的漩涡里面。每当有新的需求变更，我们代码的扩展性就比较差。</p>
+<p>手动new对象有哪些问题</p>
+<ul>
+<li>与具体类耦合，每当有新的变化，就必须改变代码（不符合对修改关闭）</li>
+<li>无法借助接口、多态的力量去隔离变化（与面向接口编程相违背）</li>
+</ul>
+<p>如何才能优雅的new对象</p>
+<ul>
+<li>对扩展开放，应对后期的各种需求</li>
+<li>对修改关闭，对于新的需求，不改变原有的代码</li>
+<li>不关心构造对象的细节和复杂过程，轻松获取对象实例</li>
+</ul>
+<p>可以通过工厂模式来构造我们想要的对象。</p>
+<blockquote>
+<p>工厂模式是一种常用的创建型设计模式，在基类中定义了创建对象的接口，让子类来决定实例化哪个类。工厂方法让一个类的实例化延迟到子类中进行。</p>
+</blockquote>
+<p>工厂模式包括我们所熟知的简单工厂模式、工厂方法模式、抽象工厂工厂模式。其中简单工厂模式在一定程度上只算是一种编程思想，还谈不上设计模式。但它作为工厂方法模式和抽象工厂模式的基石，还是有必要深入了解一下。</p>
+<h2 id="造车案例来了解一下不同的工厂模式"><a href="#造车案例来了解一下不同的工厂模式" class="headerlink" title="造车案例来了解一下不同的工厂模式"></a>造车案例来了解一下不同的工厂模式</h2><ol>
+<li>客户想要一辆奔驰车，客户需要奔驰车的设计图纸相应的汽车零件来自己制造。当客户想要悍马车，手上的设计图纸和汽车零件已经毫无用处，需要获取悍马车的设计图纸以及汽车零件（不符合对修改关闭）</li>
+<li>客户不需要自己生产汽车，由工厂来提供服务，客户需要什么车，工厂就生产什么车。但是每当客户有新的需求的时候，工厂就得想尽办法去找相关的图纸和零件来交付生产。—简单工厂模式（不符合对修改关闭）</li>
+<li>客户的需求太多，一个工厂完全应付不过来，所以工厂就开始建立新的场地，有些场地只生产宝马车，有些场地只生产悍马车，这样客户想要什么样的车就找对应的车工厂去提货。— 工厂方法模式</li>
+<li>客户的需求逐渐升级，不同型号的车具有不同配置，所以每一个具体工厂应该具备生产不同型号车辆的能力，奥迪的工厂不仅能生产A4，也能生产A6、A8。所以一个工厂应该具备生产不同型号车辆的生产车间—抽象工厂模式</li>
+</ol>
+<h2 id="几种工厂模式的实现"><a href="#几种工厂模式的实现" class="headerlink" title="几种工厂模式的实现"></a>几种工厂模式的实现</h2><h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><blockquote>
+<p>定义一个工厂类，根据传入的参数不同返回不同的实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Shape &#123;</span><br><span class="line">    void draw();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class RectShape implements Shape &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void draw() &#123;</span><br><span class="line">        System.out.println(&quot;draw rectangle&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class CircleShape implements Shape &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void draw() &#123;</span><br><span class="line">        System.out.println(&quot;draw circle&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ShapeFactory &#123;</span><br><span class="line">    public static Shape getShape(String type)&#123;</span><br><span class="line">        Shape shape = null;</span><br><span class="line">        if(&quot;circle&quot;.equalsIgnoreCase(type))&#123;</span><br><span class="line">            shape = new CircleShape();</span><br><span class="line">        &#125;else if(&quot;rectangle&quot;.equalsIgnoreCase(type))&#123;</span><br><span class="line">            shape = new RectShape();</span><br><span class="line">        &#125;</span><br><span class="line">        return shape;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Shape circle = ShapeFactory.getShape(&quot;circle&quot;);</span><br><span class="line">        circle.draw();</span><br><span class="line"></span><br><span class="line">        Shape rectangle = ShapeFactory.getShape(&quot;rectangle&quot;);</span><br><span class="line">        rectangle.draw();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>应用场景：<ul>
+<li>只有一个工厂类，对于创建对象不多的案例比较适合</li>
+<li>工厂类封装了对象的创建过程，客户端不需要关心对象的创建过程。</li>
+</ul>
+</li>
+</ul>
+<h3 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h3><blockquote>
+<p>简单工厂的深入化， 通过创建不同的对象工厂来取代统一的工厂。让子类来决定哪一个类实例化，让一个类的实例化延迟到子类。</p>
+</blockquote>
+<p>案例：有一个图片加载器，可以加载jpg、png、gif等图片格式，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 图片加载器接口</span><br><span class="line"> */</span><br><span class="line">public interface Reader &#123;</span><br><span class="line">    void read();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *</span><br><span class="line"> * gif 图片加载器</span><br><span class="line"> */</span><br><span class="line">public class GifReader implements Reader&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void read() &#123;</span><br><span class="line">        System.out.println(&quot;gif picture reader&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *</span><br><span class="line"> * png 图片加载器</span><br><span class="line"> */</span><br><span class="line">public class PngReader implements Reader&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void read() &#123;</span><br><span class="line">        System.out.println(&quot;png picture reader&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *</span><br><span class="line"> * jpg 图片加载器</span><br><span class="line"> */</span><br><span class="line">public class JpgReader implements Reader&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void read() &#123;</span><br><span class="line">        System.out.println(&quot;jpg picture reader&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * gif 图片加载器工厂</span><br><span class="line"> */</span><br><span class="line">public class GifReaderFactory implements ReaderFactory&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Reader getReader() &#123;</span><br><span class="line">        return new GifReader();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * jpg 图片加载器工厂</span><br><span class="line"> */</span><br><span class="line">public class JpgReaderFactory implements ReaderFactory&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Reader getReader() &#123;</span><br><span class="line">        return new JpgReader();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * png 图片加载器工厂</span><br><span class="line"> */</span><br><span class="line">public class PngReaderFactory implements ReaderFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Reader getReader() &#123;</span><br><span class="line">        return new PngReader();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 客户端</span><br><span class="line"> */</span><br><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        GifReaderFactory gifReaderFactory = new GifReaderFactory();</span><br><span class="line">        Reader gifReader = gifReaderFactory.getReader();</span><br><span class="line">        gifReader.read();</span><br><span class="line"></span><br><span class="line">        PngReaderFactory pngReaderFactory = new PngReaderFactory();</span><br><span class="line">        Reader pngReader = pngReaderFactory.getReader();</span><br><span class="line">        pngReader.read();</span><br><span class="line"></span><br><span class="line">        JpgReaderFactory jpgReaderFactory = new JpgReaderFactory();</span><br><span class="line">        Reader jpgReader = jpgReaderFactory.getReader();</span><br><span class="line">        jpgReader.read();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>工厂方法模式优点</p>
+<ul>
+<li>良好的封装性。调用者需要创建一个产品对象，只需要知道产品工厂的类名就可以了，不要了解对象创建过程，降低模块间的耦合。</li>
+<li>良好的扩展性。当有新增产品类的需求变化，只要适当扩展一个工厂类就可以完成拥抱变化</li>
+<li>屏蔽产品类。产品类如何变化，调用者不需要关心—切换数据源（数据库从MySQL切换到Oracle,需要改动的只是切换一下驱动名称）</li>
+<li>典型的解耦框架。<ul>
+<li>高层模块需要知道产品抽象类，不关心实现类—迪米特法则</li>
+<li>只依赖产品类的抽象 — 依赖倒置原则</li>
+<li>产品子类替换产品父类 — 里氏替换原则</li>
+</ul>
+</li>
+</ul>
+<p>应用场景</p>
+<ul>
+<li>所以生成对象的地方都可以使用工厂方法模式，但是要权衡增加工厂类进行管理带来的代码复杂度</li>
+<li>需要灵活、可扩展的框架是，可以采用工厂方法模式</li>
+<li>客户端不需要知道它所创建对象的类，只需要知道创建的工厂名就可以完成创建过程</li>
+</ul>
+<h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><blockquote>
+<p>为创建一组相关或相互依赖的对象提供一个借口，而无需指定他们的具体类。</p>
+</blockquote>
+<p>案例：设计一个兼容Android、ios、Wp三个操作系统的游戏，每个系统都有一套操作控制和界面控制器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 界面控制器</span><br><span class="line"> */</span><br><span class="line">public interface UIController &#123;</span><br><span class="line">    void display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 操作控制器</span><br><span class="line"> */</span><br><span class="line">public interface OperationController &#123;</span><br><span class="line">    void control();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * wp ui controller</span><br><span class="line"> */</span><br><span class="line">public class WpUIController implements UIController &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;wp ui controller&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * ios 界面控制器</span><br><span class="line"> */</span><br><span class="line">public class IosUIController implements UIController &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;ios ui controller&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 安卓界面控制器</span><br><span class="line"> */</span><br><span class="line">public class AndroidUIController implements UIController&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;android ui controller&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * wp 操作控制器</span><br><span class="line"> */</span><br><span class="line">public class WpOperationController implements OperationController &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void control() &#123;</span><br><span class="line">        System.out.println(&quot;wp operation controller&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * ios 操作控制器</span><br><span class="line"> */</span><br><span class="line">public class IosOperationController implements OperationController &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void control() &#123;</span><br><span class="line">        System.out.println(&quot;ios operation controller&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 安卓操作控制器</span><br><span class="line"> */</span><br><span class="line">public class AndroidOperationController implements OperationController&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void control() &#123;</span><br><span class="line">        System.out.println(&quot;android opration controller&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface SystemFactory &#123;</span><br><span class="line">    OperationController createOperationController();</span><br><span class="line">    UIController createUIController();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * ios 工厂</span><br><span class="line"> */</span><br><span class="line">public class IosFactory implements SystemFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public OperationController createOperationController() &#123;</span><br><span class="line">        return new IosOperationController();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public UIController createUIController() &#123;</span><br><span class="line">        return new IosUIController();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * wp 工厂</span><br><span class="line"> */</span><br><span class="line">public class WpFactory implements SystemFactory&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public OperationController createOperationController() &#123;</span><br><span class="line">        return new WpOperationController();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public UIController createUIController() &#123;</span><br><span class="line">        return new WpUIController();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 安卓工厂</span><br><span class="line"> */</span><br><span class="line">public class AndroidFactory implements SystemFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public OperationController createOperationController() &#123;</span><br><span class="line">        return new AndroidOperationController();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public UIController createUIController() &#123;</span><br><span class="line">        return new AndroidUIController();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        AndroidFactory androidFactory = new AndroidFactory();</span><br><span class="line">        OperationController androidOperation = androidFactory.createOperationController();</span><br><span class="line">        androidOperation.control();</span><br><span class="line"></span><br><span class="line">        UIController androidUI = androidFactory.createUIController();</span><br><span class="line">        androidUI.display();</span><br><span class="line"></span><br><span class="line">        IosFactory iosFactory = new IosFactory();</span><br><span class="line">        OperationController iosOperation = iosFactory.createOperationController();</span><br><span class="line">        iosOperation.control();</span><br><span class="line"></span><br><span class="line">        UIController iosUI = iosFactory.createUIController();</span><br><span class="line">        iosUI.display();</span><br><span class="line"></span><br><span class="line">        WpFactory wpFactory = new WpFactory();</span><br><span class="line">        OperationController wpOperation = wpFactory.createOperationController();</span><br><span class="line">        wpOperation.control();</span><br><span class="line"></span><br><span class="line">        UIController wpUI = wpFactory.createUIController();</span><br><span class="line">        wpUI.display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点</p>
+<ul>
+<li>封装性。高层模块不需要关心产品实现类</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>产品族扩展困难,当要新增一个控制器，所有的实现类都要改变—违反开闭原则，改变了契约，所有与契约有关系的代码都要改变</li>
+</ul>
+<p>应用场景</p>
+<ul>
+<li>不关心对象创建过程</li>
+<li>需要一组对象功能完成某种功能</li>
+<li>系统结构稳定，不会频繁的增加产品族功能，增加产品族功能就回修改原有代码，不符合开闭原则。</li>
+</ul>
+<p>注意<br>产品族扩展困难(增加控制器)，但是产品扩展容易(增加小米系统的支持)，也就是纵向扩展困难，横向扩展容易，从产品横向扩展来说，抽象工厂模式是符合开闭原则的</p>
+<p>参考文档</p>
+<p><a href="https://juejin.im/entry/58f5e080b123db2fa2b3c4c6" target="_blank" rel="noopener">https://juejin.im/entry/58f5e080b123db2fa2b3c4c6</a></p>
 
       
     </div>
@@ -485,7 +579,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Design-OOP/" rel="tag"><i class="fa fa-tag"></i> Design, OOP</a>
+            <a href="/tags/Design/" rel="tag"><i class="fa fa-tag"></i> Design</a>
           
         </div>
       
@@ -498,18 +592,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/22/singleton/" rel="next" title="关于单例模式的几种变体形式">
-                <i class="fa fa-chevron-left"></i> 关于单例模式的几种变体形式
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/23/strategy/" rel="prev" title="策略模式">
-                策略模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/22/templateMethod/" rel="prev" title="模板模式">
+                模板模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -562,8 +652,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -580,7 +679,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -649,6 +748,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#造车案例来了解一下不同的工厂模式"><span class="nav-number">2.</span> <span class="nav-text">造车案例来了解一下不同的工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种工厂模式的实现"><span class="nav-number">3.</span> <span class="nav-text">几种工厂模式的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂"><span class="nav-number">3.1.</span> <span class="nav-text">简单工厂</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方法"><span class="nav-number">3.2.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象工厂"><span class="nav-number">3.3.</span> <span class="nav-text">抽象工厂</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -680,7 +795,7 @@
 <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
    <i class="fal fa-analytics"></i>
-  <span class="post-count">博客全站共985字</span>
+  <span class="post-count">博客全站共5.5k字</span>
 </div>
 
         
