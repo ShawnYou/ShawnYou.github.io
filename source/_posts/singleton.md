@@ -1,13 +1,12 @@
 ---
-title: 关于单利模式的几种变体
+title: 关于单例模式的几种变体形式
 date: 2019-03-22 21:14:01
-tags: design pattern
+tags: Design
+categories: 设计模式
 ---
 
 ![](http://posw9yxeh.bkt.clouddn.com/static/images/singleton-1.jpg)
 <!-- more -->
-
-## 关于单例模式的一点思考
 
 单例模式是一种简单的的设计模式。虽然简单，但是应用却是十分的广泛。所有有必要针对单例模式的知识点进行梳理。
 
