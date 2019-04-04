@@ -1,9 +1,12 @@
 ---
 title: 单一职责原则
-date: 2019-03-25 23:25:15
+date: 2019-03-22 23:25:15
 tags: Design
 categories: 设计模式
 ---
+
+![](http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-290-thumbnail-small.jpg)
+<!-- more -->
 
 ### 单一职责原则
 

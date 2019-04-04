@@ -1,6 +1,6 @@
 ---
 title: 模板模式
-date: 2019-03-22 21:14:01
+date: 2019-03-25 21:14:01
 tags: Design
 categories: 设计模式
 ---

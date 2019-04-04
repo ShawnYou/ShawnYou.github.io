@@ -1,9 +1,13 @@
 ---
 title: 迪米特法则|如何降低类间耦合
-date: 2019-03-25 21:54:12
+date: 2019-03-22 21:54:12
 tags: Design
 categories: 设计模式
 ---
+
+![](http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg)
+<!-- more -->
+
 
 软件开发一直在推崇一个概念-低耦合、高内聚。 那什么样的代码设计才算得上低耦合、高内聚的代码。本文通过迪米特法则来讲解一下如何进行低耦合的代码设计。
 

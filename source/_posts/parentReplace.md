@@ -1,9 +1,12 @@
 ---
 title: 里氏替换原则
-date: 2019-03-27 20:56:55
+date: 2019-03-22 20:56:55
 tags: Design
 categories: 设计模式
 ---
+
+![](http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-290-thumbnail-small.jpg)
+<!-- more -->
 
 ### 里氏替换原则
 

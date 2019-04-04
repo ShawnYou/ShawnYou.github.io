@@ -1,6 +1,6 @@
 ---
 title: 工厂模式|如何优雅的new对象
-date: 2019-03-22 21:14:01
+date: 2019-03-24 21:14:01
 tags: Design
 categories: 设计模式
 ---
