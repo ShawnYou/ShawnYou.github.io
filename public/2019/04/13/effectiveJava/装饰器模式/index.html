@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Design,">
+  <meta name="keywords" content="Notes,">
 
 
 
@@ -114,17 +114,18 @@
 
 
 
-<meta name="keywords" content="Design">
+<meta name="description" content="静态工厂方法代替构造器">
+<meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="里氏替换原则">
-<meta property="og:url" content="http://yoursite.com/2019/03/22/里氏替换原则/index.html">
+<meta property="og:title" content="读书笔记|如何正确的创建和销毁对象(一)">
+<meta property="og:url" content="http://yoursite.com/2019/04/13/effectiveJava/装饰器模式/index.html">
 <meta property="og:site_name" content="攻城虱">
+<meta property="og:description" content="静态工厂方法代替构造器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-290-thumbnail-small.jpg">
-<meta property="og:updated_time" content="2019-04-14T11:46:54.874Z">
+<meta property="og:updated_time" content="2019-04-14T14:40:29.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="里氏替换原则">
-<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-290-thumbnail-small.jpg">
+<meta name="twitter:title" content="读书笔记|如何正确的创建和销毁对象(一)">
+<meta name="twitter:description" content="静态工厂方法代替构造器">
 
 
 
@@ -154,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/22/里氏替换原则/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/13/effectiveJava/装饰器模式/">
 
 
 
 
 
-  <title>里氏替换原则 | 攻城虱</title>
+  <title>读书笔记|如何正确的创建和销毁对象(一) | 攻城虱</title>
   
 
 
@@ -329,7 +330,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/里氏替换原则/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/effectiveJava/装饰器模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shawn You">
@@ -346,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">里氏替换原则</h1>
+          <h1 class="post-title" itemprop="name headline">读书笔记|如何正确的创建和销毁对象(一)</h1>
         
 
         <div class="post-meta">
@@ -358,8 +359,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T20:56:55+08:00">
-                2019-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-13T14:55:37+08:00">
+                2019-04-13
               </time>
             
 
@@ -381,8 +382,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/读书笔记-Effective-Java/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记(Effective Java)</span>
                   </a>
                 </span>
 
@@ -398,7 +399,7 @@
 
           
           
-             <span id="/2019/03/22/里氏替换原则/" class="leancloud_visitors" data-flag-title="里氏替换原则">
+             <span id="/2019/04/13/effectiveJava/装饰器模式/" class="leancloud_visitors" data-flag-title="读书笔记|如何正确的创建和销毁对象(一)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -430,33 +431,7 @@
       
 
       
-        <p><img src="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-290-thumbnail-small.jpg" alt><br><a id="more"></a></p>
-<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>继承作为面向对象设计的重要手段，具有以下的特点</p>
-<p>优点</p>
-<ul>
-<li>代码共享，减少重复工作</li>
-<li>提高代码复用性</li>
-<li>子类形似于父类而区别于父类</li>
-<li>提高代码扩展性</li>
-</ul>
-<p>缺点</p>
-<ul>
-<li>代码侵入性，继承必须拥有父类的所有方法</li>
-<li>降低代码灵活性，子类必须拥有父类的属性和方法</li>
-<li>增强了耦合性，当父类被改变时，需要考虑到子类的修改</li>
-</ul>
-<p>什么叫里氏替换原则</p>
-<blockquote>
-<p>所有引用基类的地方必须能够透明的使用其子类的对象（）</p>
-</blockquote>
-<p>由此里氏替换原则是为继承定义的一个规范</p>
-<ul>
-<li>子类必完全实现父类的方法</li>
-<li>子类可以有自己独特的个性</li>
-<li>覆盖或者实现父类的方法时，输入参数可以被放大</li>
-<li>覆盖或实现父类方法时，输出结果可以被缩小</li>
-</ul>
-
+        <h3 id="静态工厂方法代替构造器"><a href="#静态工厂方法代替构造器" class="headerlink" title="静态工厂方法代替构造器"></a>静态工厂方法代替构造器</h3>
       
     </div>
     
@@ -473,7 +448,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Design/" rel="tag"><i class="fa fa-tag"></i> Design</a>
+            <a href="/tags/Notes/" rel="tag"><i class="fa fa-tag"></i> Notes</a>
           
         </div>
       
@@ -486,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/22/接口隔离原则/" rel="next" title="接口隔离原则|">
-                <i class="fa fa-chevron-left"></i> 接口隔离原则|
+              <a href="/2019/04/13/装饰器模式/" rel="next" title="装饰器模式">
+                <i class="fa fa-chevron-left"></i> 装饰器模式
               </a>
             
           </div>
@@ -496,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/22/迪米特法则/" rel="prev" title="迪米特法则|如何降低类间耦合">
-                迪米特法则|如何降低类间耦合 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/13/策略模式/" rel="prev" title="策略模式">
+                策略模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -655,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">1.</span> <span class="nav-text">里氏替换原则</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态工厂方法代替构造器"><span class="nav-number">1.</span> <span class="nav-text">静态工厂方法代替构造器</span></a></li></ol></div>
             
 
           </div>
