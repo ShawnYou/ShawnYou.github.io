@@ -114,14 +114,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="中介者模式如何理解中介者模式复杂的进销存系统类图 类图 虽然不同类型的参与者完成各自的活动，但是每个类相互关联耦合 每个类与多个朋友类相互交互，朋友类越多，耦合性越大，要修改一个，就得修改一大片— 违反迪米特法则 不同参与者之间交互过于复杂，维护比较困难  使用一个中介者对象，他将各个对象之间的交互封装起来作为一个中间桥梁，降低各个参与者的耦合性。 中介者类图 每个参与者只负责自己的业务逻辑，不属">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻城虱">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/中介者模式/index.html">
 <meta property="og:site_name" content="攻城虱">
+<meta property="og:description" content="中介者模式如何理解中介者模式复杂的进销存系统类图 类图 虽然不同类型的参与者完成各自的活动，但是每个类相互关联耦合 每个类与多个朋友类相互交互，朋友类越多，耦合性越大，要修改一个，就得修改一大片— 违反迪米特法则 不同参与者之间交互过于复杂，维护比较困难  使用一个中介者对象，他将各个对象之间的交互封装起来作为一个中间桥梁，降低各个参与者的耦合性。 中介者类图 每个参与者只负责自己的业务逻辑，不属">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T03:32:02.396Z">
+<meta property="og:updated_time" content="2019-04-14T11:51:27.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="攻城虱">
+<meta name="twitter:description" content="中介者模式如何理解中介者模式复杂的进销存系统类图 类图 虽然不同类型的参与者完成各自的活动，但是每个类相互关联耦合 每个类与多个朋友类相互交互，朋友类越多，耦合性越大，要修改一个，就得修改一大片— 违反迪米特法则 不同参与者之间交互过于复杂，维护比较困难  使用一个中介者对象，他将各个对象之间的交互封装起来作为一个中间桥梁，降低各个参与者的耦合性。 中介者类图 每个参与者只负责自己的业务逻辑，不属">
 
 
 
@@ -151,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/中介者模式/">
 
 
 
 
 
-  <title>about | 攻城虱</title>
+  <title> | 攻城虱</title>
   
 
 
@@ -314,33 +317,212 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/中介者模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shawn You">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻城虱">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T21:32:28+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/09/中介者模式/" class="leancloud_visitors" data-flag-title>
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>次</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><h4 id="如何理解中介者模式"><a href="#如何理解中介者模式" class="headerlink" title="如何理解中介者模式"></a>如何理解中介者模式</h4><p>复杂的进销存系统类图</p>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><ul>
+<li>虽然不同类型的参与者完成各自的活动，但是每个类相互关联耦合</li>
+<li>每个类与多个朋友类相互交互，朋友类越多，耦合性越大，要修改一个，就得修改一大片— 违反迪米特法则</li>
+<li>不同参与者之间交互过于复杂，维护比较困难</li>
+</ul>
+<p>使用一个中介者对象，他将各个对象之间的交互封装起来作为一个中间桥梁，降低各个参与者的耦合性。</p>
+<h4 id="中介者类图"><a href="#中介者类图" class="headerlink" title="中介者类图"></a>中介者类图</h4><ul>
+<li>每个参与者只负责自己的业务逻辑，不属于自己的交给中介者去处理</li>
+<li>每个参与者不再交互交流，简化了各模块间的耦合性</li>
+</ul>
+<ol>
+<li>抽象中介者类</li>
+</ol>
+<p>定义统一的接口，用于各个参与者角色之间的通信<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Mediator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> ConcreteColleagueA concreteColleagueA;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> ConcreteColleagueB concreteColleagueB;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mediator</span><span class="params">()</span></span>&#123;</span><br><span class="line">        concreteColleagueA = <span class="keyword">new</span> ConcreteColleagueA(<span class="keyword">this</span>);</span><br><span class="line">        concreteColleagueB = <span class="keyword">new</span> ConcreteColleagueB(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doSomethingA</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doSomethingB</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line">Q:为什么使用参与类实现类注入，而不使用抽象类注入(接口注入)</span><br><span class="line">A:因为每个参与类没有必须要完成的业务方法(没有相同的方法), 假如有相同的方法，当然要注入抽象类做到依赖倒置。</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>抽象参与者类</li>
+</ol>
+<p>每一个参与者必须知道中介者角色，所以通过构造函数传入<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Colleague</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> Mediator mediator;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Colleague</span><span class="params">(Mediator mediator)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mediator = mediator;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>具体中介者类</li>
+</ol>
+<p>协调各个参与者实现协作工作行为，要依赖各个参与者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteMediator</span> <span class="keyword">extends</span> <span class="title">Mediator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.concreteColleagueA.selfMethod();</span><br><span class="line">        <span class="keyword">super</span>.concreteColleagueB.selfMethod();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingB</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.concreteColleagueA.selfMethod();</span><br><span class="line">        <span class="keyword">super</span>.concreteColleagueB.selfMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>具体参与者类A</li>
+</ol>
+<ul>
+<li>自身的行为selfMethod,用于处理自身的业务逻辑</li>
+<li>依赖的行为depMethod,依靠中介者去完成<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteColleagueA</span> <span class="keyword">extends</span> <span class="title">Colleague</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteColleagueA</span><span class="params">(Mediator mediator)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(mediator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selfMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//自己的业务逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">depMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//不能处理的业务逻辑，交给中介者处理</span></span><br><span class="line">        <span class="keyword">super</span>.mediator.doSomethingA();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="5">
+<li><p>具体参与者类B</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteColleagueB</span> <span class="keyword">extends</span> <span class="title">Colleague</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteColleagueB</span><span class="params">(Mediator mediator)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(mediator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selfMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//自己能够处理的业务逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">depMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.mediator.doSomethingB();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteColleagueB</span> <span class="keyword">extends</span> <span class="title">Colleague</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteColleagueB</span><span class="params">(Mediator mediator)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(mediator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selfMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//自己能够处理的业务逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">depMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.mediator.doSomethingB();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>用一个中介对象封装一系列的对象交互，中介者使对象不需要显示的相互作用，从而使其耦合松散,并且可以独立的改变他们之间的交互</p>
+</blockquote>
+<h4 id="中介者模式有什么优势"><a href="#中介者模式有什么优势" class="headerlink" title="中介者模式有什么优势"></a>中介者模式有什么优势</h4><ol>
+<li>系统更加灵活，各个参与者相互独立</li>
+<li>减少类间的依赖，参与类只依赖中介者，减少了依赖，降低了类间的耦合<h4 id="中介者模式存在的问题"><a href="#中介者模式存在的问题" class="headerlink" title="中介者模式存在的问题"></a>中介者模式存在的问题</h4></li>
+<li>中介者承担了太多的职责，一旦出现问题，整个系统都会受影响</li>
+<li>中介者会变得非常复杂，原本参与者间的关系转换成了中介者与参与者的关系，参与者越多，中介者就越复杂</li>
+</ol>
+<h4 id="中介者模式要慎用"><a href="#中介者模式要慎用" class="headerlink" title="中介者模式要慎用"></a>中介者模式要慎用</h4><ol>
+<li>量力而行。 中介者模式会使中介者逻辑复杂化。使用不当会把问题变得复杂，如果本身就只有简单的几个依赖关系，就没必要用终结者模式。所以要根据情况权衡中介者模式的使用</li>
+<li>中介者适合多个对象紧密耦合的情况–蜘蛛网结构，中介者模式能将蜘蛛网结构梳理成星型结构</li>
+</ol>
+<h4 id="留下的问题"><a href="#留下的问题" class="headerlink" title="留下的问题"></a>留下的问题</h4><p>Q:不符合依赖倒置原则，很少使用接口或者抽象类</p>
+<ul>
+<li>参与者之间是协作关系，处理不同的任务，不能严格定义参与者需要具有的方法，不能抽象出一个统一的父类</li>
+<li>每个中介者所围绕的参与类各不相同，不能抽象出一个具有共性的中介者</li>
+<li>两个对象不能提炼出共性，就不要追求两者的抽象</li>
+</ul>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/06/原型模式/" rel="next" title="原型模式">
+                <i class="fa fa-chevron-left"></i> 原型模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/09/命令模式/" rel="prev" title="命令模式">
+                命令模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -373,8 +555,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -459,6 +650,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#中介者模式"><span class="nav-number">1.</span> <span class="nav-text">中介者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何理解中介者模式"><span class="nav-number">1.1.</span> <span class="nav-text">如何理解中介者模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.</span> <span class="nav-text">类图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中介者类图"><span class="nav-number">2.1.</span> <span class="nav-text">中介者类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中介者模式有什么优势"><span class="nav-number">2.2.</span> <span class="nav-text">中介者模式有什么优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中介者模式存在的问题"><span class="nav-number">2.3.</span> <span class="nav-text">中介者模式存在的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中介者模式要慎用"><span class="nav-number">2.4.</span> <span class="nav-text">中介者模式要慎用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#留下的问题"><span class="nav-number">2.5.</span> <span class="nav-text">留下的问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

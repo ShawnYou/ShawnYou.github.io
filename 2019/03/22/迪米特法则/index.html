@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Design,">
 
 
 
@@ -114,14 +114,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="keywords" content="Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迪米特法则|如何降低类间耦合">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/迪米特法则/index.html">
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T03:32:02.396Z">
+<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
+<meta property="og:updated_time" content="2019-04-14T11:54:58.070Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="迪米特法则|如何降低类间耦合">
+<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
 
 
 
@@ -151,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/22/迪米特法则/">
 
 
 
 
 
-  <title>about | 攻城虱</title>
+  <title>迪米特法则|如何降低类间耦合 | 攻城虱</title>
   
 
 
@@ -314,33 +317,206 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/迪米特法则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shawn You">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻城虱">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">迪米特法则|如何降低类间耦合</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T21:54:12+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/03/22/迪米特法则/" class="leancloud_visitors" data-flag-title="迪米特法则|如何降低类间耦合">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>次</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p><img src="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg" alt><br><a id="more"></a></p>
+<p>软件开发一直在推崇一个概念-低耦合、高内聚。 那什么样的代码设计才算得上低耦合、高内聚的代码。本文通过迪米特法则来讲解一下如何进行低耦合的代码设计。</p>
+<blockquote>
+<p>迪米特法则也叫最小知识原则（Least Knowledge Principle）,即一个类应该对自己需要耦合和调用的类保持最少的认识。也就是一个类对自己依赖的类知道的越少越好。因而迪米特法则应该遵循一下的要义</p>
+<ol>
+<li>被依赖者，只应该暴露应该暴露的方法</li>
+<li>依赖者，只依赖应该依赖的对象</li>
+</ol>
+</blockquote>
+<h3 id="一个案例"><a href="#一个案例" class="headerlink" title="一个案例"></a>一个案例</h3><p>David Bock根据迪米特法则给出了一个超市购物的案例。<br>三个关键信息：消费者、钱包、收银员<br>定义了三个类，分别是Customer、Wallet、PaperBoy<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String firstName;</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="keyword">private</span> Wallet myWallet;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> firstName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> lastName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Wallet <span class="title">getWallet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> myWallet;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Wallet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> value;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTotalMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTotalMoney</span><span class="params">(<span class="keyword">float</span> newValue)</span> </span>&#123;</span><br><span class="line">        value = newValue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">float</span> deposit)</span> </span>&#123;</span><br><span class="line">        value += deposit;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subtractMoney</span><span class="params">(<span class="keyword">float</span> debit)</span> </span>&#123;</span><br><span class="line">        value -= debit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Paperboy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">charge</span><span class="params">(Customer myCustomer, <span class="keyword">double</span> payment)</span> </span>&#123;</span><br><span class="line">        Wallet theWallet = myCustomer.getWallet();</span><br><span class="line">        <span class="keyword">if</span> (theWallet.getTotalMoney() &gt; payment) &#123;</span><br><span class="line">            theWallet.subtractMoney(payment);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//money not enough</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从这三个类可以看出， PaperBoy承担了大多数的功能实现。PaperBoy从消费者那里拿到了钱包，核点钱包的的金钱并自己从中拿去购物的费用。paperBoy既与Customer发生直接交互，又与Wallet发生间接交互，不符合最小知识原则（迪米特法则）。案例主要存在以下问题</p>
+<ul>
+<li>Wallet暴露太多方法，其实Customer只要能够用钱包进行付钱就行了。所以这违反了迪米特法则的第一条（被依赖者，只暴露应该暴露的方法）</li>
+<li>让PaperBoy与Wallet直接交互是错误的行为，Wallet是Customer的私有财物，ParperBoy是无权过问Wallet的情况的， 所以从职责的角度上来看，这是不符合逻辑，违反了迪米特法则的第二条（依赖者，只依赖应该依赖的对象）</li>
+</ul>
+<h3 id="如何进行修改"><a href="#如何进行修改" class="headerlink" title="如何进行修改"></a>如何进行修改</h3><ul>
+<li>PaperBoy不再与钱包发生直接关系，直接向customer要钱</li>
+<li>钱包只暴露付钱的方法给Customer。 方法暴露越多，后期需求变更的影响越大。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PaperBoy</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Customer customer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PaperBoy</span><span class="params">(Customer customer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.customer = customer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">charge</span><span class="params">(<span class="keyword">float</span> payment)</span></span>&#123;</span><br><span class="line">        customer.pay(payment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String firstName;</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="keyword">private</span> Wallet myWallet;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">(String firstName, String lastName, Wallet myWallet)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.firstName = firstName;</span><br><span class="line">        <span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">        <span class="keyword">this</span>.myWallet = myWallet;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> firstName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span><span class="params">(<span class="keyword">float</span> payment)</span></span>&#123;</span><br><span class="line">        myWallet.pay(payment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Wallet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> value;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">float</span> <span class="title">getTotalMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTotalMoney</span><span class="params">(<span class="keyword">float</span> newValue)</span> </span>&#123;</span><br><span class="line">        value = newValue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">float</span> deposit)</span> </span>&#123;</span><br><span class="line">        value += deposit;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">subtractMoney</span><span class="params">(<span class="keyword">float</span> debit)</span> </span>&#123;</span><br><span class="line">        value -= debit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span><span class="params">(<span class="keyword">float</span> payment)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(getTotalMoney()&gt;payment)&#123;</span><br><span class="line">            subtractMoney(payment);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>迪米特法则核心观念— 类间解耦、弱耦合</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Design/" rel="tag"><i class="fa fa-tag"></i> Design</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/里氏替换原则/" rel="next" title="里氏替换原则">
+                <i class="fa fa-chevron-left"></i> 里氏替换原则
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/22/单一职责原则/" rel="prev" title="单一职责原则">
+                单一职责原则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -373,8 +549,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -459,6 +644,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个案例"><span class="nav-number">1.</span> <span class="nav-text">一个案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何进行修改"><span class="nav-number">2.</span> <span class="nav-text">如何进行修改</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

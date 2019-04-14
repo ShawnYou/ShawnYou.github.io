@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Design,">
 
 
 
@@ -114,14 +114,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="实际案例一个主题切换案例123public interface Theme &amp;#123;    void applyTheme();&amp;#125; 123456public class DefaultTheme implements Theme&amp;#123;    @Override    public void applyTheme() &amp;#123;        System.out.printl">
+<meta name="keywords" content="Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="策略模式">
+<meta property="og:url" content="http://yoursite.com/2019/04/13/策略模式/index.html">
 <meta property="og:site_name" content="攻城虱">
+<meta property="og:description" content="实际案例一个主题切换案例123public interface Theme &amp;#123;    void applyTheme();&amp;#125; 123456public class DefaultTheme implements Theme&amp;#123;    @Override    public void applyTheme() &amp;#123;        System.out.printl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T03:32:02.396Z">
+<meta property="og:updated_time" content="2019-04-14T11:53:15.621Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="策略模式">
+<meta name="twitter:description" content="实际案例一个主题切换案例123public interface Theme &amp;#123;    void applyTheme();&amp;#125; 123456public class DefaultTheme implements Theme&amp;#123;    @Override    public void applyTheme() &amp;#123;        System.out.printl">
 
 
 
@@ -151,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/13/策略模式/">
 
 
 
 
 
-  <title>about | 攻城虱</title>
+  <title>策略模式 | 攻城虱</title>
   
 
 
@@ -314,33 +318,217 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/策略模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shawn You">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻城虱">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">策略模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-13T20:44:43+08:00">
+                2019-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/13/策略模式/" class="leancloud_visitors" data-flag-title="策略模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>次</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h3><h4 id="一个主题切换案例"><a href="#一个主题切换案例" class="headerlink" title="一个主题切换案例"></a>一个主题切换案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Theme</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultTheme</span> <span class="keyword">implements</span> <span class="title">Theme</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"设置默认主题"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DarkTheme</span> <span class="keyword">implements</span> <span class="title">Theme</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"设置暗黑风格主题"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ColorfulTheme</span> <span class="keyword">implements</span> <span class="title">Theme</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"设置彩色风格主题"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Theme theme;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThemeManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.theme = <span class="keyword">new</span> DefaultTheme();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTheme</span><span class="params">(Theme theme)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.theme = theme;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.theme.applyTheme();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThemeManager themeManager = <span class="keyword">new</span> ThemeManager();</span><br><span class="line">        <span class="comment">//设置黑暗风格主题</span></span><br><span class="line">        themeManager.setTheme(<span class="keyword">new</span> DarkTheme());</span><br><span class="line">        themeManager.applyTheme();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主题模式更换的案例中，不同的主题风格就是一个个策略，我们可以根须需要选择不同的策略。</p>
+<h3 id="如何理解策略模式"><a href="#如何理解策略模式" class="headerlink" title="如何理解策略模式"></a>如何理解策略模式</h3><blockquote>
+<p>定义椅子算法，将每个算法都以类的方式凤凰钻起来，并且使他们可以互相交换。</p>
+</blockquote>
+<p>类图（TODO）</p>
+<p>策略模式模型抽象</p>
+<ul>
+<li>Context封装角色</li>
+</ul>
+<p>主题更换案例中的ThemeManager就是一个封装角色，也叫上下文角色，拼比高层对策略的直接访问。</p>
+<ul>
+<li>Strategy抽象策略角色</li>
+</ul>
+<p>定义每个策略必须具有的方法和属性</p>
+<ul>
+<li>ConcreteStrategy具体策略角色</li>
+</ul>
+<p>抽象策略的实现，具体的算法</p>
+<h3 id="策略模式的优点"><a href="#策略模式的优点" class="headerlink" title="策略模式的优点"></a>策略模式的优点</h3><ul>
+<li>算法可以自由切换</li>
+<li>避免了多重条件的判断</li>
+<li>良好的扩展性(符合开闭原则)</li>
+</ul>
+<h3 id="策略模式的缺点"><a href="#策略模式的缺点" class="headerlink" title="策略模式的缺点"></a>策略模式的缺点</h3><ul>
+<li>策略类会逐渐增多(超过四个考虑使用混合模式)</li>
+<li>策略类必须向外暴露(违反迪米特法则) — 上层模块必须知道哪些策略，才能使用哪些策略，可用工厂方法模式修正</li>
+</ul>
+<h3 id="策略模式的具体应用"><a href="#策略模式的具体应用" class="headerlink" title="策略模式的具体应用"></a>策略模式的具体应用</h3><ul>
+<li>Shiro权限控制框架有三种验证策略</li>
+</ul>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Design/" rel="tag"><i class="fa fa-tag"></i> Design</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/装饰器模式/" rel="next" title="装饰器模式">
+                <i class="fa fa-chevron-left"></i> 装饰器模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/14/适配器模式/" rel="prev" title="适配器模式">
+                适配器模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -373,8 +561,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -459,6 +656,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实际案例"><span class="nav-number">1.</span> <span class="nav-text">实际案例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个主题切换案例"><span class="nav-number">1.1.</span> <span class="nav-text">一个主题切换案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解策略模式"><span class="nav-number">2.</span> <span class="nav-text">如何理解策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式的优点"><span class="nav-number">3.</span> <span class="nav-text">策略模式的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式的缺点"><span class="nav-number">4.</span> <span class="nav-text">策略模式的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式的具体应用"><span class="nav-number">5.</span> <span class="nav-text">策略模式的具体应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
