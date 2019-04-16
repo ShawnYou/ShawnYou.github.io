@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-14T11:46:57.636Z</updated>
+  <updated>2019-04-14T15:28:59.004Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读书笔记|如何更好的创建和销毁对象(一)</title>
+    <link href="http://yoursite.com/2019/04/14/effectiveJava/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/04/14/effectiveJava/装饰器模式/</id>
+    <published>2019-04-14T06:55:37.000Z</published>
+    <updated>2019-04-14T15:28:59.004Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="静态工厂方法代替构造器"><a href="#静态工厂方法代替构造器" class="headerlink" title="静态工厂方法代替构造器"></a>静态工厂方法代替构造器</h3><h4 id="四大优势"><a href="#四大优势" class="headerlink" title="四大优势"></a>四大优势</h4><ol><li>静态工厂方法有名称，易于区分。</li><li>避免不必要的重复对象的创建工作</li><li>可以返回原返回类型的任何子类型</li><li>创建参数化类型实例，使代码变得更加简洁</li></ol><h4 id="两个缺点"><a href="#两个缺点" class="headerlink" title="两个缺点"></a>两个缺点</h4><h3 id="遇到多个参数时要使用构建器"><a href="#遇到多个参数时要使用构建器" class="headerlink" title="遇到多个参数时要使用构建器"></a>遇到多个参数时要使用构建器</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;静态工厂方法代替构造器&quot;&gt;&lt;a href=&quot;#静态工厂方法代替构造器&quot; class=&quot;headerlink&quot; title=&quot;静态工厂方法代替构造器&quot;&gt;&lt;/a&gt;静态工厂方法代替构造器&lt;/h3&gt;&lt;h4 id=&quot;四大优势&quot;&gt;&lt;a href=&quot;#四大优势&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="读书笔记(Effective Java)" scheme="http://yoursite.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Effective-Java/"/>
+    
+    
+      <category term="Notes" scheme="http://yoursite.com/tags/Notes/"/>
+    
+  </entry>
   
   <entry>
     <title>适配器模式</title>
@@ -64,31 +89,6 @@
     
     
       <category term="Design" scheme="http://yoursite.com/tags/Design/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读书笔记|如何正确的创建和销毁对象(一)</title>
-    <link href="http://yoursite.com/2019/04/13/effectiveJava/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/04/13/effectiveJava/装饰器模式/</id>
-    <published>2019-04-13T06:55:37.000Z</published>
-    <updated>2019-04-14T14:40:29.576Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="静态工厂方法代替构造器"><a href="#静态工厂方法代替构造器" class="headerlink" title="静态工厂方法代替构造器"></a>静态工厂方法代替构造器</h3>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;静态工厂方法代替构造器&quot;&gt;&lt;a href=&quot;#静态工厂方法代替构造器&quot; class=&quot;headerlink&quot; title=&quot;静态工厂方法代替构造器&quot;&gt;&lt;/a&gt;静态工厂方法代替构造器&lt;/h3&gt;
-      
-    
-    </summary>
-    
-      <category term="读书笔记(Effective Java)" scheme="http://yoursite.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Effective-Java/"/>
-    
-    
-      <category term="Notes" scheme="http://yoursite.com/tags/Notes/"/>
     
   </entry>
   
