@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Design,">
+  <meta name="keywords" content="Notes,">
 
 
 
@@ -114,17 +114,18 @@
 
 
 
-<meta name="keywords" content="Design">
+<meta name="description" content="深入理解@Import注解 查看SpringBoot相关组件的源码，会发现有很多地方运用了@Import注解，这个注解有什么用呢，工作原理是什么，我们可以利用这个@Import来做什么？  123456@Target(&amp;#123;ElementType.TYPE&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interfac">
+<meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="迪米特法则|如何降低类间耦合">
-<meta property="og:url" content="http://yoursite.com/2019/03/22/迪米特法则/index.html">
+<meta property="og:title" content="SpringBoot源碼|深入理解@Import注解">
+<meta property="og:url" content="http://yoursite.com/2019/06/15/Spring-boot/Import/index.html">
 <meta property="og:site_name" content="攻城虱">
+<meta property="og:description" content="深入理解@Import注解 查看SpringBoot相关组件的源码，会发现有很多地方运用了@Import注解，这个注解有什么用呢，工作原理是什么，我们可以利用这个@Import来做什么？  123456@Target(&amp;#123;ElementType.TYPE&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interfac">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
-<meta property="og:updated_time" content="2019-04-14T11:54:58.070Z">
+<meta property="og:updated_time" content="2019-06-17T14:34:00.097Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="迪米特法则|如何降低类间耦合">
-<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
+<meta name="twitter:title" content="SpringBoot源碼|深入理解@Import注解">
+<meta name="twitter:description" content="深入理解@Import注解 查看SpringBoot相关组件的源码，会发现有很多地方运用了@Import注解，这个注解有什么用呢，工作原理是什么，我们可以利用这个@Import来做什么？  123456@Target(&amp;#123;ElementType.TYPE&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Documentedpublic @interfac">
 
 
 
@@ -154,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/22/迪米特法则/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/15/Spring-boot/Import/">
 
 
 
 
 
-  <title>迪米特法则|如何降低类间耦合 | 攻城虱</title>
+  <title>SpringBoot源碼|深入理解@Import注解 | 攻城虱</title>
   
 
 
@@ -329,7 +330,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/迪米特法则/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/15/Spring-boot/Import/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shawn You">
@@ -346,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">迪米特法则|如何降低类间耦合</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot源碼|深入理解@Import注解</h1>
         
 
         <div class="post-meta">
@@ -358,8 +359,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T21:54:12+08:00">
-                2019-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-15T14:55:37+08:00">
+                2019-06-15
               </time>
             
 
@@ -381,8 +382,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
                   </a>
                 </span>
 
@@ -398,7 +399,7 @@
 
           
           
-             <span id="/2019/03/22/迪米特法则/" class="leancloud_visitors" data-flag-title="迪米特法则|如何降低类间耦合">
+             <span id="/2019/06/15/Spring-boot/Import/" class="leancloud_visitors" data-flag-title="SpringBoot源碼|深入理解@Import注解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -430,31 +431,23 @@
       
 
       
-        <p><img src="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg" alt><br><a id="more"></a></p>
-<p>软件开发一直在推崇一个概念-低耦合、高内聚。 那什么样的代码设计才算得上低耦合、高内聚的代码。本文通过迪米特法则来讲解一下如何进行低耦合的代码设计。</p>
-<blockquote>
-<p>迪米特法则也叫最小知识原则（Least Knowledge Principle）,即一个类应该对自己需要耦合和调用的类保持最少的认识。也就是一个类对自己依赖的类知道的越少越好。因而迪米特法则应该遵循一下的要义</p>
-<ol>
-<li>被依赖者，只应该暴露应该暴露的方法</li>
-<li>依赖者，只依赖应该依赖的对象</li>
-</ol>
+        <h3 id="深入理解-Import注解"><a href="#深入理解-Import注解" class="headerlink" title="深入理解@Import注解"></a>深入理解@Import注解</h3><blockquote>
+<p>查看SpringBoot相关组件的源码，会发现有很多地方运用了@Import注解，这个注解有什么用呢，工作原理是什么，我们可以利用这个@Import来做什么？</p>
 </blockquote>
-<h3 id="一个案例"><a href="#一个案例" class="headerlink" title="一个案例"></a>一个案例</h3><p>David Bock根据迪米特法则给出了一个超市购物的案例。<br>三个关键信息：消费者、钱包、收银员<br>定义了三个类，分别是Customer、Wallet、PaperBoy<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String firstName;</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="keyword">private</span> Wallet myWallet;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> firstName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> lastName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Wallet <span class="title">getWallet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> myWallet;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Wallet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> value;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTotalMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTotalMoney</span><span class="params">(<span class="keyword">float</span> newValue)</span> </span>&#123;</span><br><span class="line">        value = newValue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">float</span> deposit)</span> </span>&#123;</span><br><span class="line">        value += deposit;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subtractMoney</span><span class="params">(<span class="keyword">float</span> debit)</span> </span>&#123;</span><br><span class="line">        value -= debit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Paperboy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">charge</span><span class="params">(Customer myCustomer, <span class="keyword">double</span> payment)</span> </span>&#123;</span><br><span class="line">        Wallet theWallet = myCustomer.getWallet();</span><br><span class="line">        <span class="keyword">if</span> (theWallet.getTotalMoney() &gt; payment) &#123;</span><br><span class="line">            theWallet.subtractMoney(payment);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//money not enough</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从这三个类可以看出， PaperBoy承担了大多数的功能实现。PaperBoy从消费者那里拿到了钱包，核点钱包的的金钱并自己从中拿去购物的费用。paperBoy既与Customer发生直接交互，又与Wallet发生间接交互，不符合最小知识原则（迪米特法则）。案例主要存在以下问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Import &#123;</span><br><span class="line">    Class&lt;?&gt;[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Import的使用方式"><a href="#Import的使用方式" class="headerlink" title="@Import的使用方式"></a>@Import的使用方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AnnotationConfigApplicationContext applicationContext = <span class="keyword">new</span> AnnotationConfigApplicationContext(AppConfig.class);</span><br><span class="line">        ServiceImpl service = applicationContext.getBean(ServiceImpl.class);</span><br><span class="line">        Assert.notNull(service,<span class="string">"service has inject successful"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h4><p>通过@Import将Class加载到AppConfig类中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import</span>(value = ServiceImpl.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="ImportBeanDefinitionRegistrar"><a href="#ImportBeanDefinitionRegistrar" class="headerlink" title="ImportBeanDefinitionRegistrar"></a>ImportBeanDefinitionRegistrar</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ImportBeanDefinitionRegistrar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">registerBeanDefinitions</span><span class="params">(AnnotationMetadata var1, BeanDefinitionRegistry var2)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义BeanDefinitionRegistrar的实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceBeanDefinitionRegistrar</span> <span class="keyword">implements</span> <span class="title">ImportBeanDefinitionRegistrar</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerBeanDefinitions</span><span class="params">(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry)</span> </span>&#123;</span><br><span class="line">        BeanDefinitionBuilder builder = BeanDefinitionBuilder.rootBeanDefinition(ServiceImpl.class);</span><br><span class="line">        <span class="comment">//BeanDefinitionRegistry将生成的BeanDefinition注册到容器中去</span></span><br><span class="line">        beanDefinitionRegistry.registerBeanDefinition(<span class="string">"service"</span>,builder.getBeanDefinition());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import</span>(value = ServiceBeanDefinitionRegistrar.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="通过ImportBeanDefinitionRegistrar实现的Import可以针对Bean注册容器的过程进行自定义"><a href="#通过ImportBeanDefinitionRegistrar实现的Import可以针对Bean注册容器的过程进行自定义" class="headerlink" title="通过ImportBeanDefinitionRegistrar实现的Import可以针对Bean注册容器的过程进行自定义"></a>通过ImportBeanDefinitionRegistrar实现的Import可以针对Bean注册容器的过程进行自定义</h4><h3 id="ImportSelector"><a href="#ImportSelector" class="headerlink" title="ImportSelector"></a>ImportSelector</h3><p>告诉容器需要注入哪些类的类名就可以实现Bean的注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ImportSelector</span> </span>&#123;</span><br><span class="line">    String[] selectImports(AnnotationMetadata var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceImportSelector</span> <span class="keyword">implements</span> <span class="title">ImportSelector</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String[] selectImports(AnnotationMetadata annotationMetadata) &#123;</span><br><span class="line">        <span class="comment">//annotationMetadata是关于注解的元数据信息,可以根据需要获取注解的信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;ServiceImpl.class.getName()&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import</span>(value = ServiceImportSelector.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>Wallet暴露太多方法，其实Customer只要能够用钱包进行付钱就行了。所以这违反了迪米特法则的第一条（被依赖者，只暴露应该暴露的方法）</li>
-<li>让PaperBoy与Wallet直接交互是错误的行为，Wallet是Customer的私有财物，ParperBoy是无权过问Wallet的情况的， 所以从职责的角度上来看，这是不符合逻辑，违反了迪米特法则的第二条（依赖者，只依赖应该依赖的对象）</li>
+<li>总结<br>获取注解元数据信息，返回一组需要注入类的类名，有框架来生成对应的实体类从而注入到容器中去。</li>
 </ul>
-<h3 id="如何进行修改"><a href="#如何进行修改" class="headerlink" title="如何进行修改"></a>如何进行修改</h3><ul>
-<li>PaperBoy不再与钱包发生直接关系，直接向customer要钱</li>
-<li>钱包只暴露付钱的方法给Customer。 方法暴露越多，后期需求变更的影响越大。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PaperBoy</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Customer customer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PaperBoy</span><span class="params">(Customer customer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.customer = customer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">charge</span><span class="params">(<span class="keyword">float</span> payment)</span></span>&#123;</span><br><span class="line">        customer.pay(payment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String firstName;</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="keyword">private</span> Wallet myWallet;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">(String firstName, String lastName, Wallet myWallet)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.firstName = firstName;</span><br><span class="line">        <span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">        <span class="keyword">this</span>.myWallet = myWallet;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> firstName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span><span class="params">(<span class="keyword">float</span> payment)</span></span>&#123;</span><br><span class="line">        myWallet.pay(payment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Wallet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> value;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">float</span> <span class="title">getTotalMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTotalMoney</span><span class="params">(<span class="keyword">float</span> newValue)</span> </span>&#123;</span><br><span class="line">        value = newValue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">float</span> deposit)</span> </span>&#123;</span><br><span class="line">        value += deposit;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">subtractMoney</span><span class="params">(<span class="keyword">float</span> debit)</span> </span>&#123;</span><br><span class="line">        value -= debit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span><span class="params">(<span class="keyword">float</span> payment)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(getTotalMoney()&gt;payment)&#123;</span><br><span class="line">            subtractMoney(payment);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>迪米特法则核心观念— 类间解耦、弱耦合</p>
 
       
     </div>
@@ -472,7 +465,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Design/" rel="tag"><i class="fa fa-tag"></i> Design</a>
+            <a href="/tags/Notes/" rel="tag"><i class="fa fa-tag"></i> Notes</a>
           
         </div>
       
@@ -485,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/22/里氏替换原则/" rel="next" title="里氏替换原则">
-                <i class="fa fa-chevron-left"></i> 里氏替换原则
+              <a href="/2019/04/14/effectiveJava/创建对象/" rel="next" title="读书笔记|如何更好的创建和销毁对象">
+                <i class="fa fa-chevron-left"></i> 读书笔记|如何更好的创建和销毁对象
               </a>
             
           </div>
@@ -495,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/22/单一职责原则/" rel="prev" title="单一职责原则">
-                单一职责原则 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/17/Spring-boot/Spring/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -654,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个案例"><span class="nav-number">1.</span> <span class="nav-text">一个案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何进行修改"><span class="nav-number">2.</span> <span class="nav-text">如何进行修改</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解-Import注解"><span class="nav-number">1.</span> <span class="nav-text">深入理解@Import注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Import的使用方式"><span class="nav-number">2.</span> <span class="nav-text">@Import的使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Configuration"><span class="nav-number">2.1.</span> <span class="nav-text">Configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImportBeanDefinitionRegistrar"><span class="nav-number">2.2.</span> <span class="nav-text">ImportBeanDefinitionRegistrar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过ImportBeanDefinitionRegistrar实现的Import可以针对Bean注册容器的过程进行自定义"><span class="nav-number">2.3.</span> <span class="nav-text">通过ImportBeanDefinitionRegistrar实现的Import可以针对Bean注册容器的过程进行自定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImportSelector"><span class="nav-number">3.</span> <span class="nav-text">ImportSelector</span></a></li></ol></div>
             
 
           </div>
