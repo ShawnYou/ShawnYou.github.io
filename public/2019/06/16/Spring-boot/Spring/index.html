@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Notes,">
+  <meta name="keywords" content="源码,">
 
 
 
@@ -115,7 +115,7 @@
 
 
 <meta name="description" content="EnableXXX源码解析 Spring Boot的核心作用在于他具有强大的自动配置的功能，在Spring框架的基础上利用约定大于配置减少了Spring开发中配置复杂等问题。Spring Boot提供了很多类似于@EnableXXX的注解，这些注解有什么用呢？解决了Spring Boot什么问题？ 接下来我们通过源码来学习一下关@EnableXXX相关注解。  常见的@Enable注解 @Enab">
-<meta name="keywords" content="Notes">
+<meta name="keywords" content="源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot源碼|深入理解@EnbaleXxx">
 <meta property="og:url" content="http://yoursite.com/2019/06/16/Spring-boot/Spring/index.html">
@@ -123,7 +123,7 @@
 <meta property="og:description" content="EnableXXX源码解析 Spring Boot的核心作用在于他具有强大的自动配置的功能，在Spring框架的基础上利用约定大于配置减少了Spring开发中配置复杂等问题。Spring Boot提供了很多类似于@EnableXXX的注解，这些注解有什么用呢？解决了Spring Boot什么问题？ 接下来我们通过源码来学习一下关@EnableXXX相关注解。  常见的@Enable注解 @Enab">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://shawnyou.tech/2019/06/15/Spring-boot/import/#more">
-<meta property="og:updated_time" content="2019-06-20T13:21:39.969Z">
+<meta property="og:updated_time" content="2019-06-21T13:49:40.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot源碼|深入理解@EnbaleXxx">
 <meta name="twitter:description" content="EnableXXX源码解析 Spring Boot的核心作用在于他具有强大的自动配置的功能，在Spring框架的基础上利用约定大于配置减少了Spring开发中配置复杂等问题。Spring Boot提供了很多类似于@EnableXXX的注解，这些注解有什么用呢？解决了Spring Boot什么问题？ 接下来我们通过源码来学习一下关@EnableXXX相关注解。  常见的@Enable注解 @Enab">
@@ -447,11 +447,14 @@
 <p>关于@Import，可以参照博客<img src="http://shawnyou.tech/2019/06/15/Spring-boot/import/#more" alt="@Import注解"></p>
 <p>@EnableCaching利用@Import导入了一个CachingConfigurationSelector配置类，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CachingConfigurationSelector</span> <span class="keyword">extends</span> <span class="title">AdviceModeImportSelector</span>&lt;<span class="title">EnableCaching</span>&gt; </span>&#123;</span><br><span class="line">    、、、、只保留关键代码</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String[] selectImports(AdviceMode adviceMode) &#123;</span><br><span class="line">        <span class="keyword">switch</span>(<span class="keyword">null</span>.$SwitchMap$org$springframework$context$annotation$AdviceMode[adviceMode.ordinal()]) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getProxyImports();</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getAspectJImports();</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String[] getProxyImports() &#123;</span><br><span class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList(<span class="number">3</span>);</span><br><span class="line">        result.add(AutoProxyRegistrar.class.getName());</span><br><span class="line">        result.add(ProxyCachingConfiguration.class.getName());</span><br><span class="line">        <span class="keyword">if</span>(jsr107Present &amp;&amp; jcacheImplPresent) &#123;</span><br><span class="line">            result.add(<span class="string">"org.springframework.cache.jcache.config.ProxyJCacheConfiguration"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> StringUtils.toStringArray(result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对于AspectJ代理模式，不作分析</span></span><br><span class="line">    <span class="keyword">private</span> String[] getAspectJImports() &#123;</span><br><span class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList(<span class="number">2</span>);</span><br><span class="line">        result.add(<span class="string">"org.springframework.cache.aspectj.AspectJCachingConfiguration"</span>);</span><br><span class="line">        <span class="keyword">if</span>(jsr107Present &amp;&amp; jcacheImplPresent) &#123;</span><br><span class="line">            result.add(<span class="string">"org.springframework.cache.aspectj.AspectJJCacheConfiguration"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> StringUtils.toStringArray(result);</span><br><span class="line">    &#125;</span><br><span class="line">    、、、只保留关键代码、</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>CachingConfigurationSelector通过动态代理的方式导入了两个关键的配置类</p>
+<p>CachingConfigurationSelector导入两个关键的动态代理配置类</p>
 <ol>
 <li>AutoProxyRegistrar </li>
 <li>ProxyCachingConfiguration </li>
 </ol>
+<h4 id="AutoProxyRegistrar-自动代理构建器"><a href="#AutoProxyRegistrar-自动代理构建器" class="headerlink" title="AutoProxyRegistrar(自动代理构建器)"></a>AutoProxyRegistrar(自动代理构建器)</h4><p>AutoProxyRegistrar就是一个自动代理注册器，他负责给容器注册了一个InfrastructureAdvisorAutoProxyCreator</p>
+<h4 id="ProxyCachingConfiguration"><a href="#ProxyCachingConfiguration" class="headerlink" title="ProxyCachingConfiguration"></a>ProxyCachingConfiguration</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Role</span>(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyCachingConfiguration</span> <span class="keyword">extends</span> <span class="title">AbstractCachingConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ProxyCachingConfiguration</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span>(</span><br><span class="line">        name = &#123;<span class="string">"org.springframework.cache.config.internalCacheAdvisor"</span>&#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="meta">@Role</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> BeanFactoryCacheOperationSourceAdvisor <span class="title">cacheAdvisor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        BeanFactoryCacheOperationSourceAdvisor advisor = <span class="keyword">new</span> BeanFactoryCacheOperationSourceAdvisor();</span><br><span class="line">        advisor.setCacheOperationSource(<span class="keyword">this</span>.cacheOperationSource());</span><br><span class="line">        advisor.setAdvice(<span class="keyword">this</span>.cacheInterceptor());</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.enableCaching != <span class="keyword">null</span>) &#123;</span><br><span class="line">            advisor.setOrder(((Integer)<span class="keyword">this</span>.enableCaching.getNumber(<span class="string">"order"</span>)).intValue());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> advisor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@Role</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> CacheOperationSource <span class="title">cacheOperationSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AnnotationCacheOperationSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@Role</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> CacheInterceptor <span class="title">cacheInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        CacheInterceptor interceptor = <span class="keyword">new</span> CacheInterceptor();</span><br><span class="line">        interceptor.configure(<span class="keyword">this</span>.errorHandler, <span class="keyword">this</span>.keyGenerator, <span class="keyword">this</span>.cacheResolver, <span class="keyword">this</span>.cacheManager);</span><br><span class="line">        interceptor.setCacheOperationSource(<span class="keyword">this</span>.cacheOperationSource());</span><br><span class="line">        <span class="keyword">return</span> interceptor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ProxyCachingConfiguration向容器中注入三个Bean。</p>
 
       
     </div>
@@ -469,7 +472,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Notes/" rel="tag"><i class="fa fa-tag"></i> Notes</a>
+            <a href="/tags/源码/" rel="tag"><i class="fa fa-tag"></i> 源码</a>
           
         </div>
       
@@ -591,7 +594,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -647,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EnableXXX源码解析"><span class="nav-number">1.</span> <span class="nav-text">EnableXXX源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的-Enable注解"><span class="nav-number">1.1.</span> <span class="nav-text">常见的@Enable注解</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EnableXXX源码解析"><span class="nav-number">1.</span> <span class="nav-text">EnableXXX源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的-Enable注解"><span class="nav-number">1.1.</span> <span class="nav-text">常见的@Enable注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AutoProxyRegistrar-自动代理构建器"><span class="nav-number">1.2.</span> <span class="nav-text">AutoProxyRegistrar(自动代理构建器)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ProxyCachingConfiguration"><span class="nav-number">1.3.</span> <span class="nav-text">ProxyCachingConfiguration</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -685,7 +688,7 @@
 <span class="post-meta-divider">|</span>
   <div class="powered-by"></div>
    <i class="fal fa-analytics"></i>
-  <span class="post-count">博客全站共15.1k字</span>
+  <span class="post-count">博客全站共15.2k字</span>
 </div>
 
         

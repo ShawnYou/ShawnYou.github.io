@@ -1,7 +1,7 @@
 ---
 title: SpringBoot源碼|深入理解@EnbaleXxx
 date: 2019-06-16 14:55:37
-tags: Notes
+tags: 源码
 categories: SpringBoot 
 ---
 
@@ -76,9 +76,57 @@ public class CachingConfigurationSelector extends AdviceModeImportSelector<Enabl
 }
 ```
 
-CachingConfigurationSelector通过动态代理的方式导入了两个关键的配置类
+CachingConfigurationSelector导入两个关键的动态代理配置类
 1. AutoProxyRegistrar 
 2. ProxyCachingConfiguration 
+
+#### AutoProxyRegistrar(自动代理构建器)
+AutoProxyRegistrar就是一个自动代理注册器，他负责给容器注册了一个InfrastructureAdvisorAutoProxyCreator
+#### ProxyCachingConfiguration
+
+```java
+@Configuration
+@Role(2)
+public class ProxyCachingConfiguration extends AbstractCachingConfiguration {
+    public ProxyCachingConfiguration() {
+    }
+
+    @Bean(
+        name = {"org.springframework.cache.config.internalCacheAdvisor"}
+    )
+    @Role(2)
+    public BeanFactoryCacheOperationSourceAdvisor cacheAdvisor() {
+        BeanFactoryCacheOperationSourceAdvisor advisor = new BeanFactoryCacheOperationSourceAdvisor();
+        advisor.setCacheOperationSource(this.cacheOperationSource());
+        advisor.setAdvice(this.cacheInterceptor());
+        if(this.enableCaching != null) {
+            advisor.setOrder(((Integer)this.enableCaching.getNumber("order")).intValue());
+        }
+
+        return advisor;
+    }
+
+    @Bean
+    @Role(2)
+    public CacheOperationSource cacheOperationSource() {
+        return new AnnotationCacheOperationSource();
+    }
+
+    @Bean
+    @Role(2)
+    public CacheInterceptor cacheInterceptor() {
+        CacheInterceptor interceptor = new CacheInterceptor();
+        interceptor.configure(this.errorHandler, this.keyGenerator, this.cacheResolver, this.cacheManager);
+        interceptor.setCacheOperationSource(this.cacheOperationSource());
+        return interceptor;
+    }
+}
+```
+ProxyCachingConfiguration向容器中注入三个Bean。
+
+
+
+
 
 
 
