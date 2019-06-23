@@ -22,7 +22,7 @@
 <meta name="keywords" content="源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot源碼|深入理解@EnbaleXxx">
-<meta property="og:url" content="http://yoursite.com/2019/06/16/Spring-boot/Spring/index.html">
+<meta property="og:url" content="https://shawnyou.tech/2019/06/16/Spring-boot/Spring/index.html">
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:description" content="EnableXXX源码解析 Spring Boot的核心作用在于他具有强大的自动配置的功能，在Spring框架的基础上利用约定大于配置减少了Spring开发中配置复杂等问题。Spring Boot提供了很多类似于@EnableXXX的注解，这些注解有什么用呢？解决了Spring Boot什么问题？ 接下来我们通过源码来学习一下关@EnableXXX相关注解。  常见的@Enable注解 @Enab">
 <meta property="og:locale" content="zh-Hans">
@@ -33,7 +33,7 @@
 <meta name="twitter:description" content="EnableXXX源码解析 Spring Boot的核心作用在于他具有强大的自动配置的功能，在Spring框架的基础上利用约定大于配置减少了Spring开发中配置复杂等问题。Spring Boot提供了很多类似于@EnableXXX的注解，这些注解有什么用呢？解决了Spring Boot什么问题？ 接下来我们通过源码来学习一下关@EnableXXX相关注解。  常见的@Enable注解 @Enab">
 <meta name="twitter:image" content="http://shawnyou.tech/2019/06/15/Spring-boot/import/#more">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2019/06/16/Spring-boot/Spring/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/06/16/Spring-boot/Spring/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -55,12 +55,12 @@
       
       
       <div class="profile-block text-center">
-        <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        <a id="avatar" href="https://github.com/ShawnYou" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpeg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h2 id="name" class="hidden-xs hidden-sm">攻城虱的小马褂</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
-        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Chengdu, China</small>
       </div>
       
       <div class="search" id="search-form-wrap">
@@ -183,13 +183,7 @@
 	
     <ul class="social-links">
     	
-        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
-        
-        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
-        
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
-        
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        <li><a href="https://github.com/ShawnYou" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
         
         <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
         
@@ -419,7 +413,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2019/06/16/Spring-boot/Spring/" title="SpringBoot源碼|深入理解@EnbaleXxx" target="_blank" rel="external">http://yoursite.com/2019/06/16/Spring-boot/Spring/</a>
+      <a href="https://shawnyou.tech/2019/06/16/Spring-boot/Spring/" title="SpringBoot源碼|深入理解@EnbaleXxx" target="_blank" rel="external">https://shawnyou.tech/2019/06/16/Spring-boot/Spring/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -433,12 +427,12 @@
   <div class="panel-body">
     <figure class="media">
       <div class="media-left">
-        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        <a href="https://github.com/ShawnYou" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpeg" class="img-rounded w-full" alt>
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <h3 class="media-heading"><a href="https://github.com/ShawnYou" target="_blank"><span class="text-dark">攻城虱的小马褂</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
         <div>个人简介。</div>
       </div>
     </figure>
@@ -540,13 +534,7 @@
 	
     <ul class="social-links">
     	
-        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
-        
-        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
-        
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
-        
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        <li><a href="https://github.com/ShawnYou" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
         
         <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
         
