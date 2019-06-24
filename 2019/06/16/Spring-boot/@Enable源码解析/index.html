@@ -22,7 +22,7 @@
 <meta name="keywords" content="源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot源碼|深入理解@EnbaleXxx">
-<meta property="og:url" content="https://shawnyou.tech/2019/06/16/Spring-boot/Spring/index.html">
+<meta property="og:url" content="https://shawnyou.tech/2019/06/16/Spring-boot/@Enable源码解析/index.html">
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:description" content="EnableXXX源码解析 Spring Boot的核心作用在于他具有强大的自动配置的功能，在Spring框架的基础上利用约定大于配置减少了Spring开发中配置复杂等问题。Spring Boot提供了很多类似于@EnableXXX的注解，这些注解有什么用呢？解决了Spring Boot什么问题？ 接下来我们通过源码来学习一下关@EnableXXX相关注解。  常见的@Enable注解 @Enab">
 <meta property="og:locale" content="zh-Hans">
@@ -33,7 +33,7 @@
 <meta name="twitter:description" content="EnableXXX源码解析 Spring Boot的核心作用在于他具有强大的自动配置的功能，在Spring框架的基础上利用约定大于配置减少了Spring开发中配置复杂等问题。Spring Boot提供了很多类似于@EnableXXX的注解，这些注解有什么用呢？解决了Spring Boot什么问题？ 接下来我们通过源码来学习一下关@EnableXXX相关注解。  常见的@Enable注解 @Enab">
 <meta name="twitter:image" content="http://shawnyou.tech/2019/06/15/Spring-boot/import/#more">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/06/16/Spring-boot/Spring/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/06/16/Spring-boot/@Enable源码解析/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -263,7 +263,7 @@
                 <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
               </p>
               <p class="item-title">
-                <a href="/2019/06/16/Spring-boot/Spring/" class="title">SpringBoot源碼|深入理解@EnbaleXxx</a>
+                <a href="/2019/06/16/Spring-boot/@Enable源码解析/" class="title">SpringBoot源碼|深入理解@EnbaleXxx</a>
               </p>
               <p class="item-date">
                 <time datetime="2019-06-16T06:55:37.000Z" itemprop="datePublished">2019-06-16</time>
@@ -278,7 +278,7 @@
                 <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
               </p>
               <p class="item-title">
-                <a href="/2019/06/15/Spring-boot/Import/" class="title">SpringBoot源碼|深入理解@Import注解</a>
+                <a href="/2019/06/15/Spring-boot/@Import源码解析/" class="title">SpringBoot源碼|深入理解@Import注解</a>
               </p>
               <p class="item-date">
                 <time datetime="2019-06-15T06:55:37.000Z" itemprop="datePublished">2019-06-15</time>
@@ -344,7 +344,7 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Spring-boot/Spring" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Spring-boot/@Enable源码解析" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
@@ -359,7 +359,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/06/16/Spring-boot/Spring/" class="article-date">
+	<a href="/2019/06/16/Spring-boot/@Enable源码解析/" class="article-date">
 	  <time datetime="2019-06-16T06:55:37.000Z" itemprop="datePublished">2019-06-16</time>
 	</a>
 </span>
@@ -378,7 +378,7 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/16/Spring-boot/Spring/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/16/Spring-boot/@Enable源码解析/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
@@ -415,7 +415,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/06/16/Spring-boot/Spring/" title="SpringBoot源碼|深入理解@EnbaleXxx" target="_blank" rel="external">https://shawnyou.tech/2019/06/16/Spring-boot/Spring/</a>
+      <a href="https://shawnyou.tech/2019/06/16/Spring-boot/@Enable源码解析/" title="SpringBoot源碼|深入理解@EnbaleXxx" target="_blank" rel="external">https://shawnyou.tech/2019/06/16/Spring-boot/@Enable源码解析/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -463,7 +463,7 @@
     
     
     <li class="next">
-      <a href="/2019/06/15/Spring-boot/Import/" title="SpringBoot源碼|深入理解@Import注解"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/06/15/Spring-boot/@Import源码解析/" title="SpringBoot源碼|深入理解@Import注解"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
