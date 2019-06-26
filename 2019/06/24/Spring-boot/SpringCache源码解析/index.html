@@ -17,19 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>SpringCache源码解析 | Hexo</title>
-  <meta name="description" content="什么是Spring Cache， SpringCache有什么作用 一个案例来讲解Spring Cache的使用">
+  <title>SpringCache源码| SpringCache源码总览 | Hexo</title>
+  <meta name="description" content="1. 概述Spring提供了一种基于注解（annotation）的缓存技术，他并不是具体的缓存使用方案，而是一个对缓存使用的抽象方案。只要代码使用相应的缓存注解，就能使用各种定义的缓存操作。由此一来缓存的操作非常的便捷，对代码的侵入比较少，让开发者更关注于业务逻辑的实现。 1.1 如何使用Spring Cache2. SpringCache的原理缓存的操作相对固定，可以借助AOP面向切面编程的思想">
 <meta name="keywords" content="源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCache源码解析">
+<meta property="og:title" content="SpringCache源码| SpringCache源码总览">
 <meta property="og:url" content="https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="什么是Spring Cache， SpringCache有什么作用 一个案例来讲解Spring Cache的使用">
+<meta property="og:description" content="1. 概述Spring提供了一种基于注解（annotation）的缓存技术，他并不是具体的缓存使用方案，而是一个对缓存使用的抽象方案。只要代码使用相应的缓存注解，就能使用各种定义的缓存操作。由此一来缓存的操作非常的便捷，对代码的侵入比较少，让开发者更关注于业务逻辑的实现。 1.1 如何使用Spring Cache2. SpringCache的原理缓存的操作相对固定，可以借助AOP面向切面编程的思想">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-25T15:04:50.350Z">
+<meta property="og:image" content="https://shawnyou.tech/.tech//SpringCache源码解析/cacheManager.jpg">
+<meta property="og:updated_time" content="2019-06-26T15:08:23.950Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringCache源码解析">
-<meta name="twitter:description" content="什么是Spring Cache， SpringCache有什么作用 一个案例来讲解Spring Cache的使用">
+<meta name="twitter:title" content="SpringCache源码| SpringCache源码总览">
+<meta name="twitter:description" content="1. 概述Spring提供了一种基于注解（annotation）的缓存技术，他并不是具体的缓存使用方案，而是一个对缓存使用的抽象方案。只要代码使用相应的缓存注解，就能使用各种定义的缓存操作。由此一来缓存的操作非常的便捷，对代码的侵入比较少，让开发者更关注于业务逻辑的实现。 1.1 如何使用Spring Cache2. SpringCache的原理缓存的操作相对固定，可以借助AOP面向切面编程的思想">
+<meta name="twitter:image" content="https://shawnyou.tech/.tech//SpringCache源码解析/cacheManager.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/index.html">
   
@@ -213,7 +215,7 @@
   <div class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -261,7 +263,7 @@
                 <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
               </p>
               <p class="item-title">
-                <a href="/2019/06/24/Spring-boot/SpringCache源码解析/" class="title">SpringCache源码解析</a>
+                <a href="/2019/06/24/Spring-boot/初识AutoProxyRegistrar/" class="title">SpringBoot源码|初识AutoProxyRegistrar</a>
               </p>
               <p class="item-date">
                 <time datetime="2019-06-24T14:51:50.000Z" itemprop="datePublished">2019-06-24</time>
@@ -273,10 +275,10 @@
             
             <div class="item-inner">
               <p class="item-category">
-                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+                <a class="category-link" href="/categories/Spring/">Spring</a>
               </p>
               <p class="item-title">
-                <a href="/2019/06/24/Spring-boot/初识AutoProxyRegistrar/" class="title">SpringBoot源码|初识AutoProxyRegistrar</a>
+                <a href="/2019/06/24/Spring-boot/SpringCache源码解析/" class="title">SpringCache源码| SpringCache源码总览</a>
               </p>
               <p class="item-date">
                 <time datetime="2019-06-24T14:51:50.000Z" itemprop="datePublished">2019-06-24</time>
@@ -349,7 +351,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SpringCache源码解析
+      SpringCache源码| SpringCache源码总览
     </h1>
   
 
@@ -364,7 +366,7 @@
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
   </span>
 
         
@@ -382,11 +384,20 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <ol>
-<li>什么是Spring Cache， SpringCache有什么作用</li>
-<li>一个案例来讲解Spring Cache的使用</li>
-<li></li>
+        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>Spring提供了一种基于注解（annotation）的缓存技术，他并不是具体的缓存使用方案，而是一个对缓存使用的抽象方案。只要代码使用相应的缓存注解，就能使用各种定义的缓存操作。由此一来缓存的操作非常的便捷，对代码的侵入比较少，让开发者更关注于业务逻辑的实现。</p>
+<h3 id="1-1-如何使用Spring-Cache"><a href="#1-1-如何使用Spring-Cache" class="headerlink" title="1.1 如何使用Spring Cache"></a>1.1 如何使用Spring Cache</h3><h2 id="2-SpringCache的原理"><a href="#2-SpringCache的原理" class="headerlink" title="2. SpringCache的原理"></a>2. SpringCache的原理</h2><p>缓存的操作相对固定，可以借助AOP面向切面编程的思想将缓存操作作为通用的逻辑封装起来。SpringCache借助AOP的思想将缓存操作封装成了通用的模块。接下来通过一个流程图来了解一下Spring Cache缓存模块的原理。</p>
+<h3 id="2-1-SpringCache的基本接口和注解"><a href="#2-1-SpringCache的基本接口和注解" class="headerlink" title="2.1 SpringCache的基本接口和注解"></a>2.1 SpringCache的基本接口和注解</h3><h4 id="Cache和CacheManager"><a href="#Cache和CacheManager" class="headerlink" title="Cache和CacheManager"></a>Cache和CacheManager</h4><ol>
+<li>Cache<br>Cache接口是缓存操作的基础接口，它提供了关于缓存的增、删、改、查的相关操作。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cache</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回原始的缓存对象</span></span><br><span class="line">    <span class="function">Object <span class="title">getNativeCache</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//返回包装值</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    Cache.<span class="function">ValueWrapper <span class="title">get</span><span class="params">(Object var1)</span></span>;</span><br><span class="line">    <span class="comment">//获取指定类型的缓存</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">get</span><span class="params">(Object var1, @Nullable Class&lt;T&gt; var2)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">get</span><span class="params">(Object var1, Callable&lt;T&gt; var2)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(Object var1, @Nullable Object var2)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//写入缓存</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    Cache.<span class="function">ValueWrapper <span class="title">putIfAbsent</span><span class="params">(Object var1, @Nullable Object var2)</span></span>;</span><br><span class="line">    <span class="comment">//删除指定key的缓存</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">evict</span><span class="params">(Object var1)</span></span>;</span><br><span class="line">    <span class="comment">//清空缓存</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<ul>
+<li>继承图<br><img src="/.tech//SpringCache源码解析/cacheManager.jpg" alt="CacheManager继承图"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//缓存管理器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CacheManager</span> </span>&#123;</span><br><span class="line">    <span class="comment">//根据name获取指定的缓存接口</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="function">Cache <span class="title">getCache</span><span class="params">(String var1)</span></span>;</span><br><span class="line">    <span class="comment">//获取所有的缓存名称</span></span><br><span class="line">    <span class="function">Collection&lt;String&gt; <span class="title">getCacheNames</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>@Cacheable,@CachePut等注解</li>
+</ol>
+<p>#</p>
 
       
     </div>
@@ -396,7 +407,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/" title="SpringCache源码解析" target="_blank" rel="external">https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/</a>
+      <a href="https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/" title="SpringCache源码| SpringCache源码总览" target="_blank" rel="external">https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -442,9 +453,13 @@
   
   <ul class="pager pull-left">
     
+    <li class="prev">
+      <a href="/2019/06/24/Spring-boot/初识AutoProxyRegistrar/" title="SpringBoot源码|初识AutoProxyRegistrar"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
     
     <li class="next">
-      <a href="/2019/06/24/Spring-boot/初识AutoProxyRegistrar/" title="SpringBoot源码|初识AutoProxyRegistrar"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/06/16/Spring-boot/@Enable源码解析/" title="SpringBoot源碼|@EnbaleXxx的实现原理"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -572,7 +587,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: 'SpringCache源码解析', 
+  id: 'SpringCache源码| SpringCache源码总览', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
