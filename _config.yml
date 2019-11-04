@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://shawnyou.tech/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -42,7 +42,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -57,7 +57,7 @@ highlight:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 5
+  per_page: 10
   order_by: -date
   
 # Category & Tag
@@ -80,7 +80,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: pure
 
 #七牛云存储设置
 ##offline       是否离线. 离线状态将使用本地地址渲染
@@ -106,7 +106,6 @@ theme: next
  # secret_key: M5Zy8dSht1AbFCCPB1f9xj6byS5CJrUEv-ZtpTXV
  # dirPrefix: static
  # urlPrefix: http://posw9yxeh.bkt.clouddn.com/static
- # up_host: http://upload.qiniu.com
  # local_dir: qiniu
  # update_exist: true
  # image: 
