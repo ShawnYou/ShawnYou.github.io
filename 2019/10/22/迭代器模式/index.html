@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>SpringBoot源码|初识AutoProxyRegistrar | Hexo</title>
-  <meta name="description" content="AutoProxyRegistrar源码分析">
-<meta name="keywords" content="源码">
+  <title>迭代器模式|手写一个迭代器 | Hexo</title>
+  <meta name="description" content="迭代器模式我们在日常的开发中，特别是在使用集合的过程中都或多或少使用了迭代器来对集合进行遍历。这时候我们就会思考一个问题，明明简单的For循环就能解决的集合遍历问题，我们非得创造一个迭代器来进行集合的遍历，使用迭代器来遍历到底有什么不一样的地方吗？本着‘存在即合理’的原则，我们通过手写迭代器的方式来深入了解一下迭代器模式的实现和带来的编码好处。 实现案例有一个书架，我们想要知道这个书架里面堆了哪些">
+<meta name="keywords" content="Design">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot源码|初识AutoProxyRegistrar">
-<meta property="og:url" content="https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/index.html">
+<meta property="og:title" content="迭代器模式|手写一个迭代器">
+<meta property="og:url" content="https://shawnyou.tech/2019/10/22/迭代器模式/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="AutoProxyRegistrar源码分析">
+<meta property="og:description" content="迭代器模式我们在日常的开发中，特别是在使用集合的过程中都或多或少使用了迭代器来对集合进行遍历。这时候我们就会思考一个问题，明明简单的For循环就能解决的集合遍历问题，我们非得创造一个迭代器来进行集合的遍历，使用迭代器来遍历到底有什么不一样的地方吗？本着‘存在即合理’的原则，我们通过手写迭代器的方式来深入了解一下迭代器模式的实现和带来的编码好处。 实现案例有一个书架，我们想要知道这个书架里面堆了哪些">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-27T13:37:13.879Z">
+<meta property="og:updated_time" content="2019-11-04T14:54:52.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot源码|初识AutoProxyRegistrar">
-<meta name="twitter:description" content="AutoProxyRegistrar源码分析">
+<meta name="twitter:title" content="迭代器模式|手写一个迭代器">
+<meta name="twitter:description" content="迭代器模式我们在日常的开发中，特别是在使用集合的过程中都或多或少使用了迭代器来对集合进行遍历。这时候我们就会思考一个问题，明明简单的For循环就能解决的集合遍历问题，我们非得创造一个迭代器来进行集合的遍历，使用迭代器来遍历到底有什么不一样的地方吗？本着‘存在即合理’的原则，我们通过手写迭代器的方式来深入了解一下迭代器模式的实现和带来的编码好处。 实现案例有一个书架，我们想要知道这个书架里面堆了哪些">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/10/22/迭代器模式/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -342,14 +342,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Spring-boot/初识AutoProxyRegistrar" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-迭代器模式" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      SpringBoot源码|初识AutoProxyRegistrar
+      迭代器模式|手写一个迭代器
     </h1>
   
 
@@ -357,32 +357,64 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/06/24/Spring-boot/初识AutoProxyRegistrar/" class="article-date">
-	  <time datetime="2019-06-24T14:51:50.000Z" itemprop="datePublished">2019-06-24</time>
+	<a href="/2019/10/22/迭代器模式/" class="article-date">
+	  <time datetime="2019-10-22T15:25:15.000Z" itemprop="datePublished">2019-10-22</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/源码/">源码</a>
+	<a class="article-tag-link" href="/tags/Design/">Design</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/24/Spring-boot/初识AutoProxyRegistrar/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/10/22/迭代器模式/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="AutoProxyRegistrar源码分析"><a href="#AutoProxyRegistrar源码分析" class="headerlink" title="AutoProxyRegistrar源码分析"></a>AutoProxyRegistrar源码分析</h3>
+        <h3 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><p>我们在日常的开发中，特别是在使用集合的过程中都或多或少使用了迭代器来对集合进行遍历。这时候我们就会思考一个问题，明明简单的For循环就能解决的集合遍历问题，我们非得创造一个迭代器来进行集合的遍历，使用迭代器来遍历到底有什么不一样的地方吗？本着‘存在即合理’的原则，我们通过手写迭代器的方式来深入了解一下迭代器模式的实现和带来的编码好处。</p>
+<h4 id="实现案例"><a href="#实现案例" class="headerlink" title="实现案例"></a>实现案例</h4><p>有一个书架，我们想要知道这个书架里面堆了哪些书籍，这时候我们就需要对书架里面的书一本一本的遍历，直到没有书本，我们就能清楚的知道数据上堆满了哪些书籍。</p>
+<ul>
+<li><p>可以被遍历的标记(生成迭代器的接口)<br>首先提供一个接口，来标明这个类是可以被遍历的集合。实现这个接口的类可以生成对应的迭代器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Aggregate</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Iterator <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代器接口<br>迭代器的抽象接口，定义了两个方法<br>（1）是否还有下一个元素<br>（2）返回下一个元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>集合存储的元素（书本）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">book</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代器实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookShelfIterator</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> BookShelf bookShelf;</span><br><span class="line">    <span class="comment">//指向当前遍历的位置</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//将当前的index与集合的大小做比较，小于集合大小，说明还有元素。</span></span><br><span class="line">        <span class="keyword">if</span>(index &lt; bookShelf.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Book book = bookShelf.getBookAt(index);</span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">return</span> book;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>书架类<br>书架类用于存放书本，可以用来遍历，因此需要实现Aggregate接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookShelf</span> <span class="keyword">implements</span> <span class="title">Aggregate</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator <span class="title">iterator</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//生成对应的迭代器</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BookShelfIterator();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Iterator it = bookShelf.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext)&#123;</span><br><span class="line">    Book book = (Book)it.next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>由此，我们就自定义实现了一个迭代器，可以满足集合遍历的基本需求</p>
+</blockquote>
+<h3 id="迭代器模式的几点思考"><a href="#迭代器模式的几点思考" class="headerlink" title="迭代器模式的几点思考"></a>迭代器模式的几点思考</h3><h4 id="为什么要使用迭代模式"><a href="#为什么要使用迭代模式" class="headerlink" title="为什么要使用迭代模式"></a>为什么要使用迭代模式</h4><p>遍历与实现分开，无论BookShelf是怎样的实现，只要能够获取到对应的迭代器，遍历方式都是不会变的，利于代码的扩展。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Iterator it = bookShelf.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext)&#123;</span><br><span class="line">    Book book = (Book)it.next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="多种迭代器"><a href="#多种迭代器" class="headerlink" title="多种迭代器"></a>多种迭代器</h4><p>迭代器实现了遍历集合的方式，那么我们可以设计多种不一样的迭代器。</p>
+<ul>
+<li>从后向前遍历</li>
+<li>跳跃性遍历</li>
+</ul>
+
       
     </div>
     <div class="article-footer">
@@ -391,7 +423,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/" title="SpringBoot源码|初识AutoProxyRegistrar" target="_blank" rel="external">https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/</a>
+      <a href="https://shawnyou.tech/2019/10/22/迭代器模式/" title="迭代器模式|手写一个迭代器" target="_blank" rel="external">https://shawnyou.tech/2019/10/22/迭代器模式/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -437,13 +469,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/06/24/Spring-boot/SpringCache源码解析/" title="SpringCache源码| SpringCache源码总览"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/06/16/Spring-boot/@Enable源码解析/" title="SpringBoot源碼|@EnbaleXxx的实现原理"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/07/03/重构/重构/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -571,7 +599,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: 'SpringBoot源码|初识AutoProxyRegistrar', 
+  id: '迭代器模式|手写一个迭代器', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
