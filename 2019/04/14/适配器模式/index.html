@@ -18,18 +18,18 @@
   
   
   <title>适配器模式 | Hexo</title>
-  <meta name="description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。  生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题 程序模拟">
+  <meta name="description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
 <meta name="keywords" content="Design">
 <meta property="og:type" content="article">
 <meta property="og:title" content="适配器模式">
 <meta property="og:url" content="https://shawnyou.tech/2019/04/14/适配器模式/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。  生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题 程序模拟">
+<meta property="og:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-14T11:46:57.636Z">
+<meta property="og:updated_time" content="2019-11-10T05:13:01.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配器模式">
-<meta name="twitter:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。  生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题 程序模拟">
+<meta name="twitter:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
   <!-- Canonical links -->
   <link rel="canonical" href="https://shawnyou.tech/2019/04/14/适配器模式/index.html">
   
@@ -318,10 +318,10 @@
             
             <div class="item-inner">
               <p class="item-category">
-                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+                <a class="category-link" href="/categories/Spring/">Spring</a>
               </p>
               <p class="item-title">
-                <a href="/2019/06/24/Spring-boot/初识AutoProxyRegistrar/" class="title">SpringBoot源码|初识AutoProxyRegistrar</a>
+                <a href="/2019/06/24/Spring-boot/SpringCache源码解析/" class="title">SpringCache源码| SpringCache源码总览</a>
               </p>
               <p class="item-date">
                 <time datetime="2019-06-24T14:51:50.000Z" itemprop="datePublished">2019-06-24</time>
@@ -383,10 +383,31 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h3 id="什么是适配器模式"><a href="#什么是适配器模式" class="headerlink" title="什么是适配器模式"></a>什么是适配器模式</h3><blockquote>
-<p>将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。</p>
+<p>将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。<br>生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题</p>
 </blockquote>
-<p>生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题</p>
-<h3 id="程序模拟"><a href="#程序模拟" class="headerlink" title="程序模拟"></a>程序模拟</h3>
+<p>通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。</p>
+<h3 id="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"><a href="#如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器" class="headerlink" title="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"></a>如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器</h3><h3 id="适配器模式的两种实现"><a href="#适配器模式的两种实现" class="headerlink" title="适配器模式的两种实现"></a>适配器模式的两种实现</h3><ul>
+<li>类适配器模式(继承）</li>
+<li>对象适配器模式(委托)</li>
+</ul>
+<h4 id="继承适配器模式"><a href="#继承适配器模式" class="headerlink" title="继承适配器模式"></a>继承适配器模式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Banner</span></span>&#123;</span><br><span class="line">    <span class="comment">//现有的实际情况</span></span><br><span class="line">    <span class="keyword">private</span> String string;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithParen</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithAster</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//需求接口</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Banner</span> <span class="keyword">implements</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//适配器类：在实现了现有的需求接口的方法中对原有的功能情况进行包装，以达到适配以前功能的目的。</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Print p = <span class="keyword">new</span> PringBanner(<span class="string">"hello"</span>);</span><br><span class="line">p.pritWeak();</span><br><span class="line">p.printStrong();</span><br></pre></td></tr></table></figure>
+<h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><ul>
+<li>面向接口编程，客户端代码只需要通过Print接口进行调用，隐藏了方法实现。(连接笔记本电脑的12伏特电压就有可能是由100伏特交流电压通过适配器转换而成的)</li>
+</ul>
+<h4 id="委托适配器模式"><a href="#委托适配器模式" class="headerlink" title="委托适配器模式"></a>委托适配器模式</h4><p>通过委托来实现适配器</p>
+<ul>
+<li>适配器(PrintBanner)通过调用现有需求的方法(Print)来间接调用以前的的功能(Banner)</li>
+<li>Banner通过委托的形式传入到适配器(PrintBanner)中,现有功能(Print)作为抽象类被适配器继承。</li>
+</ul>
+<blockquote>
+<p>Talk is cheap, show me the code</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">publc <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//抽象类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//通过委托的形式将原有功能注入进来，由此虽然调用的是新的功能方法，但实际调用的还是以前的老功能，由此实现了新、老功能之间的适配兼容。</span></span><br><span class="line">    <span class="keyword">private</span> Banner banner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.shouwWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <div class="article-footer">
