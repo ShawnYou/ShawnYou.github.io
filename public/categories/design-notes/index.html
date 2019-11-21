@@ -17,20 +17,16 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>模板模式 | Hexo</title>
-  <meta name="keywords" content="Design">
-<meta property="og:type" content="article">
-<meta property="og:title" content="模板模式">
-<meta property="og:url" content="https://shawnyou.tech/2019/03/25/模板模式/index.html">
+  <title>Category: design-notes | Hexo</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="攻城虱">
+<meta property="og:url" content="https://shawnyou.tech/categories/design-notes/index.html">
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
-<meta property="og:updated_time" content="2019-03-31T05:56:35.896Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="模板模式">
-<meta name="twitter:image" content="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg">
+<meta name="twitter:title" content="攻城虱">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/03/25/模板模式/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/categories/design-notes/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -39,8 +35,6 @@
   
   <link rel="stylesheet" href="/css/style.css">
   
-  
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css">
   
   
   
@@ -338,246 +332,61 @@
 </aside>
 
   
-  
-<main class="main" role="main">
-  <div class="content">
-  <article id="post-模板模式" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-    
-    <div class="article-header">
-      
-        
-  
-    <h1 class="article-title" itemprop="name">
-      模板模式
-    </h1>
-  
-
-      
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/03/25/模板模式/" class="article-date">
-	  <time datetime="2019-03-25T13:14:01.000Z" itemprop="datePublished">2019-03-25</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Design/">Design</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/03/25/模板模式/#comments" class="article-comment-link">Comments</a></span>
-        
-      </div>
+  <main class="main" role="main">
+  <article class="content article article-categories article-type-list" itemscope>
+    <header class="article-header">
+      <h1 itemprop="name" class="hidden-xs">Category: design-notes</h1>
+      <p class="hidden-xs">Total 1 articles</p>
+      <nav role="navigation" id="nav-main" class="okayNav">
+        <ul>
+          <li><a href="/categories">All</a></li>
+          
+          <li><a href="/categories/设计模式/">设计模式</a></li>
+          
+          <li><a href="/categories/SpringBoot/">SpringBoot</a></li>
+          
+          <li><a href="/categories/design-notes/">design-notes</a></li>
+          
+          <li><a href="/categories/mysql-notes/">mysql-notes</a></li>
+          
+          <li><a href="/categories/Spring/">Spring</a></li>
+          
+          <li><a href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a></li>
+          
+        </ul>
+      </nav>
+    </header>
+    <!-- /header -->
+    <div class="article-body">
+      <div class="panel panel-default b-no">
+    <div class="panel-heading" role="tab">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapsedesign-notes" aria-expanded="true">
+              <i class="icon icon-folder text-active"></i><i class="icon icon-folder-open text"></i>
+              design-notes
+            </a>
+            <small class="text-muted">(Total 1 articles)</small>
+        </h4>
     </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <p><img src="http://posw9yxeh.bkt.clouddn.com/images/common/gratisography-271-thumbnail-small.jpg" alt><br><a id="more"></a></p>
-<h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><blockquote>
-<p>定义一个操作中的算法的框架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可重新定义该算法的某些特定步骤</p>
-</blockquote>
-<h3 id="如何理解模板模式"><a href="#如何理解模板模式" class="headerlink" title="如何理解模板模式"></a>如何理解模板模式</h3><p>在我们的认识中，模板就是一些约定俗成的东西，是一些自然而然的事物规律。当我们想要解决一些具有模板规律的事情的时候，手中的模板就是一个个整齐待发的磨具，能够轻松进行重复制造、生产。由此想了想，生活中哪些事情满足模板模式的规律：</p>
-<ol>
-<li>制茶，制茶是一个很有讲究的学问。制造茶的流程总是相对固定的。采青-&gt; 萎凋-&gt;发酵-&gt; 杀青 -&gt; 揉捻 -&gt; 干燥 -&gt; 初制茶。每个工坊的制作工艺有所差别，有些工坊的手工揉捻做的比较好，有些工坊的萎凋做的比较有特点，所以生产出来的茶叶有所区别。但是他们的总体流程是相对差不多的，都遵循相同的制作模板。</li>
-<li>造车，车的总体功能差不多， 能够启动、停止，能够鸣笛、跑路。但是不同型号的车是有所差异的。有些车是手动挡，有些是自动挡。</li>
-</ol>
-<p>我们可以根据这类食物的规律总结一下特点：</p>
-<ul>
-<li>具有一个抽象的模板，这个模板决定了这类事物的总体流程规律（父类抽象模板）</li>
-<li>不同的事物虽然具有共同的抽象模板，但是彼此有着个性化的差异（个性化子类）</li>
-<li>子类的个性化特点能够重新定义整个事物的最终呈现结构，就好比不同的茶叶工坊的制作工艺的差别会导致这个茶叶具有不同销量和名声。不同型号的车会导致车具有不同的价格和市场。</li>
-</ul>
-<p>程序是现实世界的抽象，模板模式的类可以总结如下：</p>
-<p>抽象模板</p>
-<ul>
-<li>基本方法</li>
-</ul>
-<p>子类的个性化方法，由子类去实现，如制茶过程中每一个环节（发酵…）</p>
-<ul>
-<li>模板方法</li>
-</ul>
-<p>对基本方法的调度，已完成固定的逻辑。如制茶这样的模板方法就是将制茶每个环节的调度，完成造茶这么一个逻辑。</p>
-<p>注意：</p>
-<ol>
-<li>基本方法尽量设计成protected类型，符合迪米特法则，若非必要，尽量不要扩大父类的访问权限。</li>
-<li>模板方法一般设计成final类型，不要被覆写</li>
-</ol>
-<h3 id="为什么要用模板模式"><a href="#为什么要用模板模式" class="headerlink" title="为什么要用模板模式"></a>为什么要用模板模式</h3><ol>
-<li>封装不变部分，扩展可变部分</li>
-</ol>
-<p>不变的流程规律由父类来实现，而可变的每个环节由子类来控制。</p>
-<ol start="2">
-<li><p>提取公共部分代码，便于维护</p>
-</li>
-<li><p>行为由父类控制、子类实现</p>
-</li>
-</ol>
-<p>基本方法由子类实现，子类可以通过扩展类来增加相应功能，符合开闭原则。</p>
-<p>模板模式实现</p>
-<p>模板模式也有缺陷</p>
-<p>四思维方式与以往有所不同，不好理解。</p>
-<p>常规思路:</p>
-<ul>
-<li><p>抽象类-&gt;最抽象、最一般的事物属性和方法</p>
-</li>
-<li><p>具体类-&gt;具体的事物属性和方法</p>
-</li>
-</ul>
-<p>模板模式思路：</p>
-<ul>
-<li><p>抽象类-&gt;定义部分抽象方法</p>
-</li>
-<li><p>实现类-&gt;子类的执行结果对父类结构产生影响</p>
-</li>
-</ul>
-<p>总结一下</p>
-<p>模板模式的扩展–钩子函数的应用<br>由子类的一个方法返回值来决定公共部分的执行结果</p>
-<p>引申</p>
-<h3 id="父类怎么调用子类的方法"><a href="#父类怎么调用子类的方法" class="headerlink" title="父类怎么调用子类的方法"></a>父类怎么调用子类的方法</h3><ol>
-<li>子类传递到父类的有参构造中</li>
-<li>反射</li>
-<li>父类调用子类的静态方法</li>
-</ol>
-<p>其实模板模式就间接的实现了父类依赖子类的场景</p>
-<ul>
-<li>父类建立框架-&gt;子类重写父类 -&gt; 调用父类继承方法-&gt; 影响父类结果</li>
-</ul>
+    <div id="collapsedesign-notes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingdesign-notes">
+        <div class="panel-body">
+            <div class="collection">
+              
+                
+<a href="/2019/11/20/design-pattern/接口与抽象类/" class="collection-item" target="_blank" itemprop="url">
+  <time datetime="2019-11-20T14:47:29.000Z" itemprop="datePublished">2019-11-20</time>
+  <span>&nbsp;&nbsp;&nbsp;</span> 接口与抽象类
+</a>
 
-      
+
+              
+            </div>
+        </div>
     </div>
-    <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
-    
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/03/25/模板模式/" title="模板模式" target="_blank" rel="external">https://shawnyou.tech/2019/03/25/模板模式/</a>
-    </li>
-    
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/ShawnYou" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpeg" class="img-rounded w-full" alt>
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/ShawnYou" target="_blank"><span class="text-dark">Saga</span><small class="ml-1x"></small></a></h3>
-        <div>个人简介。</div>
-      </div>
-    </figure>
-  </div>
 </div>
-
-
     </div>
   </article>
-  
-    
-  <section id="comments">
-  	
-
-    
-  </section>
-
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2019/04/03/建造者模式/" title="建造者模式"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2019/03/24/工厂模式/" title="工厂模式|如何优雅的new对象"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
-  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
-    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
-  </div> -->
-  
-  
-  <div class="bar-right">
-    
-    <div class="share-component" data-sites="wechat" data-mobile-sites="weibo,qq"></div>
-    
-  </div>
-  </div>
-</nav>
-  
-<!-- Modal -->
-<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content donate">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <div class="modal-body">
-        <div class="donate-box">
-          <div class="donate-head">
-            <p>Maybe you could buy me a cup of coffee.</p>
-          </div>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
-              <div class="donate-payimg">
-                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
-              </div>
-              <p class="text-muted mv">Scan this qrcode</p>
-              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
-              <div class="donate-payimg">
-                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
-              </div>
-              <p class="text-muted mv">Scan this qrcode</p>
-              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
-            </div>
-          </div>
-          <div class="donate-footer">
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-              <li role="presentation" class="active">
-                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
-              </li>
-              <li role="presentation" class>
-                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+   
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -624,32 +433,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 <script src="/js/insight.js"></script>
 
 
-
-
-
-   
-
-
-
-
-   
-    
-<script src="//cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js"></script>
-<script>
-var gitment = new Gitment({
-  // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
-  // https://github.com/imsun/gitment/issues/55
-  // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '模板模式', 
-  owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
-  repo: 'ShawnYou.github.io',
-  oauth: {
-    client_id: 'ad9e44e7c78905977cb3',
-    client_secret: '8b8efd38cc9e57ec134e6412805825ca632689f7',
-  }
-})
-gitment.render('comments')
-</script>
 
 
 
