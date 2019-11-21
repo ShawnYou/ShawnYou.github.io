@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:description" content="执行流程(和查询流程保持一致) 连接器 –&amp;gt; 连接数据库 分析器 –&amp;gt; 词法和语法分析这是一条更新语句 优化器 –&amp;gt; 决定使用哪个索引 执行器 –&amp;gt; 找到具体的某一行，然后更新  日志模块 SQL更新过程中涉及两个重要的日志模块  redo log(重做日志) WHATredo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘) WHYmys">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-21T14:03:40.329Z">
+<meta property="og:updated_time" content="2019-11-21T14:11:21.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01|一条SQL更新语句是如何执行的">
 <meta name="twitter:description" content="执行流程(和查询流程保持一致) 连接器 –&amp;gt; 连接数据库 分析器 –&amp;gt; 词法和语法分析这是一条更新语句 优化器 –&amp;gt; 决定使用哪个索引 执行器 –&amp;gt; 找到具体的某一行，然后更新  日志模块 SQL更新过程中涉及两个重要的日志模块  redo log(重做日志) WHATredo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘) WHYmys">
@@ -405,7 +405,7 @@
 <ul>
 <li>redo log是InnoDB特有的日志</li>
 <li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li>
-<li>redo log是固定大熊啊的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li>
+<li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li>
 <li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li>
 </ul>
 <h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p>
