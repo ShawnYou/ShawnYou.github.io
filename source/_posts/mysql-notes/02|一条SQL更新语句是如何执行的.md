@@ -1,5 +1,5 @@
 ---
-title: 01|一条SQL更新语句是如何执行的
+title: 02|一条SQL更新语句是如何执行的
 date: 2019-11-21 22:47:29
 tags: Notes
 categories: mysql-notes 
@@ -27,7 +27,7 @@ mysql的每一次更新过程IO成本和查找成本很高。每一次更新操�
 PS：
 + redo log是InnoDB特有的日志
 + 如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间
-+ redo log是固定大熊啊的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写
++ redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写
 + InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)
 
 #### binlog(归档日志)
