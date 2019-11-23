@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>接口与抽象类 | Hexo</title>
-  <meta name="description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
+  <title>03|事务隔离 | Hexo</title>
+  <meta name="description" content="事务保证一组数据库操作，要么全部成功，要么全部失败。  ACID Atomicity(原子性) Consistency(一致性) Isolation(隔离性) Durability(持久性)  隔离性 为什么需要隔离性  因为多个事务同时执行的时候，容易引发脏读、不可重复读、幻读等问题。  脏读  一个事务在处理过程中，读取了别的事务未提交的脏数据。如果别的事务回滚，那么我们拿到的数据是不准确的">
 <meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="接口与抽象类">
-<meta property="og:url" content="https://shawnyou.tech/2019/11/20/design-pattern-notes/接口与抽象类/index.html">
+<meta property="og:title" content="03|事务隔离">
+<meta property="og:url" content="https://shawnyou.tech/2019/11/22/mysql-notes/03|事务隔离/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
+<meta property="og:description" content="事务保证一组数据库操作，要么全部成功，要么全部失败。  ACID Atomicity(原子性) Consistency(一致性) Isolation(隔离性) Durability(持久性)  隔离性 为什么需要隔离性  因为多个事务同时执行的时候，容易引发脏读、不可重复读、幻读等问题。  脏读  一个事务在处理过程中，读取了别的事务未提交的脏数据。如果别的事务回滚，那么我们拿到的数据是不准确的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-21T14:16:57.094Z">
+<meta property="og:updated_time" content="2019-11-23T10:37:43.518Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="接口与抽象类">
-<meta name="twitter:description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
+<meta name="twitter:title" content="03|事务隔离">
+<meta name="twitter:description" content="事务保证一组数据库操作，要么全部成功，要么全部失败。  ACID Atomicity(原子性) Consistency(一致性) Isolation(隔离性) Durability(持久性)  隔离性 为什么需要隔离性  因为多个事务同时执行的时候，容易引发脏读、不可重复读、幻读等问题。  脏读  一个事务在处理过程中，读取了别的事务未提交的脏数据。如果别的事务回滚，那么我们拿到的数据是不准确的">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/11/20/design-pattern-notes/接口与抽象类/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/11/22/mysql-notes/03|事务隔离/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -213,7 +213,7 @@
   <div class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-notes/">design-notes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql-notes/">mysql-notes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-notes/">design-notes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql-notes/">mysql-notes</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -223,7 +223,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notes/">Notes</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notes/">Notes</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -233,7 +233,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/Design/" style="font-size: 14px;">Design</a> <a href="/tags/Notes/" style="font-size: 13px;">Notes</a> <a href="/tags/源码/" style="font-size: 13.5px;">源码</a>
+      <a href="/tags/Design/" style="font-size: 14px;">Design</a> <a href="/tags/Notes/" style="font-size: 13px;">Notes</a> <a href="/tags/源码/" style="font-size: 13px;">源码</a>
     </div>
   </div>
 
@@ -242,7 +242,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -254,6 +254,21 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/mysql-notes/">mysql-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/22/mysql-notes/03|事务隔离/" class="title">03|事务隔离</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-22T14:47:29.000Z" itemprop="datePublished">2019-11-22</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -288,6 +303,21 @@
             
             <div class="item-inner">
               <p class="item-category">
+                <a class="category-link" href="/categories/design-notes/">design-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/11/20/design-pattern-notes/08|接口与抽象类/" class="title">01|接口与抽象类</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-11-20T14:47:29.000Z" itemprop="datePublished">2019-11-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
                 <a class="category-link" href="/categories/mysql-notes/">mysql-notes</a>
               </p>
               <p class="item-title">
@@ -295,36 +325,6 @@
               </p>
               <p class="item-date">
                 <time datetime="2019-11-20T14:47:29.000Z" itemprop="datePublished">2019-11-20</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/design-notes/">design-notes</a>
-              </p>
-              <p class="item-title">
-                <a href="/2019/11/20/design-pattern-notes/接口与抽象类/" class="title">接口与抽象类</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2019-11-20T14:47:29.000Z" itemprop="datePublished">2019-11-20</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/设计模式/">设计模式</a>
-              </p>
-              <p class="item-title">
-                <a href="/2019/10/22/迭代器模式/" class="title">迭代器模式|手写一个迭代器</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2019-10-22T15:25:15.000Z" itemprop="datePublished">2019-10-22</time>
               </p>
             </div>
           </li>
@@ -342,14 +342,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-design-pattern-notes/接口与抽象类" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-mysql-notes/03|事务隔离" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      接口与抽象类
+      03|事务隔离
     </h1>
   
 
@@ -357,14 +357,14 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/11/20/design-pattern-notes/接口与抽象类/" class="article-date">
-	  <time datetime="2019-11-20T14:47:29.000Z" itemprop="datePublished">2019-11-20</time>
+	<a href="/2019/11/22/mysql-notes/03|事务隔离/" class="article-date">
+	  <time datetime="2019-11-22T14:47:29.000Z" itemprop="datePublished">2019-11-22</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/design-notes/">design-notes</a>
+    <a class="article-category-link" href="/categories/mysql-notes/">mysql-notes</a>
   </span>
 
         
@@ -376,54 +376,84 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/20/design-pattern-notes/接口与抽象类/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/22/mysql-notes/03|事务隔离/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <blockquote>
-<p>接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。</p>
+<p>事务保证一组数据库操作，要么全部成功，要么全部失败。</p>
 </blockquote>
-<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><ul>
-<li>不允许被实例化</li>
-<li>抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法)</li>
-<li>子类集成抽象类。子类必须实现抽象类的抽象方法。</li>
+<h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><ol>
+<li>Atomicity(原子性)</li>
+<li>Consistency(一致性)</li>
+<li>Isolation(隔离性)</li>
+<li>Durability(持久性)</li>
+</ol>
+<h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><blockquote>
+<p>为什么需要隔离性</p>
+</blockquote>
+<p>因为多个事务同时执行的时候，容易引发脏读、不可重复读、幻读等问题。</p>
+<ol>
+<li>脏读</li>
+</ol>
+<p>一个事务在处理过程中，读取了别的事务未提交的脏数据。如果别的事务回滚，那么我们拿到的数据是不准确的，由此会造成一定的问题。</p>
+<ol start="2">
+<li><p>不可重复读<br>一个事务在处理过程，两次查询的数据不一样。这是因为第二次查询读取了别的事务已经提交的变更。那么我们在这个事务操作中就能看到别的事务提交的变更。</p>
+</li>
+<li><p>幻读<br>一个事务在处理过程中，两次查询的数据不一样，第二次查询读取了别的事务已经提交的变更。</p>
+</li>
+</ol>
+<ul>
+<li>不可重复读和幻读都在还未提交的事务过程中读取了另一个已经提交的事务变更。不可重读读针对的是同一个数据项，而幻读针对的是一批数据整体。例如小编去取钱，</li>
+<li>不可重复读：重点在于修改，两次读取的数据不一样</li>
+<li>幻读：重点在新增和删除，比如这里有一个事务1要查询公司里面工资1000元以上的职工有10人，这时另一个事务2里面，HR新增了一个新员工，工资也在1000元以上。这时候事务1在次查询，发现工资1000元以上的人员增加到了11个人。</li>
 </ul>
-<h3 id="接口类"><a href="#接口类" class="headerlink" title="接口类"></a>接口类</h3><ul>
-<li>接口不能包含属性(成员变量)</li>
-<li>接口只能声明方法，方法不能包含方法实现</li>
-<li>类实现接口的时候，必须实现接口的所有方法。</li>
-</ul>
-<h3 id="抽象类与接口类的区别"><a href="#抽象类与接口类的区别" class="headerlink" title="抽象类与接口类的区别"></a>抽象类与接口类的区别</h3><ul>
-<li>抽象类的本质是类，主要只能被子类去继承，体现着is-a的继承关系</li>
-<li>接口类表示一种has-a的关系，体现具有某些功能，表现为一种约定和协议。</li>
-</ul>
-<h3 id="抽象类和接口类能解决什么问题"><a href="#抽象类和接口类能解决什么问题" class="headerlink" title="抽象类和接口类能解决什么问题"></a>抽象类和接口类能解决什么问题</h3><h4 id="抽象类-1"><a href="#抽象类-1" class="headerlink" title="抽象类"></a>抽象类</h4><ul>
-<li>代码复用，避免在子类中编写相同的代码</li>
-</ul>
+<h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><blockquote>
+<p>多个事务同时执行，引发的脏读、不可重复读、幻读等问题，就产生了‘隔离级别’的概念。隔离越严实，效率就越低，但数据一致性的程度越高。由此需要在隔离性和效率之间寻找一个平衡点。</p>
+</blockquote>
+<ol>
+<li>读未提交(read uncommitted)</li>
+</ol>
 <blockquote>
-<p>同样是代码复用，为什么不直接用继承，而要使用抽象类来实现？相比继承来说，抽象类的实现更加的优雅</p>
+<p>一个事务还未提交的时候，它的变更能被别的事务看到。</p>
 </blockquote>
-<ul>
-<li>父类中定义一个被子类继承的无意义的log()方法会使代码的可读性变差。</li>
-<li>创建子类的时候，会忘记重写log()。然而抽象类会强制子类实现。</li>
-<li>继承中，父类是可以被实例化的，我们可以调用空的log()方法，会增加类误用的风险。(可以通过设置私有构造函数解决)</li>
-</ul>
-<h4 id="接口类-1"><a href="#接口类-1" class="headerlink" title="接口类"></a>接口类</h4><blockquote>
-<p>侧重于解耦。对行为进行抽象，之关系接口的协议，不关心具体实现，实现约定与实现相分离。</p>
+<ol start="2">
+<li>读提交(read committed)</li>
+</ol>
+<p>一个事务提交之后，它的改动才能被其他事务看到。事务A修改了一项数据，B事务读取不到变动，只有等事务A提交之后，B事务才能够读取。由此可以避免脏读，但是会造成不可重复读和幻读。</p>
+<ol start="3">
+<li>可重复读(repeatable read)</li>
+</ol>
+<p>一个事务在执行过程中看到的数据和事务启动是看到的数据时一致的。当事务A开始读取一条记录的时候，事务B是不能够进行修改的。由此可以避免不可重复读，但是还是会造成幻读(事务A读取一些数据，事务B插入或者删除一些数据，这时候在此读取，会发现数据多了或者少了)。</p>
+<ol start="4">
+<li>串行化(serializable)</li>
+</ol>
+<p>‘读’和‘写’会进行加锁，读写锁发生冲突时候，后访问的事务必须等前一个事务执行完成。</p>
+<h4 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h4><blockquote>
+<p>事务的隔离级别往往和视图有关系，不同的隔离级别创建视图的顺序是不一样。视图可以理解为数据副本，每次创建视图，将当前已持久化的数据创建副本，后面直接从副本读取，从而达到数据隔离。</p>
 </blockquote>
-<h3 id="模拟接口类和抽象类"><a href="#模拟接口类和抽象类" class="headerlink" title="模拟接口类和抽象类"></a>模拟接口类和抽象类</h3><h4 id="模拟接口类"><a href="#模拟接口类" class="headerlink" title="模拟接口类"></a>模拟接口类</h4><blockquote>
-<p>普通类模拟接口类</p>
-</blockquote>
-<ul>
-<li>protect访问权限，避免类被实例化</li>
-<li>不含具体实现的方法</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockInteface</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">MockInteface</span><span class="params">()</span> </span>&#123;&#125; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcA</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> MethodUnSupportedException(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="抽象类和接口类的使用"><a href="#抽象类和接口类的使用" class="headerlink" title="抽象类和接口类的使用"></a>抽象类和接口类的使用</h3><ul>
-<li>抽象类：is-a的关系，解决代码复用的问题</li>
-<li>接口类：has-a的关系，解决耦合的问题，表示一组行为特征，隔离接口和具体实现</li>
+<ol>
+<li>读未提交</li>
+</ol>
+<p>没有视图概念，不同事务在读未提交的隔离级别上直接读取记录的最新值，容易出现脏读的情况。</p>
+<ol start="2">
+<li>读提交</li>
+</ol>
+<p>视图在每个SQL开始执行的时候创建的。所以第二次查询的时候，别的事务已经提交了数据，重新建立的视图里面包含已经变更的数据。因此能够读取别的事务修改的数据。</p>
+<ol start="3">
+<li>可重复读</li>
+</ol>
+<p>视图是在事务启动的时候创建的。（TODO）</p>
+<ol start="4">
+<li>串行化</li>
+</ol>
+<p>直接用加锁的方式避免并行访问</p>
+<h3 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h3><h4 id="MVCC-多版本并发控制"><a href="#MVCC-多版本并发控制" class="headerlink" title="MVCC(多版本并发控制)"></a>MVCC(多版本并发控制)</h4><p>同一条记录在系统中可以存在多个版本。</p>
+<h4 id="避免使用长事务"><a href="#避免使用长事务" class="headerlink" title="避免使用长事务"></a>避免使用长事务</h4><ul>
+<li>长事务存在很老的事务视图，在未提交之前，所有的回滚记录都必须保留，会导致大量占用存储空间。</li>
+<li>占用锁资源，拖垮数据库。</li>
 </ul>
 
       
@@ -434,7 +464,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/11/20/design-pattern-notes/接口与抽象类/" title="接口与抽象类" target="_blank" rel="external">https://shawnyou.tech/2019/11/20/design-pattern-notes/接口与抽象类/</a>
+      <a href="https://shawnyou.tech/2019/11/22/mysql-notes/03|事务隔离/" title="03|事务隔离" target="_blank" rel="external">https://shawnyou.tech/2019/11/22/mysql-notes/03|事务隔离/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -480,13 +510,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/" title="02|一条SQL更新语句是如何执行的"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/" title="01|一条SQL查询语句是如何执行的"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/11/21/design-pattern-notes/09|基于接口而非实现编程/" title="为什么基于接口而非实现编程"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -614,7 +640,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '接口与抽象类', 
+  id: '03|事务隔离', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {

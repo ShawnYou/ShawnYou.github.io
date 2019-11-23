@@ -17,16 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Archive: 2019 | Hexo</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="攻城虱">
-<meta property="og:url" content="https://shawnyou.tech/archives/2019/page/3/index.html">
+  <title>01|接口与抽象类 | Hexo</title>
+  <meta name="description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
+<meta name="keywords" content="Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01|接口与抽象类">
+<meta property="og:url" content="https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/index.html">
 <meta property="og:site_name" content="攻城虱">
+<meta property="og:description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-23T08:55:49.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="攻城虱">
+<meta name="twitter:title" content="01|接口与抽象类">
+<meta name="twitter:description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/archives/2019/page/3/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -35,6 +40,8 @@
   
   <link rel="stylesheet" href="/css/style.css">
   
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css">
   
   
   
@@ -334,164 +341,217 @@
   
   
 <main class="main" role="main">
-  	<article class="content article article-archives article-type-list" itemscope>
-	    <header class="article-header">
-	      <h1 itemprop="title">Archive: 2019</h1>
-	      <p class="text-muted">Total 10 articles</p>
-	    </header>
-	    <div class="article-body">
-	      
-  
-  
+  <div class="content">
+  <article id="post-design-pattern-notes/08|接口与抽象类" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-    
+    <div class="article-header">
       
+        
+  
+    <h1 class="article-title" itemprop="name">
+      01|接口与抽象类
+    </h1>
+  
+
       
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2019" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2019
-            </a>
-            <!-- <a href="/archives/2019" class="archive-year">2019</a> -->
-          </h3>
-        </div>
-        <div id="collapse2019" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2019">
-        <div class="panel-body">
-          <div class="collection">
-    
-    
-<a href="/2019/04/05/中介者模式/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-04-05T01:13:59.000Z" itemprop="datePublished">2019-04-05</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 中介者模式
-</a>
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/11/20/design-pattern-notes/08|接口与抽象类/" class="article-date">
+	  <time datetime="2019-11-20T14:47:29.000Z" itemprop="datePublished">2019-11-20</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/design-notes/">design-notes</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Notes/">Notes</a>
+  </span>
 
 
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/20/design-pattern-notes/08|接口与抽象类/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。</p>
+</blockquote>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><ul>
+<li>不允许被实例化</li>
+<li>抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法)</li>
+<li>子类集成抽象类。子类必须实现抽象类的抽象方法。</li>
+</ul>
+<h3 id="接口类"><a href="#接口类" class="headerlink" title="接口类"></a>接口类</h3><ul>
+<li>接口不能包含属性(成员变量)</li>
+<li>接口只能声明方法，方法不能包含方法实现</li>
+<li>类实现接口的时候，必须实现接口的所有方法。</li>
+</ul>
+<h3 id="抽象类与接口类的区别"><a href="#抽象类与接口类的区别" class="headerlink" title="抽象类与接口类的区别"></a>抽象类与接口类的区别</h3><ul>
+<li>抽象类的本质是类，主要只能被子类去继承，体现着is-a的继承关系</li>
+<li>接口类表示一种has-a的关系，体现具有某些功能，表现为一种约定和协议。</li>
+</ul>
+<h3 id="抽象类和接口类能解决什么问题"><a href="#抽象类和接口类能解决什么问题" class="headerlink" title="抽象类和接口类能解决什么问题"></a>抽象类和接口类能解决什么问题</h3><h4 id="抽象类-1"><a href="#抽象类-1" class="headerlink" title="抽象类"></a>抽象类</h4><ul>
+<li>代码复用，避免在子类中编写相同的代码</li>
+</ul>
+<blockquote>
+<p>同样是代码复用，为什么不直接用继承，而要使用抽象类来实现？相比继承来说，抽象类的实现更加的优雅</p>
+</blockquote>
+<ul>
+<li>父类中定义一个被子类继承的无意义的log()方法会使代码的可读性变差。</li>
+<li>创建子类的时候，会忘记重写log()。然而抽象类会强制子类实现。</li>
+<li>继承中，父类是可以被实例化的，我们可以调用空的log()方法，会增加类误用的风险。(可以通过设置私有构造函数解决)</li>
+</ul>
+<h4 id="接口类-1"><a href="#接口类-1" class="headerlink" title="接口类"></a>接口类</h4><blockquote>
+<p>侧重于解耦。对行为进行抽象，之关系接口的协议，不关心具体实现，实现约定与实现相分离。</p>
+</blockquote>
+<h3 id="模拟接口类和抽象类"><a href="#模拟接口类和抽象类" class="headerlink" title="模拟接口类和抽象类"></a>模拟接口类和抽象类</h3><h4 id="模拟接口类"><a href="#模拟接口类" class="headerlink" title="模拟接口类"></a>模拟接口类</h4><blockquote>
+<p>普通类模拟接口类</p>
+</blockquote>
+<ul>
+<li>protect访问权限，避免类被实例化</li>
+<li>不含具体实现的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockInteface</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">MockInteface</span><span class="params">()</span> </span>&#123;&#125; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcA</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> MethodUnSupportedException(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="抽象类和接口类的使用"><a href="#抽象类和接口类的使用" class="headerlink" title="抽象类和接口类的使用"></a>抽象类和接口类的使用</h3><ul>
+<li>抽象类：is-a的关系，解决代码复用的问题</li>
+<li>接口类：has-a的关系，解决耦合的问题，表示一组行为特征，隔离接口和具体实现</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/" title="01|接口与抽象类" target="_blank" rel="external">https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ShawnYou" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpeg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ShawnYou" target="_blank"><span class="text-dark">Saga</span><small class="ml-1x"></small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
   
     
-    
-    
-<a href="/2019/04/05/代理模式/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-04-05T01:13:59.000Z" itemprop="datePublished">2019-04-05</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 代理模式|动态代理原理浅析
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/04/03/建造者模式/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-04-03T14:49:27.000Z" itemprop="datePublished">2019-04-03</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 建造者模式
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/03/25/模板模式/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-25T13:14:01.000Z" itemprop="datePublished">2019-03-25</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 模板模式
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/03/24/工厂模式/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-24T13:14:01.000Z" itemprop="datePublished">2019-03-24</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 工厂模式|如何优雅的new对象
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/03/23/单例模式/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-23T13:14:01.000Z" itemprop="datePublished">2019-03-23</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 关于单例模式的几种变体形式
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/03/22/单一职责原则/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-22T15:25:15.000Z" itemprop="datePublished">2019-03-22</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 单一职责原则
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/03/22/迪米特法则/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-22T13:54:12.000Z" itemprop="datePublished">2019-03-22</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 迪米特法则|如何降低类间耦合
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/03/22/里氏替换原则/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-22T12:56:55.000Z" itemprop="datePublished">2019-03-22</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 里氏替换原则
-</a>
-
-
-  
-    
-    
-    
-<a href="/2019/03/22/接口隔离原则/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-22T12:56:31.000Z" itemprop="datePublished">2019-03-22</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 接口隔离原则|
-</a>
-
-
-  
-  
-    </div></div></div></section>
-  
-
-	    </div>
-  	</article>
+  <section id="comments">
   	
+
     
-    <nav class="bar bar-footer clearfix" data-stick-bottom>
-        <div class="bar-inner">
-        <ul class="pager pull-left">
-            
-            <li class="prev">
-                <a href="/archives/2019/page/2/">
-                    <i class="icon icon-angle-left"></i>
-                    Prev
-                </a>
-            </li>
-            
-            
-            <li class="next">
-                <a href="/archives/2019/page/4/">
-                    Next
-                    <i class="icon icon-angle-right"></i>
-                </a>
-            </li>
-            
-        </ul>
-        <div class="total-article bar-right">Page 3 of 4</div>
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/" title="01|一条SQL查询语句是如何执行的"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/10/22/迭代器模式/" title="迭代器模式|手写一个迭代器"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="wechat" data-mobile-sites="weibo,qq"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </nav>
-    
- 	
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -538,6 +598,32 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 <script src="/js/insight.js"></script>
 
 
+
+
+
+   
+
+
+
+
+   
+    
+<script src="//cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js"></script>
+<script>
+var gitment = new Gitment({
+  // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
+  // https://github.com/imsun/gitment/issues/55
+  // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
+  id: '01|接口与抽象类', 
+  owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
+  repo: 'ShawnYou.github.io',
+  oauth: {
+    client_id: 'ad9e44e7c78905977cb3',
+    client_secret: '8b8efd38cc9e57ec134e6412805825ca632689f7',
+  }
+})
+gitment.render('comments')
+</script>
 
 
 
