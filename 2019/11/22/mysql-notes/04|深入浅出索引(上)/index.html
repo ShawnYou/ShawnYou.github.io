@@ -17,17 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>tags | Hexo</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://shawnyou.tech/tags/index.html">
+  <title>04|深入浅出索引(上) | Hexo</title>
+  <meta name="description" content="索引类似于书本的目录，能够提高数据查询效率。  常见的索引模型 哈希表 key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。     插入很快。因为可以直接往后追加 区间查询速度很慢。因为因为数据存储不是有序的。 哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)   有序数组 有序数">
+<meta name="keywords" content="Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04|深入浅出索引(上)">
+<meta property="og:url" content="https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/index.html">
 <meta property="og:site_name" content="攻城虱">
+<meta property="og:description" content="索引类似于书本的目录，能够提高数据查询效率。  常见的索引模型 哈希表 key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。     插入很快。因为可以直接往后追加 区间查询速度很慢。因为因为数据存储不是有序的。 哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)   有序数组 有序数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T01:45:37.025Z">
+<meta property="og:updated_time" content="2019-11-24T07:42:08.760Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="04|深入浅出索引(上)">
+<meta name="twitter:description" content="索引类似于书本的目录，能够提高数据查询效率。  常见的索引模型 哈希表 key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。     插入很快。因为可以直接往后追加 区间查询速度很慢。因为因为数据存储不是有序的。 哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)   有序数组 有序数">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/tags/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -338,14 +342,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-mysql-notes/04|深入浅出索引(上)" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      04|深入浅出索引(上)
     </h1>
   
 
@@ -353,22 +357,115 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/tags/index.html" class="article-date">
-	  <time datetime="2019-03-17T01:44:44.000Z" itemprop="datePublished">2019-03-17</time>
+	<a href="/2019/11/22/mysql-notes/04|深入浅出索引(上)/" class="article-date">
+	  <time datetime="2019-11-22T14:47:29.000Z" itemprop="datePublished">2019-11-22</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/mysql-notes/">mysql-notes</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Notes/">Notes</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/tags/index.html#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/22/mysql-notes/04|深入浅出索引(上)/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>索引类似于书本的目录，能够提高数据查询效率。</p>
+</blockquote>
+<h3 id="常见的索引模型"><a href="#常见的索引模型" class="headerlink" title="常见的索引模型"></a>常见的索引模型</h3><ol>
+<li>哈希表<blockquote>
+<p>key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>插入很快。因为可以直接往后追加</li>
+<li>区间查询速度很慢。因为因为数据存储不是有序的。</li>
+<li>哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)</li>
+</ul>
+<ol start="2">
+<li>有序数组<blockquote>
+<p>有序数组在等值查询和范围查询的场景中的性能都非常优秀。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>查询效率高，利用二分法进行查询。，同样也支持范围查询</li>
+<li>新增记录成本太高，因为每增加一条新纪录，都要挪动后面所有的记录</li>
+</ul>
+<p>所以有序数组适合静态存储引擎，如2017年某个城市的所有人口信息。</p>
+<ol start="3">
+<li>搜索树</li>
+</ol>
+<ul>
+<li>二叉搜索树</li>
+</ul>
+<p>左子节点小于父节点，父节点小于右子节点。</p>
+<p>查询复杂度：O(log(n))<br>更新时间复杂度：O(log(n))</p>
+<ul>
+<li>数据库为什么不使用二叉树而选择多叉树</li>
+</ul>
+<p>（1）二叉树虽然效率高，但是每一层存储的数据量比较少。假如在特别大的数据量的情况下，使用二叉树会导致树的层数非常高。层数越多，访问磁盘的次数越多，磁盘读取往往是性能的瓶颈，所以二叉树的读取性能就回很差。</p>
+<p>（2）为了尽量的少读磁盘，让查询过程访问尽量少的数据块，应该使用多叉树。假如一个N=1200的多叉树，树高为4，可以存储1200的三次方的数据(17亿)。也就是在这17亿的数据中，查找一条记录，最多访问磁盘三次。</p>
+<h3 id="InnoDB的索引模型"><a href="#InnoDB的索引模型" class="headerlink" title="InnoDB的索引模型"></a>InnoDB的索引模型</h3><blockquote>
+<p>InnoDB的索引模型：B+树索引模型,每一个索引在InnoDB中就对应一棵B+树</p>
+</blockquote>
+<h4 id="B-树索引类型"><a href="#B-树索引类型" class="headerlink" title="B+树索引类型"></a>B+树索引类型</h4><ol>
+<li>主键索引(聚簇索引)</li>
+</ol>
+<p>叶子节点存储整行数据</p>
+<ol start="2">
+<li>普通索引(二级索引)</li>
+</ol>
+<p>叶子节点存储的是主键的值</p>
+<h5 id="主键索引和非主键索引的区别"><a href="#主键索引和非主键索引的区别" class="headerlink" title="主键索引和非主键索引的区别"></a>主键索引和非主键索引的区别</h5><ol>
+<li>通过主键查询的方式，就是直接搜索主键索引这棵B+树。</li>
+<li>如果通过普通索引的方式，则是先通过普通索引B+树查询到主键值，再通过主键值去主键索引B+树里面所有(回表)</li>
+</ol>
+<blockquote>
+<p>普通索引会多扫描一次索引，应该优先使用主键索引</p>
+</blockquote>
+<h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><blockquote>
+<p>B+树维护了索引的有效性，当插入新值的时候，就要做必要的维护</p>
+</blockquote>
+<ol>
+<li>页分裂</li>
+</ol>
+<p>当插入数据所在页的数据页满了，就要重新申请一个新的数据页，让后再挪动部分数据过去。性能受影响。</p>
+<ol start="2">
+<li>页合并</li>
+</ol>
+<p>相邻两个数据页因为删除了数据，利用率很低之后，会将数据页进行合并。</p>
+<h4 id="自增字段的重要性"><a href="#自增字段的重要性" class="headerlink" title="自增字段的重要性"></a>自增字段的重要性</h4><blockquote>
+<p>索引的维护过程中，会出现页分裂和页合并的现象，这些是比较耗费性能的。所以现在的建表规范里面都要求使用自增字段。那自增字段能够对索引维护起到什么作用吗？</p>
+</blockquote>
+<ul>
+<li>自增逐渐的插入数据模式都是追加操作，不会涉及挪动其他记录，不会触发叶子节点的分裂。—-性能</li>
+<li>如果使用业务字段做主键，不容易保证有序插入，写数据成本高。—-性能</li>
+<li>自增逐渐相比业务字段作逐渐节省存储空间。如果使用身份证之类的作为主键，那么普通索引的叶子节点(主键)就会占用比较多的存储空间(字符串20个字节)，整型(4个字节)，长整型(8个字节)。—-存储空间</li>
+</ul>
+<blockquote>
+<p>主键长度约小，普通索引的叶子节点就越小，普通索引占用的空间就越小</p>
+</blockquote>
+<p>业务字段作为主键的场景：</p>
+<ol>
+<li>只有一个索引</li>
+<li>该索引是唯一索引</li>
+</ol>
+
       
     </div>
     <div class="article-footer">
@@ -377,7 +474,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/tags/index.html" title="tags" target="_blank" rel="external">https://shawnyou.tech/tags/index.html</a>
+      <a href="https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/" title="04|深入浅出索引(上)" target="_blank" rel="external">https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -420,6 +517,16 @@
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/11/22/mysql-notes/03|事务隔离/" title="03|事务隔离"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -530,6 +637,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+   
+
+
+
 
    
     
@@ -539,7 +650,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: 'tags', 
+  id: '04|深入浅出索引(上)', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
