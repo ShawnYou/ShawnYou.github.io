@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shawnyou.tech/"/>
-  <updated>2019-11-24T07:42:08.760Z</updated>
+  <updated>2019-11-24T08:34:53.223Z</updated>
   <id>https://shawnyou.tech/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>05|深入浅出索引(下)</title>
+    <link href="https://shawnyou.tech/2019/11/24/mysql-notes/05%7C%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95(%E4%B8%8B)/"/>
+    <id>https://shawnyou.tech/2019/11/24/mysql-notes/05|深入浅出索引(下)/</id>
+    <published>2019-11-24T04:40:29.000Z</published>
+    <updated>2019-11-24T08:34:53.223Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="索引分析"><a href="#索引分析" class="headerlink" title="索引分析"></a>索引分析</h3><blockquote><p>select * from T where K betwwen 3 and 5 需要执行几次树的搜索操作？ ID为主键索引，K为普通索引</p></blockquote><ul><li>在K的普通索引树上找到K=3对应的记录，取得对应的主键ID=300值—普通索引</li><li>通过主键ID=300查到对应的记录—主键索引(回表)</li><li>在K索引树取下一个值K=5,取得主键ID=500—普通索引</li><li>根据ID=500取得对应的记录—主键索引(回表)</li><li>K索引树取下一个值k=6,不满足条件，循环结束—普通索引</li></ul><p>这个过程总共搜索了三次普通索引，二次主键索引(回表)。如何优化索引，避免回表过程？可以使用覆盖索引</p><h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><blockquote><p>select ID from T where K betwwen 3 and 5. 由于查询的返回值通过普通索引就能够获取，所以就不用回表去查主键索引了。能够减少数的搜索次数，提高查询性能。</p></blockquote><h4 id="覆盖索引的使用场景"><a href="#覆盖索引的使用场景" class="headerlink" title="覆盖索引的使用场景"></a>覆盖索引的使用场景</h4><ul><li>联合索引</li></ul><p>身份证号是市民的唯一表示，而身份证号通常应该建立普通索引，如果有一个需求是通过身份证号查市民的真实姓名，可以建立身份证号和姓名的联合索引，由此可以通过直接在身份证的普通索引上直接搜索到姓名，由此可以避免回表的操作，减少语句执行时间。</p><h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><blockquote><p>B+树可以通过索引的最左前缀，来定位记录，由此可以避免为每一种查询都设计一个索引</p></blockquote><ol><li>最左前缀可以是联合索引的最左N个字段，也可以是字符串索引的最左M个字符</li></ol><ul><li>联合索引(name,age), 如(“张三”，10)，通过张三可以通过索引检索到记录，通过”张”也可以通过索引检索到记录。</li></ul><ol start="2"><li>如果通过调配联合索引的字段顺序来减少索引的维护？</li></ol><ul><li>评估索引的复用能力，当已经有了(a,b)的联合索引，就不需要单独在a上面建立索引了。</li><li>空间的考虑。如果已经有了(age,name)的索引，因为name的字段比age大，所以我们可以调配字段顺序(name,age),就只需要再加一个age的单字段索引。</li></ul><h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><blockquote><p>select * from tuser where name like “张%” and age = 10 and is ismale = 1 对于这样的查询语句，在老版本的mysql中，age和ismale没法通过最左前缀进行匹配。需要回表到主键索引进行过滤。</p></blockquote><ul><li>Mysql5.6之前，通过普通索引找到对应的主键，然后回到主键索引上找到对应的记录，最后去比对字段值去过滤。</li><li>Mysql5.6之后，Mysql进行索引下推优化，可以普通索引遍历过程中，对索引包含的字段(age)先作判断，由此在普通索引搜索过程过滤掉不满足条件的记录，减少了回表的次数。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;索引分析&quot;&gt;&lt;a href=&quot;#索引分析&quot; class=&quot;headerlink&quot; title=&quot;索引分析&quot;&gt;&lt;/a&gt;索引分析&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;select * from T where K betwwen 3 and 5 需要执行几次树的搜
+      
+    
+    </summary>
+    
+      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
   
   <entry>
     <title>04|深入浅出索引(上)</title>
@@ -73,6 +99,32 @@
   </entry>
   
   <entry>
+    <title>02|一条SQL更新语句是如何执行的</title>
+    <link href="https://shawnyou.tech/2019/11/21/mysql-notes/02%7C%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
+    <id>https://shawnyou.tech/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/</id>
+    <published>2019-11-21T14:47:29.000Z</published>
+    <updated>2019-11-22T14:30:14.854Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="执行流程-和查询流程保持一致"><a href="#执行流程-和查询流程保持一致" class="headerlink" title="执行流程(和查询流程保持一致)"></a>执行流程(和查询流程保持一致)</h3><ul><li>连接器 –&gt; 连接数据库</li><li>分析器 –&gt; 词法和语法分析这是一条更新语句</li><li>优化器 –&gt; 决定使用哪个索引</li><li>执行器 –&gt; 找到具体的某一行，然后更新</li></ul><h3 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h3><blockquote><p>SQL更新过程中涉及两个重要的日志模块</p></blockquote><h4 id="redo-log-重做日志"><a href="#redo-log-重做日志" class="headerlink" title="redo log(重做日志)"></a>redo log(重做日志)</h4><ul><li>WHAT<br>redo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘)</li><li>WHY<br>mysql的每一次更新过程IO成本和查找成本很高。每一次更新操作都要在磁盘中找到对应的记录然后更新。当更新比较频繁的时候，性能就非常的不好。</li><li>HOW<br>当一条记录需要更新的时候：</li></ul><ol><li>InnoDB引擎先把记录写到redo log</li><li>更新内存</li><li>InnoDB引擎在系统空闲的时候，将操作记录更新到磁盘中</li></ol><p>PS：</p><ul><li>redo log是InnoDB特有的日志</li><li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li><li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li><li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li></ul><h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p><h4 id="redolog与binlog的区别"><a href="#redolog与binlog的区别" class="headerlink" title="redolog与binlog的区别"></a>redolog与binlog的区别</h4><ul><li>redolog是InnoDB独有, binlog是Server层实现的，所有引擎都可以使用</li><li>redolog是物理日志，记录某个数据页做了什么改动，binlog是逻辑日志，记录语句的原始逻辑</li><li>redolog是循环写，空间固定会用完，binlog可以最佳写入，并不会覆盖以前的日志。</li></ul><h3 id="update语句执行的内部流程"><a href="#update语句执行的内部流程" class="headerlink" title="update语句执行的内部流程"></a>update语句执行的内部流程</h3><ol><li>执行器通过引擎找到对应的记录。如果这一行所在数据页在内存中，引擎就从内存中取，否则就从磁盘读入。</li><li>执行器拿到对应的数据，进行更新，然后调用引擎接口写入数据</li><li>引擎将数据更新到内存，同时将更新操作记录到redo日志，此时redo log处于prepare状态，告知执行器执行完成。</li><li>执行器生成binlog,并将binlog写入磁盘</li><li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态</li></ol><blockquote><p>以上的流程包含了一个两阶段提交</p></blockquote><h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><ul><li>what<br>保证redolog与binlog的数据逻辑一致性。</li></ul><ol><li>先写redolog后写binlog<br>redolog写完，binlog还没写完的时候，MySQL异常重启,可以通过redolog将记录恢复。但是当我们需要通过binlog恢复临时库的时候，由于binlog丢失，临时库的数据会少一次更新操作</li><li>先写binlog厚些redolog<br>binlog写完，redolog还没写，系统崩溃之后，由此数据没有被更新。但是binlog已经有了更新的日志，之后用binlog来恢复数据的时候就多了一条更新。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;执行流程-和查询流程保持一致&quot;&gt;&lt;a href=&quot;#执行流程-和查询流程保持一致&quot; class=&quot;headerlink&quot; title=&quot;执行流程(和查询流程保持一致)&quot;&gt;&lt;/a&gt;执行流程(和查询流程保持一致)&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;连接器 –&amp;gt; 连接数据
+      
+    
+    </summary>
+    
+      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
     <title>为什么基于接口而非实现编程</title>
     <link href="https://shawnyou.tech/2019/11/21/design-pattern-notes/09%7C%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A8%8B/"/>
     <id>https://shawnyou.tech/2019/11/21/design-pattern-notes/09|基于接口而非实现编程/</id>
@@ -101,20 +153,19 @@
   </entry>
   
   <entry>
-    <title>02|一条SQL更新语句是如何执行的</title>
-    <link href="https://shawnyou.tech/2019/11/21/mysql-notes/02%7C%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
-    <id>https://shawnyou.tech/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/</id>
-    <published>2019-11-21T14:47:29.000Z</published>
-    <updated>2019-11-22T14:30:14.854Z</updated>
+    <title>01|一条SQL查询语句是如何执行的</title>
+    <link href="https://shawnyou.tech/2019/11/20/mysql-notes/01%7C%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
+    <id>https://shawnyou.tech/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/</id>
+    <published>2019-11-20T14:47:29.000Z</published>
+    <updated>2019-11-21T12:57:59.293Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="执行流程-和查询流程保持一致"><a href="#执行流程-和查询流程保持一致" class="headerlink" title="执行流程(和查询流程保持一致)"></a>执行流程(和查询流程保持一致)</h3><ul><li>连接器 –&gt; 连接数据库</li><li>分析器 –&gt; 词法和语法分析这是一条更新语句</li><li>优化器 –&gt; 决定使用哪个索引</li><li>执行器 –&gt; 找到具体的某一行，然后更新</li></ul><h3 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h3><blockquote><p>SQL更新过程中涉及两个重要的日志模块</p></blockquote><h4 id="redo-log-重做日志"><a href="#redo-log-重做日志" class="headerlink" title="redo log(重做日志)"></a>redo log(重做日志)</h4><ul><li>WHAT<br>redo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘)</li><li>WHY<br>mysql的每一次更新过程IO成本和查找成本很高。每一次更新操作都要在磁盘中找到对应的记录然后更新。当更新比较频繁的时候，性能就非常的不好。</li><li>HOW<br>当一条记录需要更新的时候：</li></ul><ol><li>InnoDB引擎先把记录写到redo log</li><li>更新内存</li><li>InnoDB引擎在系统空闲的时候，将操作记录更新到磁盘中</li></ol><p>PS：</p><ul><li>redo log是InnoDB特有的日志</li><li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li><li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li><li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li></ul><h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p><h4 id="redolog与binlog的区别"><a href="#redolog与binlog的区别" class="headerlink" title="redolog与binlog的区别"></a>redolog与binlog的区别</h4><ul><li>redolog是InnoDB独有, binlog是Server层实现的，所有引擎都可以使用</li><li>redolog是物理日志，记录某个数据页做了什么改动，binlog是逻辑日志，记录语句的原始逻辑</li><li>redolog是循环写，空间固定会用完，binlog可以最佳写入，并不会覆盖以前的日志。</li></ul><h3 id="update语句执行的内部流程"><a href="#update语句执行的内部流程" class="headerlink" title="update语句执行的内部流程"></a>update语句执行的内部流程</h3><ol><li>执行器通过引擎找到对应的记录。如果这一行所在数据页在内存中，引擎就从内存中取，否则就从磁盘读入。</li><li>执行器拿到对应的数据，进行更新，然后调用引擎接口写入数据</li><li>引擎将数据更新到内存，同时将更新操作记录到redo日志，此时redo log处于prepare状态，告知执行器执行完成。</li><li>执行器生成binlog,并将binlog写入磁盘</li><li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态</li></ol><blockquote><p>以上的流程包含了一个两阶段提交</p></blockquote><h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><ul><li>what<br>保证redolog与binlog的数据逻辑一致性。</li></ul><ol><li>先写redolog后写binlog<br>redolog写完，binlog还没写完的时候，MySQL异常重启,可以通过redolog将记录恢复。但是当我们需要通过binlog恢复临时库的时候，由于binlog丢失，临时库的数据会少一次更新操作</li><li>先写binlog厚些redolog<br>binlog写完，redolog还没写，系统崩溃之后，由此数据没有被更新。但是binlog已经有了更新的日志，之后用binlog来恢复数据的时候就多了一条更新。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h3><h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><blockquote><p>负责与客户端建立连接。<br>shou processlist (查看连接)<br>长连接内存占用过大OOM如何解决：</p><ul><li>定期断开长连接</li><li>MySQL5.7以及以上版本，可以在执行完比较大的操作后，通过mysql_reset_connection重新初始化连接资源，使连接恢复到刚刚创建完时的状态。</li></ul></blockquote><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><blockquote><p>建立连接后会优先查询缓存，查询缓存弊大于利，MySQL8.0将查询缓存删除。</p><ul><li>对于一张经常变更的表，缓存经常被清空，缓存的命中率非常低，对于静态表适合做查询缓存。</li><li>按需使用查询缓存。</li></ul></blockquote><h4 id="分析器-分析要做什么"><a href="#分析器-分析要做什么" class="headerlink" title="分析器(分析要做什么)"></a>分析器(分析要做什么)</h4><blockquote><p>如何没有命中查询缓存，就要开始执行SQl语句了。</p><ul><li>词法分析：识别关键词，如select, from ,table….</li><li>语法分析：根据语法规则判断SQL语句的正确性。</li></ul></blockquote><h4 id="优化器-确定执行方案"><a href="#优化器-确定执行方案" class="headerlink" title="优化器(确定执行方案)"></a>优化器(确定执行方案)</h4><ul><li>当存在多个索引的时候，决定索引的选择</li><li>多表关联的时候，决定多个表的连接顺序<h4 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h4><blockquote><p>根据选择的存储引擎调用引擎接口从第一行开始比对，直到最后一行找出所有满足条件的记录返回结果集。</p></blockquote></li><li>慢查询日志：rows_examined(语句执行过程中的扫描行)</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;执行流程-和查询流程保持一致&quot;&gt;&lt;a href=&quot;#执行流程-和查询流程保持一致&quot; class=&quot;headerlink&quot; title=&quot;执行流程(和查询流程保持一致)&quot;&gt;&lt;/a&gt;执行流程(和查询流程保持一致)&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;连接器 –&amp;gt; 连接数据
+        &lt;h3 id=&quot;MySQL基础架构&quot;&gt;&lt;a href=&quot;#MySQL基础架构&quot; class=&quot;headerlink&quot; title=&quot;MySQL基础架构&quot;&gt;&lt;/a&gt;MySQL基础架构&lt;/h3&gt;&lt;h4 id=&quot;连接器&quot;&gt;&lt;a href=&quot;#连接器&quot; class=&quot;headerlink
       
     
     </summary>
@@ -148,31 +199,6 @@
     </summary>
     
       <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>01|一条SQL查询语句是如何执行的</title>
-    <link href="https://shawnyou.tech/2019/11/20/mysql-notes/01%7C%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
-    <id>https://shawnyou.tech/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/</id>
-    <published>2019-11-20T14:47:29.000Z</published>
-    <updated>2019-11-21T12:57:59.293Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h3><h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><blockquote><p>负责与客户端建立连接。<br>shou processlist (查看连接)<br>长连接内存占用过大OOM如何解决：</p><ul><li>定期断开长连接</li><li>MySQL5.7以及以上版本，可以在执行完比较大的操作后，通过mysql_reset_connection重新初始化连接资源，使连接恢复到刚刚创建完时的状态。</li></ul></blockquote><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><blockquote><p>建立连接后会优先查询缓存，查询缓存弊大于利，MySQL8.0将查询缓存删除。</p><ul><li>对于一张经常变更的表，缓存经常被清空，缓存的命中率非常低，对于静态表适合做查询缓存。</li><li>按需使用查询缓存。</li></ul></blockquote><h4 id="分析器-分析要做什么"><a href="#分析器-分析要做什么" class="headerlink" title="分析器(分析要做什么)"></a>分析器(分析要做什么)</h4><blockquote><p>如何没有命中查询缓存，就要开始执行SQl语句了。</p><ul><li>词法分析：识别关键词，如select, from ,table….</li><li>语法分析：根据语法规则判断SQL语句的正确性。</li></ul></blockquote><h4 id="优化器-确定执行方案"><a href="#优化器-确定执行方案" class="headerlink" title="优化器(确定执行方案)"></a>优化器(确定执行方案)</h4><ul><li>当存在多个索引的时候，决定索引的选择</li><li>多表关联的时候，决定多个表的连接顺序<h4 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h4><blockquote><p>根据选择的存储引擎调用引擎接口从第一行开始比对，直到最后一行找出所有满足条件的记录返回结果集。</p></blockquote></li><li>慢查询日志：rows_examined(语句执行过程中的扫描行)</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;MySQL基础架构&quot;&gt;&lt;a href=&quot;#MySQL基础架构&quot; class=&quot;headerlink&quot; title=&quot;MySQL基础架构&quot;&gt;&lt;/a&gt;MySQL基础架构&lt;/h3&gt;&lt;h4 id=&quot;连接器&quot;&gt;&lt;a href=&quot;#连接器&quot; class=&quot;headerlink
-      
-    
-    </summary>
-    
-      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
     
     
       <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
@@ -276,31 +302,6 @@
   </entry>
   
   <entry>
-    <title>SpringBoot源码|初识AutoProxyRegistrar</title>
-    <link href="https://shawnyou.tech/2019/06/24/Spring-boot/%E5%88%9D%E8%AF%86AutoProxyRegistrar/"/>
-    <id>https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/</id>
-    <published>2019-06-24T14:51:50.000Z</published>
-    <updated>2019-06-27T13:37:13.879Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="AutoProxyRegistrar源码分析"><a href="#AutoProxyRegistrar源码分析" class="headerlink" title="AutoProxyRegistrar源码分析"></a>AutoProxyRegistrar源码分析</h3>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;a href=&quot;#AutoProxyRegistrar源码分析&quot; class=&quot;headerlink&quot; title=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;/a&gt;AutoProxyRegistrar源码
-      
-    
-    </summary>
-    
-      <category term="SpringBoot" scheme="https://shawnyou.tech/categories/SpringBoot/"/>
-    
-    
-      <category term="源码" scheme="https://shawnyou.tech/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
     <title>SpringCache源码| SpringCache源码总览</title>
     <link href="https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
     <id>https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/</id>
@@ -319,6 +320,31 @@
     </summary>
     
       <category term="Spring" scheme="https://shawnyou.tech/categories/Spring/"/>
+    
+    
+      <category term="源码" scheme="https://shawnyou.tech/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot源码|初识AutoProxyRegistrar</title>
+    <link href="https://shawnyou.tech/2019/06/24/Spring-boot/%E5%88%9D%E8%AF%86AutoProxyRegistrar/"/>
+    <id>https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/</id>
+    <published>2019-06-24T14:51:50.000Z</published>
+    <updated>2019-06-27T13:37:13.879Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="AutoProxyRegistrar源码分析"><a href="#AutoProxyRegistrar源码分析" class="headerlink" title="AutoProxyRegistrar源码分析"></a>AutoProxyRegistrar源码分析</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;a href=&quot;#AutoProxyRegistrar源码分析&quot; class=&quot;headerlink&quot; title=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;/a&gt;AutoProxyRegistrar源码
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="https://shawnyou.tech/categories/SpringBoot/"/>
     
     
       <category term="源码" scheme="https://shawnyou.tech/tags/%E6%BA%90%E7%A0%81/"/>
@@ -493,31 +519,6 @@
       
         &lt;h3 id=&quot;一个故事&quot;&gt;&lt;a href=&quot;#一个故事&quot; class=&quot;headerlink&quot; title=&quot;一个故事&quot;&gt;&lt;/a&gt;一个故事&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;小张需要申请一台显示器，需要在公司内部系统提交审核清单。审核清单的审批流程要经过直属领导、部门领导
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="https://shawnyou.tech/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="Design" scheme="https://shawnyou.tech/tags/Design/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>命令模式</title>
-    <link href="https://shawnyou.tech/2019/04/09/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://shawnyou.tech/2019/04/09/命令模式/</id>
-    <published>2019-04-09T13:34:52.000Z</published>
-    <updated>2019-04-14T14:13:44.597Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="什么是命令模式"><a href="#什么是命令模式" class="headerlink" title="什么是命令模式"></a>什么是命令模式</h3>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;什么是命令模式&quot;&gt;&lt;a href=&quot;#什么是命令模式&quot; class=&quot;headerlink&quot; title=&quot;什么是命令模式&quot;&gt;&lt;/a&gt;什么是命令模式&lt;/h3&gt;
       
     
     </summary>
