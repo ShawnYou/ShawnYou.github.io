@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>适配器模式 | Hexo</title>
-  <meta name="description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
-<meta name="keywords" content="Design">
+  <title>如何决定用组合还是继承 | Hexo</title>
+  <meta name="description" content="组合优于继承，多用组合，少用继承  继承 面向对象四个特性之一，用来表示is-a的关系，解决代码复用的问题  不足 继承层次过深，过复杂。 不利于后期需求的变更，影响代码的可扩展性。 代码的可读性变差，需要弄清楚某个类需要哪些方法，必须阅读所有父类的代码。 破坏了类的封装性，将父类的实现细节暴露给子类，子类的实现依赖父类的子线，子类和父类高度耦合，一旦父类变化就会影响子类。  案例 鸟的继承体系">
+<meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="适配器模式">
-<meta property="og:url" content="https://shawnyou.tech/2019/04/14/适配器模式/index.html">
+<meta property="og:title" content="如何决定用组合还是继承">
+<meta property="og:url" content="https://shawnyou.tech/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
+<meta property="og:description" content="组合优于继承，多用组合，少用继承  继承 面向对象四个特性之一，用来表示is-a的关系，解决代码复用的问题  不足 继承层次过深，过复杂。 不利于后期需求的变更，影响代码的可扩展性。 代码的可读性变差，需要弄清楚某个类需要哪些方法，必须阅读所有父类的代码。 破坏了类的封装性，将父类的实现细节暴露给子类，子类的实现依赖父类的子线，子类和父类高度耦合，一旦父类变化就会影响子类。  案例 鸟的继承体系">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-10T05:13:01.343Z">
+<meta property="og:updated_time" content="2019-12-02T14:15:49.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="适配器模式">
-<meta name="twitter:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
+<meta name="twitter:title" content="如何决定用组合还是继承">
+<meta name="twitter:description" content="组合优于继承，多用组合，少用继承  继承 面向对象四个特性之一，用来表示is-a的关系，解决代码复用的问题  不足 继承层次过深，过复杂。 不利于后期需求的变更，影响代码的可扩展性。 代码的可读性变差，需要弄清楚某个类需要哪些方法，必须阅读所有父类的代码。 破坏了类的封装性，将父类的实现细节暴露给子类，子类的实现依赖父类的子线，子类和父类高度耦合，一旦父类变化就会影响子类。  案例 鸟的继承体系">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/04/14/适配器模式/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -342,14 +342,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-适配器模式" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-design-pattern-notes/10|如何决定用组合还是继承" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      适配器模式
+      如何决定用组合还是继承
     </h1>
   
 
@@ -357,56 +357,80 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/04/14/适配器模式/" class="article-date">
-	  <time datetime="2019-04-14T01:44:58.000Z" itemprop="datePublished">2019-04-14</time>
+	<a href="/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/" class="article-date">
+	  <time datetime="2019-12-01T12:40:29.000Z" itemprop="datePublished">2019-12-01</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    <a class="article-category-link" href="/categories/design-notes/">design-notes</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Design/">Design</a>
+	<a class="article-tag-link" href="/tags/Notes/">Notes</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/04/14/适配器模式/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="什么是适配器模式"><a href="#什么是适配器模式" class="headerlink" title="什么是适配器模式"></a>什么是适配器模式</h3><blockquote>
-<p>将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。<br>生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题</p>
+        <blockquote>
+<p>组合优于继承，多用组合，少用继承</p>
 </blockquote>
-<p>通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。</p>
-<h3 id="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"><a href="#如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器" class="headerlink" title="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"></a>如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器</h3><h3 id="适配器模式的两种实现"><a href="#适配器模式的两种实现" class="headerlink" title="适配器模式的两种实现"></a>适配器模式的两种实现</h3><ul>
-<li>类适配器模式(继承）</li>
-<li>对象适配器模式(委托)</li>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><blockquote>
+<p>面向对象四个特性之一，用来表示is-a的关系，解决代码复用的问题</p>
+</blockquote>
+<h4 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h4><ul>
+<li>继承层次过深，过复杂。</li>
+<li>不利于后期需求的变更，影响代码的可扩展性。</li>
+<li>代码的可读性变差，需要弄清楚某个类需要哪些方法，必须阅读所有父类的代码。</li>
+<li>破坏了类的封装性，将父类的实现细节暴露给子类，子类的实现依赖父类的子线，子类和父类高度耦合，一旦父类变化就会影响子类。</li>
 </ul>
-<h4 id="继承适配器模式"><a href="#继承适配器模式" class="headerlink" title="继承适配器模式"></a>继承适配器模式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Banner</span></span>&#123;</span><br><span class="line">    <span class="comment">//现有的实际情况</span></span><br><span class="line">    <span class="keyword">private</span> String string;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithParen</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithAster</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//需求接口</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Banner</span> <span class="keyword">implements</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//适配器类：在实现了现有的需求接口的方法中对原有的功能情况进行包装，以达到适配以前功能的目的。</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Print p = <span class="keyword">new</span> PringBanner(<span class="string">"hello"</span>);</span><br><span class="line">p.pritWeak();</span><br><span class="line">p.printStrong();</span><br></pre></td></tr></table></figure>
-<h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><ul>
-<li>面向接口编程，客户端代码只需要通过Print接口进行调用，隐藏了方法实现。(连接笔记本电脑的12伏特电压就有可能是由100伏特交流电压通过适配器转换而成的)</li>
-</ul>
-<h4 id="委托适配器模式"><a href="#委托适配器模式" class="headerlink" title="委托适配器模式"></a>委托适配器模式</h4><p>通过委托来实现适配器</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><blockquote>
+<p>鸟的继承体系</p>
+</blockquote>
 <ul>
-<li>适配器(PrintBanner)通过调用现有需求的方法(Print)来间接调用以前的的功能(Banner)</li>
-<li>Banner通过委托的形式传入到适配器(PrintBanner)中,现有功能(Print)作为抽象类被适配器继承。</li>
+<li>有会飞的鸟也有不会飞的鸟，，当父类定义一个fly()的方法，则子类都会拥有飞行的功能，对于鸵鸟，可以重写fly()方法，抛出异常即可，这样虽然可行，但是不够优美，违反最少知识原则，暴露了不该暴露的接口给外部。</li>
+<li>后序考虑鸟会不会叫、鸟下不下单等属性，那么继承体系就非常庞大了。</li>
+</ul>
+<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><blockquote>
+<p>有什么手段可以代替继承，并且避免继承的不足–组合+接口+委托</p>
+</blockquote>
+<ul>
+<li><p>多态(接口)，运用接口可以实现继承体系中的多态的作用。接口表示某种行为特征，Flyable(可以飞的行为)，EggLayable(可下蛋的行为)</p>
+</li>
+<li><p>代码复用(组合+委托)，由于每一个会飞的鸟都要去实现Flyable，所有我们可以定义一个实现类，然后通过组合和委托的形式，将Flyable的实现类组合进去</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Flyable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyAbility</span> <span class="title">implement</span> <span class="title">Flyable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ....</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ostrish</span> <span class="keyword">implements</span> <span class="title">Tweetable</span>,<span class="title">EggLayable</span></span>&#123;</span><br><span class="line">    <span class="comment">//组合</span></span><br><span class="line">    <span class="keyword">private</span> TweetAbility tweetAbility = <span class="keyword">new</span> TweetAbility();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tweet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//委托</span></span><br><span class="line">        tweetAbility.tweet();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何决定选择组合还是继承"><a href="#如何决定选择组合还是继承" class="headerlink" title="如何决定选择组合还是继承"></a>如何决定选择组合还是继承</h3><h4 id="组合的不足"><a href="#组合的不足" class="headerlink" title="组合的不足"></a>组合的不足</h4><ul>
+<li>更细粒度的类划分，更多的类和接口</li>
+<li>增加代码的复杂程度和维护成本</li>
+</ul>
+<h4 id="继承的不足"><a href="#继承的不足" class="headerlink" title="继承的不足"></a>继承的不足</h4><ul>
+<li>继承层次过深灰降低代码的扩展性</li>
+<li>代码可读性差</li>
+</ul>
+<h4 id="继承的条件"><a href="#继承的条件" class="headerlink" title="继承的条件"></a>继承的条件</h4><ul>
+<li>类之间的继承结构稳定(不会轻易改变)</li>
+<li>继承层次浅(2-3层)</li>
+<li>继承关系简单</li>
+</ul>
+<h3 id="继承和组合在设计模式中的应用"><a href="#继承和组合在设计模式中的应用" class="headerlink" title="继承和组合在设计模式中的应用"></a>继承和组合在设计模式中的应用</h3><ul>
+<li>继承(模板模式)</li>
+<li>组合(装饰器模式、策略模式、组合模式)</li>
 </ul>
 <blockquote>
-<p>Talk is cheap, show me the code</p>
+<p>多用组合，少用继承并不是绝对的，需要具体情况具体分析，控制好他们的副作用，发挥他们各自的优势。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">publc <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//抽象类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//通过委托的形式将原有功能注入进来，由此虽然调用的是新的功能方法，但实际调用的还是以前的老功能，由此实现了新、老功能之间的适配兼容。</span></span><br><span class="line">    <span class="keyword">private</span> Banner banner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.shouwWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -416,7 +440,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/04/14/适配器模式/" title="适配器模式" target="_blank" rel="external">https://shawnyou.tech/2019/04/14/适配器模式/</a>
+      <a href="https://shawnyou.tech/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/" title="如何决定用组合还是继承" target="_blank" rel="external">https://shawnyou.tech/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -462,13 +486,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/04/14/effectiveJava/创建对象/" title="读书笔记|如何更好的创建和销毁对象"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/04/13/策略模式/" title="策略模式"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/11/24/mysql-notes/05|深入浅出索引(下)/" title="05|深入浅出索引(下)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -596,7 +616,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '适配器模式', 
+  id: '如何决定用组合还是继承', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
