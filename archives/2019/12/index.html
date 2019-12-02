@@ -17,21 +17,16 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>建造者模式 | Hexo</title>
-  <meta name="description" content="建造者模式 将一个复杂对象的构建与他的表示分离，使得同样的构建过程可以创建不同的表示  如何理解建造者模式建造者模式就是将建造复杂对象的过程和组成对象的部件进行解耦。 案例游戏公司设计游戏角色，其中人、兽、精灵三个种族。而每个种族又拥有不同的英雄角色。所以角色设计应该具备以下特点:  角色基本属性一致 角色创建过程复杂，不暴露创建细节 符合开闭原则，可以随时新增角色 各个角色间彼此不受影响  这些">
-<meta name="keywords" content="Design">
-<meta property="og:type" content="article">
-<meta property="og:title" content="建造者模式">
-<meta property="og:url" content="https://shawnyou.tech/2019/04/03/建造者模式/index.html">
+  <title>Archive: 2019/12 | Hexo</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="攻城虱">
+<meta property="og:url" content="https://shawnyou.tech/archives/2019/12/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="建造者模式 将一个复杂对象的构建与他的表示分离，使得同样的构建过程可以创建不同的表示  如何理解建造者模式建造者模式就是将建造复杂对象的过程和组成对象的部件进行解耦。 案例游戏公司设计游戏角色，其中人、兽、精灵三个种族。而每个种族又拥有不同的英雄角色。所以角色设计应该具备以下特点:  角色基本属性一致 角色创建过程复杂，不暴露创建细节 符合开闭原则，可以随时新增角色 各个角色间彼此不受影响  这些">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-14T14:14:16.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="建造者模式">
-<meta name="twitter:description" content="建造者模式 将一个复杂对象的构建与他的表示分离，使得同样的构建过程可以创建不同的表示  如何理解建造者模式建造者模式就是将建造复杂对象的过程和组成对象的部件进行解耦。 案例游戏公司设计游戏角色，其中人、兽、精灵三个种族。而每个种族又拥有不同的英雄角色。所以角色设计应该具备以下特点:  角色基本属性一致 角色创建过程复杂，不暴露创建细节 符合开闭原则，可以随时新增角色 各个角色间彼此不受影响  这些">
+<meta name="twitter:title" content="攻城虱">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/04/03/建造者模式/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/archives/2019/12/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -40,8 +35,6 @@
   
   <link rel="stylesheet" href="/css/style.css">
   
-  
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css">
   
   
   
@@ -341,229 +334,48 @@
   
   
 <main class="main" role="main">
-  <div class="content">
-  <article id="post-建造者模式" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  	<article class="content article article-archives article-type-list" itemscope>
+	    <header class="article-header">
+	      <h1 itemprop="title">Archive: 2019/12</h1>
+	      <p class="text-muted">Total 1 articles</p>
+	    </header>
+	    <div class="article-body">
+	      
+  
+  
     
-    <div class="article-header">
+    
       
-        
-  
-    <h1 class="article-title" itemprop="name">
-      建造者模式
-    </h1>
-  
-
       
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/04/03/建造者模式/" class="article-date">
-	  <time datetime="2019-04-03T14:49:27.000Z" itemprop="datePublished">2019-04-03</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Design/">Design</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/04/03/建造者模式/#comments" class="article-comment-link">Comments</a></span>
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><blockquote>
-<p>将一个复杂对象的构建与他的表示分离，使得同样的构建过程可以创建不同的表示</p>
-</blockquote>
-<h3 id="如何理解建造者模式"><a href="#如何理解建造者模式" class="headerlink" title="如何理解建造者模式"></a>如何理解建造者模式</h3><p>建造者模式就是将建造复杂对象的过程和组成对象的部件进行解耦。</p>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>游戏公司设计游戏角色，其中人、兽、精灵三个种族。而每个种族又拥有不同的英雄角色。所以角色设计应该具备以下特点:</p>
-<ul>
-<li>角色基本属性一致</li>
-<li>角色创建过程复杂，不暴露创建细节</li>
-<li>符合开闭原则，可以随时新增角色</li>
-<li>各个角色间彼此不受影响</li>
-</ul>
-<p>这些特点很符合工厂模式的适用特点，那用工厂模式就可以实现的案例为何要用建造者模式？ 主要是一个角色包含有头、手、脚、毛发…等许多部件，不同种族不同角色的部件有许多差异。如果使用工厂模式，那么角色的创建过程会与其各个部件耦合在一起，如果部件比较多，那么角色的创建是比较复杂的。比如所以我们需要将对象的创建过程与组成对象的部件进行解耦，也就是这一章的主题—建造者模式</p>
-<h3 id="类图（todo）"><a href="#类图（todo）" class="headerlink" title="类图（todo）"></a>类图（todo）</h3><ol>
-<li>产品类</li>
-</ol>
-<p>定义产品的基本属性</p>
-<ol start="2">
-<li>抽象建造者</li>
-</ol>
-<p>定义产品各个部件的构建规范</p>
-<ol start="3">
-<li>具体构建者</li>
-</ol>
-<p>实现抽象构建者的所有方法，返回一个具体的产品</p>
-<ol start="4">
-<li>导演类</li>
-</ol>
-<p>负责封装已有模块的顺序</p>
-<ul>
-<li>隔离客户与生产过程</li>
-<li>控制产品的生成过程</li>
-</ul>
-<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><ol>
-<li>良好的封装性。产品类和建造类相对固定，将主要逻辑封装到导演类可以取得比较好的稳定性。</li>
-<li>不需暴露产品内部细节，将产品本身与产品创建过程进行解耦。</li>
-<li>精细控制产品创建过程。创建过程清晰，能够把控产品每个部件的创建过程。</li>
-<li>良好的扩展性。新的需求只需要增加新的建造类就可以解决，符合开闭原则。</li>
-</ol>
-<h4 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h4><ol>
-<li>建造者不适合差异性很大的产品类。</li>
-<li>产品内部变化复杂，需要定义很多建造类来实现，会导致系统变得庞大。</li>
-</ol>
-<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ol>
-<li>相同的方法，不同的执行顺序，产生不同的事件结果</li>
-<li>一个对象具有多个部件，但是不同的对象的部件有所差异，也可以使用建造者模式</li>
-<li>需要隔离复杂对象的创建和使用，并使相同创建过程可以创建不同的产品</li>
-</ol>
-<h3 id="建造者模式与工厂模式的区别"><a href="#建造者模式与工厂模式的区别" class="headerlink" title="建造者模式与工厂模式的区别"></a>建造者模式与工厂模式的区别</h3><p>工厂模式职责—创建对象</p>
-<ul>
-<li>将创建过程封装到工厂类，有工厂类提供最终产品。</li>
-</ul>
-<p>建造模式职责—零件的装配以产生不同的对象</p>
-<ul>
-<li>负责创建复杂对象，需要对对象的部件进行装配以产生不同效果的对象，具有的建造过程交给指挥类。由指挥类负责将各个组件按照规则组建为产品。</li>
-</ul>
-
-      
-    </div>
-    <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
-    
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/04/03/建造者模式/" title="建造者模式" target="_blank" rel="external">https://shawnyou.tech/2019/04/03/建造者模式/</a>
-    </li>
-    
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/ShawnYou" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpeg" class="img-rounded w-full" alt>
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/ShawnYou" target="_blank"><span class="text-dark">Saga</span><small class="ml-1x"></small></a></h3>
-        <div>个人简介。</div>
-      </div>
-    </figure>
-  </div>
-</div>
-
-
-    </div>
-  </article>
-  
-    
-  <section id="comments">
-  	
-
-    
-  </section>
-
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2019/04/05/中介者模式/" title="中介者模式"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2019/03/25/模板模式/" title="模板模式"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
-  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
-    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
-  </div> -->
-  
-  
-  <div class="bar-right">
-    
-    <div class="share-component" data-sites="wechat" data-mobile-sites="weibo,qq"></div>
-    
-  </div>
-  </div>
-</nav>
-  
-<!-- Modal -->
-<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content donate">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <div class="modal-body">
-        <div class="donate-box">
-          <div class="donate-head">
-            <p>Maybe you could buy me a cup of coffee.</p>
-          </div>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
-              <div class="donate-payimg">
-                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
-              </div>
-              <p class="text-muted mv">Scan this qrcode</p>
-              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
-              <div class="donate-payimg">
-                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
-              </div>
-              <p class="text-muted mv">Scan this qrcode</p>
-              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
-            </div>
-          </div>
-          <div class="donate-footer">
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-              <li role="presentation" class="active">
-                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
-              </li>
-              <li role="presentation" class>
-                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
-              </li>
-            </ul>
-          </div>
+      <section class="panel panel-default b-no">
+        <div class="panel-heading" role="tab">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" href="#collapse2019" aria-expanded="true">
+              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
+              2019
+            </a>
+            <!-- <a href="/archives/2019" class="archive-year">2019</a> -->
+          </h3>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <div id="collapse2019" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2019">
+        <div class="panel-body">
+          <div class="collection">
+    
+    
+<a href="/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/" class="collection-item" target="_blank" itemprop="url">
+  <time datetime="2019-12-01T12:40:29.000Z" itemprop="datePublished">2019-12-01</time>
+  <span>&nbsp;&nbsp;&nbsp;</span> 如何决定用组合还是继承
+</a>
 
 
+  
+  
+    </div></div></div></section>
+  
 
+	    </div>
+  	</article>
+  	 	
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -610,32 +422,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 <script src="/js/insight.js"></script>
 
 
-
-
-
-   
-
-
-
-
-   
-    
-<script src="//cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js"></script>
-<script>
-var gitment = new Gitment({
-  // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
-  // https://github.com/imsun/gitment/issues/55
-  // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '建造者模式', 
-  owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
-  repo: 'ShawnYou.github.io',
-  oauth: {
-    client_id: 'ad9e44e7c78905977cb3',
-    client_secret: '8b8efd38cc9e57ec134e6412805825ca632689f7',
-  }
-})
-gitment.render('comments')
-</script>
 
 
 
