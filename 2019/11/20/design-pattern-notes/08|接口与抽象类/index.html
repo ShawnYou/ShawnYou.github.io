@@ -17,18 +17,18 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>01|接口与抽象类 | Hexo</title>
+  <title>08|接口与抽象类 | Hexo</title>
   <meta name="description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
 <meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="01|接口与抽象类">
+<meta property="og:title" content="08|接口与抽象类">
 <meta property="og:url" content="https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/index.html">
 <meta property="og:site_name" content="攻城虱">
 <meta property="og:description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-23T08:55:49.397Z">
+<meta property="og:updated_time" content="2019-12-02T14:29:55.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="01|接口与抽象类">
+<meta name="twitter:title" content="08|接口与抽象类">
 <meta name="twitter:description" content="接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。  抽象类 不允许被实例化 抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法) 子类集成抽象类。子类必须实现抽象类的抽象方法。  接口类 接口不能包含属性(成员变量) 接口只能声明方法，方法不能包含方法实现 类实现接口的时候，必须实现接口的所有方法。  抽象类与接口类的区别 抽象类的本质是类，主要只能被子">
   <!-- Canonical links -->
   <link rel="canonical" href="https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/index.html">
@@ -213,7 +213,7 @@
   <div class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-notes/">design-notes</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql-notes/">mysql-notes</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-notes/">design-notes</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql-notes/">mysql-notes</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -223,7 +223,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notes/">Notes</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notes/">Notes</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a><span class="tag-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -242,7 +242,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -254,6 +254,21 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/design-notes/">design-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/12/02/design-pattern-notes/11|贫血模式与充血模式/" class="title">11|贫血模式与充血模式</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-12-02T12:40:29.000Z" itemprop="datePublished">2019-12-02</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -314,21 +329,6 @@
             </div>
           </li>
           
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/design-notes/">design-notes</a>
-              </p>
-              <p class="item-title">
-                <a href="/2019/11/21/design-pattern-notes/09|基于接口而非实现编程/" class="title">为什么基于接口而非实现编程</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2019-11-21T14:47:29.000Z" itemprop="datePublished">2019-11-21</time>
-              </p>
-            </div>
-          </li>
-          
       </ul>
     </div>
   </div>
@@ -349,7 +349,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      01|接口与抽象类
+      08|接口与抽象类
     </h1>
   
 
@@ -434,7 +434,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/" title="01|接口与抽象类" target="_blank" rel="external">https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/</a>
+      <a href="https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/" title="08|接口与抽象类" target="_blank" rel="external">https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -614,7 +614,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '01|接口与抽象类', 
+  id: '08|接口与抽象类', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
