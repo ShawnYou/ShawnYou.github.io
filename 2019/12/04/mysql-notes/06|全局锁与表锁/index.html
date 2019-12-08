@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>适配器模式 | Hexo</title>
-  <meta name="description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
-<meta name="keywords" content="Design">
+  <title>06|全局锁与表锁 | Hexo</title>
+  <meta name="description" content="数据库的锁是用来解决并发问题。作为用户共享的资源，当出现并发访问的时候，数据库需要合理的控制资源的访问规则，而数据库锁就是来实现这些访问规则的重要数据结构。  锁的分类 全局锁 表级锁 行锁  全局锁 对整个数据库加锁，数据库更新语句(更删改)，数据定义语句(建表，修改表结构)等操作都会被阻塞。  应用场景全库逻辑备份(保证数据逻辑一致性) 表级锁 表锁  加锁：lock tables … re">
+<meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="适配器模式">
-<meta property="og:url" content="https://shawnyou.tech/2019/04/14/适配器模式/index.html">
+<meta property="og:title" content="06|全局锁与表锁">
+<meta property="og:url" content="https://shawnyou.tech/2019/12/04/mysql-notes/06|全局锁与表锁/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
+<meta property="og:description" content="数据库的锁是用来解决并发问题。作为用户共享的资源，当出现并发访问的时候，数据库需要合理的控制资源的访问规则，而数据库锁就是来实现这些访问规则的重要数据结构。  锁的分类 全局锁 表级锁 行锁  全局锁 对整个数据库加锁，数据库更新语句(更删改)，数据定义语句(建表，修改表结构)等操作都会被阻塞。  应用场景全库逻辑备份(保证数据逻辑一致性) 表级锁 表锁  加锁：lock tables … re">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-10T05:13:01.343Z">
+<meta property="og:updated_time" content="2019-12-08T09:36:56.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="适配器模式">
-<meta name="twitter:description" content="什么是适配器模式 将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题  通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。 如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器适配器模式的两种实现 类适配器">
+<meta name="twitter:title" content="06|全局锁与表锁">
+<meta name="twitter:description" content="数据库的锁是用来解决并发问题。作为用户共享的资源，当出现并发访问的时候，数据库需要合理的控制资源的访问规则，而数据库锁就是来实现这些访问规则的重要数据结构。  锁的分类 全局锁 表级锁 行锁  全局锁 对整个数据库加锁，数据库更新语句(更删改)，数据定义语句(建表，修改表结构)等操作都会被阻塞。  应用场景全库逻辑备份(保证数据逻辑一致性) 表级锁 表锁  加锁：lock tables … re">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/04/14/适配器模式/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/12/04/mysql-notes/06|全局锁与表锁/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -342,14 +342,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-适配器模式" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-mysql-notes/06|全局锁与表锁" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      适配器模式
+      06|全局锁与表锁
     </h1>
   
 
@@ -357,56 +357,73 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/04/14/适配器模式/" class="article-date">
-	  <time datetime="2019-04-14T01:44:58.000Z" itemprop="datePublished">2019-04-14</time>
+	<a href="/2019/12/04/mysql-notes/06|全局锁与表锁/" class="article-date">
+	  <time datetime="2019-12-04T04:40:29.000Z" itemprop="datePublished">2019-12-04</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    <a class="article-category-link" href="/categories/mysql-notes/">mysql-notes</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Design/">Design</a>
+	<a class="article-tag-link" href="/tags/Notes/">Notes</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/04/14/适配器模式/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/04/mysql-notes/06|全局锁与表锁/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="什么是适配器模式"><a href="#什么是适配器模式" class="headerlink" title="什么是适配器模式"></a>什么是适配器模式</h3><blockquote>
-<p>将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。<br>生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题</p>
+        <blockquote>
+<p>数据库的锁是用来解决并发问题。作为用户共享的资源，当出现并发访问的时候，数据库需要合理的控制资源的访问规则，而数据库锁就是来实现这些访问规则的重要数据结构。</p>
 </blockquote>
-<p>通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。</p>
-<h3 id="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"><a href="#如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器" class="headerlink" title="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"></a>如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器</h3><h3 id="适配器模式的两种实现"><a href="#适配器模式的两种实现" class="headerlink" title="适配器模式的两种实现"></a>适配器模式的两种实现</h3><ul>
-<li>类适配器模式(继承）</li>
-<li>对象适配器模式(委托)</li>
+<h3 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h3><ul>
+<li>全局锁</li>
+<li>表级锁</li>
+<li>行锁</li>
 </ul>
-<h4 id="继承适配器模式"><a href="#继承适配器模式" class="headerlink" title="继承适配器模式"></a>继承适配器模式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Banner</span></span>&#123;</span><br><span class="line">    <span class="comment">//现有的实际情况</span></span><br><span class="line">    <span class="keyword">private</span> String string;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithParen</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithAster</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//需求接口</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Banner</span> <span class="keyword">implements</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//适配器类：在实现了现有的需求接口的方法中对原有的功能情况进行包装，以达到适配以前功能的目的。</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Print p = <span class="keyword">new</span> PringBanner(<span class="string">"hello"</span>);</span><br><span class="line">p.pritWeak();</span><br><span class="line">p.printStrong();</span><br></pre></td></tr></table></figure>
-<h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><ul>
-<li>面向接口编程，客户端代码只需要通过Print接口进行调用，隐藏了方法实现。(连接笔记本电脑的12伏特电压就有可能是由100伏特交流电压通过适配器转换而成的)</li>
+<h3 id="全局锁"><a href="#全局锁" class="headerlink" title="全局锁"></a>全局锁</h3><blockquote>
+<p>对整个数据库加锁，数据库更新语句(更删改)，数据定义语句(建表，修改表结构)等操作都会被阻塞。</p>
+</blockquote>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>全库逻辑备份(保证数据逻辑一致性)</p>
+<h3 id="表级锁"><a href="#表级锁" class="headerlink" title="表级锁"></a>表级锁</h3><ul>
+<li>表锁</li>
 </ul>
-<h4 id="委托适配器模式"><a href="#委托适配器模式" class="headerlink" title="委托适配器模式"></a>委托适配器模式</h4><p>通过委托来实现适配器</p>
+<p>加锁：lock tables … read/write</p>
+<p>释放锁：手动unlock tabls，或者客户端断开的时候字段释放</p>
+<p>影响：lock tables控制并发，锁住整张表，影响比较大。</p>
 <ul>
-<li>适配器(PrintBanner)通过调用现有需求的方法(Print)来间接调用以前的的功能(Banner)</li>
-<li>Banner通过委托的形式传入到适配器(PrintBanner)中,现有功能(Print)作为抽象类被适配器继承。</li>
+<li>元数据锁(meta data lock,MDL)</li>
 </ul>
 <blockquote>
-<p>Talk is cheap, show me the code</p>
+<p>Mysql 5.5 引入了MDL,当对一个表做增删改查的时候，加MDL读锁，当对标做结构变更操作的时候，加MDL写锁。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">publc <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//抽象类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//通过委托的形式将原有功能注入进来，由此虽然调用的是新的功能方法，但实际调用的还是以前的老功能，由此实现了新、老功能之间的适配兼容。</span></span><br><span class="line">    <span class="keyword">private</span> Banner banner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.shouwWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>读锁之间不互斥。</li>
+<li>读写锁与写锁之间互斥。保证表结构操作的安全性</li>
+</ul>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><blockquote>
+<p>给表加字段导致系统，导致数据库挂了。</p>
+</blockquote>
+<ol>
+<li>session A执行读取数据操作，这时会对表加一个MDL读锁</li>
+<li>session B执行读取数据操作，这时会对表加一个MDL读锁，但是读锁之间不互斥，所以能够正常查询出数据。</li>
+<li>session C这时候给表添加字段，由于session A还没有释放MDL读锁，所以session C拿不到写锁，因此会被阻塞</li>
+<li>session D由于session C的写锁请求被阻塞，那么session D的读取请求也会被阻塞</li>
+</ol>
+<p>后果： 这个表的查询语句频繁，而且客户端还有重试机制，会导致整个库的线程很快爆满。MDL锁需要等到事务提交之后再释放。</p>
+<h4 id="如何安全的给表加字段"><a href="#如何安全的给表加字段" class="headerlink" title="如何安全的给表加字段"></a>如何安全的给表加字段</h4><ol>
+<li>查询当前执行的事务，如果有长事务在执行，则先暂停DDL,或者kill掉这个长事务。</li>
+<li>alter table设置等待时间，在指定时间内能拿到MDL写锁最好，拿不到则退出，不阻塞后面的业务语句，后面再次重试。</li>
+</ol>
 
       
     </div>
@@ -416,7 +433,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/04/14/适配器模式/" title="适配器模式" target="_blank" rel="external">https://shawnyou.tech/2019/04/14/适配器模式/</a>
+      <a href="https://shawnyou.tech/2019/12/04/mysql-notes/06|全局锁与表锁/" title="06|全局锁与表锁" target="_blank" rel="external">https://shawnyou.tech/2019/12/04/mysql-notes/06|全局锁与表锁/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -462,13 +479,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/04/14/effectiveJava/创建对象/" title="读书笔记|如何更好的创建和销毁对象"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/04/13/策略模式/" title="策略模式"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/12/02/design-pattern-notes/11|贫血模式与充血模式/" title="11|贫血模式与充血模式"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -596,7 +609,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '适配器模式', 
+  id: '06|全局锁与表锁', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
