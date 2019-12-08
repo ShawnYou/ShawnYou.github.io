@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shawnyou.tech/"/>
-  <updated>2019-12-04T14:17:58.894Z</updated>
+  <updated>2019-12-08T09:36:56.010Z</updated>
   <id>https://shawnyou.tech/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>06|全局锁与表锁</title>
+    <link href="https://shawnyou.tech/2019/12/04/mysql-notes/06%7C%E5%85%A8%E5%B1%80%E9%94%81%E4%B8%8E%E8%A1%A8%E9%94%81/"/>
+    <id>https://shawnyou.tech/2019/12/04/mysql-notes/06|全局锁与表锁/</id>
+    <published>2019-12-04T04:40:29.000Z</published>
+    <updated>2019-12-08T09:36:56.010Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>数据库的锁是用来解决并发问题。作为用户共享的资源，当出现并发访问的时候，数据库需要合理的控制资源的访问规则，而数据库锁就是来实现这些访问规则的重要数据结构。</p></blockquote><h3 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h3><ul><li>全局锁</li><li>表级锁</li><li>行锁</li></ul><h3 id="全局锁"><a href="#全局锁" class="headerlink" title="全局锁"></a>全局锁</h3><blockquote><p>对整个数据库加锁，数据库更新语句(更删改)，数据定义语句(建表，修改表结构)等操作都会被阻塞。</p></blockquote><h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>全库逻辑备份(保证数据逻辑一致性)</p><h3 id="表级锁"><a href="#表级锁" class="headerlink" title="表级锁"></a>表级锁</h3><ul><li>表锁</li></ul><p>加锁：lock tables … read/write</p><p>释放锁：手动unlock tabls，或者客户端断开的时候字段释放</p><p>影响：lock tables控制并发，锁住整张表，影响比较大。</p><ul><li>元数据锁(meta data lock,MDL)</li></ul><blockquote><p>Mysql 5.5 引入了MDL,当对一个表做增删改查的时候，加MDL读锁，当对标做结构变更操作的时候，加MDL写锁。</p></blockquote><ul><li>读锁之间不互斥。</li><li>读写锁与写锁之间互斥。保证表结构操作的安全性</li></ul><h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><blockquote><p>给表加字段导致系统，导致数据库挂了。</p></blockquote><ol><li>session A执行读取数据操作，这时会对表加一个MDL读锁</li><li>session B执行读取数据操作，这时会对表加一个MDL读锁，但是读锁之间不互斥，所以能够正常查询出数据。</li><li>session C这时候给表添加字段，由于session A还没有释放MDL读锁，所以session C拿不到写锁，因此会被阻塞</li><li>session D由于session C的写锁请求被阻塞，那么session D的读取请求也会被阻塞</li></ol><p>后果： 这个表的查询语句频繁，而且客户端还有重试机制，会导致整个库的线程很快爆满。MDL锁需要等到事务提交之后再释放。</p><h4 id="如何安全的给表加字段"><a href="#如何安全的给表加字段" class="headerlink" title="如何安全的给表加字段"></a>如何安全的给表加字段</h4><ol><li>查询当前执行的事务，如果有长事务在执行，则先暂停DDL,或者kill掉这个长事务。</li><li>alter table设置等待时间，在指定时间内能拿到MDL写锁最好，拿不到则退出，不阻塞后面的业务语句，后面再次重试。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;数据库的锁是用来解决并发问题。作为用户共享的资源，当出现并发访问的时候，数据库需要合理的控制资源的访问规则，而数据库锁就是来实现这些访问规则的重要数据结构。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;锁的分类&quot;&gt;&lt;a href=&quot;#锁的分
+      
+    
+    </summary>
+    
+      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
     <title>11|贫血模式与充血模式</title>
     <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/11%7C%E8%B4%AB%E8%A1%80%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%BC%8F/"/>
     <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/11|贫血模式与充血模式/</id>
     <published>2019-12-02T12:40:29.000Z</published>
-    <updated>2019-12-04T14:17:58.894Z</updated>
+    <updated>2019-12-04T14:31:25.293Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>MVC是一种典型的贫血模型设计，违反了面向对象的设计原则，是一种面向过程的编程风格。</p></blockquote><h3 id="贫血模型与充血模式"><a href="#贫血模型与充血模式" class="headerlink" title="贫血模型与充血模式"></a>贫血模型与充血模式</h3><h4 id="什么是贫血模型的开发方式"><a href="#什么是贫血模型的开发方式" class="headerlink" title="什么是贫血模型的开发方式"></a>什么是贫血模型的开发方式</h4><p>传统的开发方式中，由于Entity和Repository组成数据访问层，Bo和Service组成业务逻辑层，Bo值包含数据，不包含业务逻辑，是典型的贫血模型设计，它将数据与操作分离，破坏了面向对象的封装特性，是典型的的面向过程的编程风格</p><h4 id="什么是充血模型的DDD开发模式"><a href="#什么是充血模型的DDD开发模式" class="headerlink" title="什么是充血模型的DDD开发模式"></a>什么是充血模型的DDD开发模式</h4><p>充血模型： 将数据和业务逻辑封装在一个类中，满足面向对象的封装特性。</p><p>领域驱动设计(DDD):领域驱动设计可以知道解耦业务系统，划分业务模块，定义业务领域模型及其交互。随着微服务的概念兴起，领域驱动设计可以可以指导服务的划分。</p><h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul><li>基于贫血模型的传统开发模式中，Bo只包含数据，不包含业务逻辑(重service轻Bo)</li><li>基于充血模型的DDD开发模型中，Domain既包含数据，又包含业务逻辑(轻service重Domain)</li></ul><h3 id="基于贫血的传统开发模式为何如此流行"><a href="#基于贫血的传统开发模式为何如此流行" class="headerlink" title="基于贫血的传统开发模式为何如此流行"></a>基于贫血的传统开发模式为何如此流行</h3><ul><li>系统业务比较简单，不需要精心设计充血模型，设计的充血模型也比较单薄，意义不大。</li><li>相较于贫血模型，充血模型设计难度大，需要一开始设计出暴露哪些接口，定义哪些业务逻辑。</li><li>思维固化，不愿意转型。</li></ul><h3 id="哪些项目设计使用基于充血模型的DDD开发模式"><a href="#哪些项目设计使用基于充血模型的DDD开发模式" class="headerlink" title="哪些项目设计使用基于充血模型的DDD开发模式"></a>哪些项目设计使用基于充血模型的DDD开发模式</h3><ul><li>业务比较复杂的系统开发(如包含利息计算模型，还款模型的金融系统)，越复杂的系统对代码的复用性，易维护性要求就越高。DDD开发模式需要我们前期做大量的业务调研，领域驱动设计。</li><li></li></ul>]]></content>
     
@@ -45,11 +73,29 @@
   </entry>
   
   <entry>
+    <title>12|基于充血模型的DDD模式来开发虚拟钱包系统</title>
+    <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/12%7C%E5%9F%BA%E4%BA%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%9E%8B%E7%9A%84DDD%E5%BC%80%E5%8F%91%E8%99%9A%E6%8B%9F%E9%92%B1%E5%8C%85%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/12|基于充血模型的DDD开发虚拟钱包系统/</id>
+    <published>2019-12-02T12:40:29.000Z</published>
+    <updated>2019-12-08T08:46:33.171Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何决定用组合还是继承</title>
     <link href="https://shawnyou.tech/2019/12/01/design-pattern-notes/10%7C%E5%A6%82%E4%BD%95%E5%86%B3%E5%AE%9A%E7%94%A8%E7%BB%84%E5%90%88%E8%BF%98%E6%98%AF%E7%BB%A7%E6%89%BF/"/>
     <id>https://shawnyou.tech/2019/12/01/design-pattern-notes/10|如何决定用组合还是继承/</id>
     <published>2019-12-01T12:40:29.000Z</published>
-    <updated>2019-12-02T14:15:49.809Z</updated>
+    <updated>2019-12-04T14:25:26.131Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>组合优于继承，多用组合，少用继承</p></blockquote><h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><blockquote><p>面向对象四个特性之一，用来表示is-a的关系，解决代码复用的问题</p></blockquote><h4 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h4><ul><li>继承层次过深，过复杂。</li><li>不利于后期需求的变更，影响代码的可扩展性。</li><li>代码的可读性变差，需要弄清楚某个类需要哪些方法，必须阅读所有父类的代码。</li><li>破坏了类的封装性，将父类的实现细节暴露给子类，子类的实现依赖父类的子线，子类和父类高度耦合，一旦父类变化就会影响子类。</li></ul><h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><blockquote><p>鸟的继承体系</p></blockquote><ul><li>有会飞的鸟也有不会飞的鸟，，当父类定义一个fly()的方法，则子类都会拥有飞行的功能，对于鸵鸟，可以重写fly()方法，抛出异常即可，这样虽然可行，但是不够优美，违反最少知识原则，暴露了不该暴露的接口给外部。</li><li>后序考虑鸟会不会叫、鸟下不下单等属性，那么继承体系就非常庞大了。</li></ul><h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><blockquote><p>有什么手段可以代替继承，并且避免继承的不足–组合+接口+委托</p></blockquote><ul><li><p>多态(接口)，运用接口可以实现继承体系中的多态的作用。接口表示某种行为特征，Flyable(可以飞的行为)，EggLayable(可下蛋的行为)</p></li><li><p>代码复用(组合+委托)，由于每一个会飞的鸟都要去实现Flyable，所有我们可以定义一个实现类，然后通过组合和委托的形式，将Flyable的实现类组合进去</p></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Flyable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyAbility</span> <span class="title">implement</span> <span class="title">Flyable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ....</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ostrish</span> <span class="keyword">implements</span> <span class="title">Tweetable</span>,<span class="title">EggLayable</span></span>&#123;</span><br><span class="line">    <span class="comment">//组合</span></span><br><span class="line">    <span class="keyword">private</span> TweetAbility tweetAbility = <span class="keyword">new</span> TweetAbility();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tweet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//委托</span></span><br><span class="line">        tweetAbility.tweet();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="如何决定选择组合还是继承"><a href="#如何决定选择组合还是继承" class="headerlink" title="如何决定选择组合还是继承"></a>如何决定选择组合还是继承</h3><h4 id="组合的不足"><a href="#组合的不足" class="headerlink" title="组合的不足"></a>组合的不足</h4><ul><li>更细粒度的类划分，更多的类和接口</li><li>增加代码的复杂程度和维护成本</li></ul><h4 id="继承的不足"><a href="#继承的不足" class="headerlink" title="继承的不足"></a>继承的不足</h4><ul><li>继承层次过深灰降低代码的扩展性</li><li>代码可读性差</li></ul><h4 id="继承的条件"><a href="#继承的条件" class="headerlink" title="继承的条件"></a>继承的条件</h4><ul><li>类之间的继承结构稳定(不会轻易改变)</li><li>继承层次浅(2-3层)</li><li>继承关系简单</li></ul><h3 id="继承和组合在设计模式中的应用"><a href="#继承和组合在设计模式中的应用" class="headerlink" title="继承和组合在设计模式中的应用"></a>继承和组合在设计模式中的应用</h3><ul><li>继承(模板模式)</li><li>组合(装饰器模式、策略模式、组合模式)</li></ul><blockquote><p>多用组合，少用继承并不是绝对的，需要具体情况具体分析，控制好他们的副作用，发挥他们各自的优势。</p></blockquote>]]></content>
     
@@ -100,6 +146,34 @@
   </entry>
   
   <entry>
+    <title>04|深入浅出索引(上)</title>
+    <link href="https://shawnyou.tech/2019/11/22/mysql-notes/04%7C%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95(%E4%B8%8A)/"/>
+    <id>https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/</id>
+    <published>2019-11-22T14:47:29.000Z</published>
+    <updated>2019-11-24T07:42:08.760Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>索引类似于书本的目录，能够提高数据查询效率。</p></blockquote><h3 id="常见的索引模型"><a href="#常见的索引模型" class="headerlink" title="常见的索引模型"></a>常见的索引模型</h3><ol><li>哈希表<blockquote><p>key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。</p></blockquote></li></ol><ul><li>插入很快。因为可以直接往后追加</li><li>区间查询速度很慢。因为因为数据存储不是有序的。</li><li>哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)</li></ul><ol start="2"><li>有序数组<blockquote><p>有序数组在等值查询和范围查询的场景中的性能都非常优秀。</p></blockquote></li></ol><ul><li>查询效率高，利用二分法进行查询。，同样也支持范围查询</li><li>新增记录成本太高，因为每增加一条新纪录，都要挪动后面所有的记录</li></ul><p>所以有序数组适合静态存储引擎，如2017年某个城市的所有人口信息。</p><ol start="3"><li>搜索树</li></ol><ul><li>二叉搜索树</li></ul><p>左子节点小于父节点，父节点小于右子节点。</p><p>查询复杂度：O(log(n))<br>更新时间复杂度：O(log(n))</p><ul><li>数据库为什么不使用二叉树而选择多叉树</li></ul><p>（1）二叉树虽然效率高，但是每一层存储的数据量比较少。假如在特别大的数据量的情况下，使用二叉树会导致树的层数非常高。层数越多，访问磁盘的次数越多，磁盘读取往往是性能的瓶颈，所以二叉树的读取性能就回很差。</p><p>（2）为了尽量的少读磁盘，让查询过程访问尽量少的数据块，应该使用多叉树。假如一个N=1200的多叉树，树高为4，可以存储1200的三次方的数据(17亿)。也就是在这17亿的数据中，查找一条记录，最多访问磁盘三次。</p><h3 id="InnoDB的索引模型"><a href="#InnoDB的索引模型" class="headerlink" title="InnoDB的索引模型"></a>InnoDB的索引模型</h3><blockquote><p>InnoDB的索引模型：B+树索引模型,每一个索引在InnoDB中就对应一棵B+树</p></blockquote><h4 id="B-树索引类型"><a href="#B-树索引类型" class="headerlink" title="B+树索引类型"></a>B+树索引类型</h4><ol><li>主键索引(聚簇索引)</li></ol><p>叶子节点存储整行数据</p><ol start="2"><li>普通索引(二级索引)</li></ol><p>叶子节点存储的是主键的值</p><h5 id="主键索引和非主键索引的区别"><a href="#主键索引和非主键索引的区别" class="headerlink" title="主键索引和非主键索引的区别"></a>主键索引和非主键索引的区别</h5><ol><li>通过主键查询的方式，就是直接搜索主键索引这棵B+树。</li><li>如果通过普通索引的方式，则是先通过普通索引B+树查询到主键值，再通过主键值去主键索引B+树里面所有(回表)</li></ol><blockquote><p>普通索引会多扫描一次索引，应该优先使用主键索引</p></blockquote><h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><blockquote><p>B+树维护了索引的有效性，当插入新值的时候，就要做必要的维护</p></blockquote><ol><li>页分裂</li></ol><p>当插入数据所在页的数据页满了，就要重新申请一个新的数据页，让后再挪动部分数据过去。性能受影响。</p><ol start="2"><li>页合并</li></ol><p>相邻两个数据页因为删除了数据，利用率很低之后，会将数据页进行合并。</p><h4 id="自增字段的重要性"><a href="#自增字段的重要性" class="headerlink" title="自增字段的重要性"></a>自增字段的重要性</h4><blockquote><p>索引的维护过程中，会出现页分裂和页合并的现象，这些是比较耗费性能的。所以现在的建表规范里面都要求使用自增字段。那自增字段能够对索引维护起到什么作用吗？</p></blockquote><ul><li>自增逐渐的插入数据模式都是追加操作，不会涉及挪动其他记录，不会触发叶子节点的分裂。—-性能</li><li>如果使用业务字段做主键，不容易保证有序插入，写数据成本高。—-性能</li><li>自增逐渐相比业务字段作逐渐节省存储空间。如果使用身份证之类的作为主键，那么普通索引的叶子节点(主键)就会占用比较多的存储空间(字符串20个字节)，整型(4个字节)，长整型(8个字节)。—-存储空间</li></ul><blockquote><p>主键长度约小，普通索引的叶子节点就越小，普通索引占用的空间就越小</p></blockquote><p>业务字段作为主键的场景：</p><ol><li>只有一个索引</li><li>该索引是唯一索引</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;索引类似于书本的目录，能够提高数据查询效率。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;常见的索引模型&quot;&gt;&lt;a href=&quot;#常见的索引模型&quot; class=&quot;headerlink&quot; title=&quot;常见的索引模型&quot;&gt;&lt;/a&gt;常见的索引模型&lt;
+      
+    
+    </summary>
+    
+      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
     <title>03|事务隔离</title>
     <link href="https://shawnyou.tech/2019/11/22/mysql-notes/03%7C%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/"/>
     <id>https://shawnyou.tech/2019/11/22/mysql-notes/03|事务隔离/</id>
@@ -128,22 +202,20 @@
   </entry>
   
   <entry>
-    <title>04|深入浅出索引(上)</title>
-    <link href="https://shawnyou.tech/2019/11/22/mysql-notes/04%7C%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95(%E4%B8%8A)/"/>
-    <id>https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/</id>
-    <published>2019-11-22T14:47:29.000Z</published>
-    <updated>2019-11-24T07:42:08.760Z</updated>
+    <title>02|一条SQL更新语句是如何执行的</title>
+    <link href="https://shawnyou.tech/2019/11/21/mysql-notes/02%7C%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
+    <id>https://shawnyou.tech/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/</id>
+    <published>2019-11-21T14:47:29.000Z</published>
+    <updated>2019-11-22T14:30:14.854Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>索引类似于书本的目录，能够提高数据查询效率。</p></blockquote><h3 id="常见的索引模型"><a href="#常见的索引模型" class="headerlink" title="常见的索引模型"></a>常见的索引模型</h3><ol><li>哈希表<blockquote><p>key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。</p></blockquote></li></ol><ul><li>插入很快。因为可以直接往后追加</li><li>区间查询速度很慢。因为因为数据存储不是有序的。</li><li>哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)</li></ul><ol start="2"><li>有序数组<blockquote><p>有序数组在等值查询和范围查询的场景中的性能都非常优秀。</p></blockquote></li></ol><ul><li>查询效率高，利用二分法进行查询。，同样也支持范围查询</li><li>新增记录成本太高，因为每增加一条新纪录，都要挪动后面所有的记录</li></ul><p>所以有序数组适合静态存储引擎，如2017年某个城市的所有人口信息。</p><ol start="3"><li>搜索树</li></ol><ul><li>二叉搜索树</li></ul><p>左子节点小于父节点，父节点小于右子节点。</p><p>查询复杂度：O(log(n))<br>更新时间复杂度：O(log(n))</p><ul><li>数据库为什么不使用二叉树而选择多叉树</li></ul><p>（1）二叉树虽然效率高，但是每一层存储的数据量比较少。假如在特别大的数据量的情况下，使用二叉树会导致树的层数非常高。层数越多，访问磁盘的次数越多，磁盘读取往往是性能的瓶颈，所以二叉树的读取性能就回很差。</p><p>（2）为了尽量的少读磁盘，让查询过程访问尽量少的数据块，应该使用多叉树。假如一个N=1200的多叉树，树高为4，可以存储1200的三次方的数据(17亿)。也就是在这17亿的数据中，查找一条记录，最多访问磁盘三次。</p><h3 id="InnoDB的索引模型"><a href="#InnoDB的索引模型" class="headerlink" title="InnoDB的索引模型"></a>InnoDB的索引模型</h3><blockquote><p>InnoDB的索引模型：B+树索引模型,每一个索引在InnoDB中就对应一棵B+树</p></blockquote><h4 id="B-树索引类型"><a href="#B-树索引类型" class="headerlink" title="B+树索引类型"></a>B+树索引类型</h4><ol><li>主键索引(聚簇索引)</li></ol><p>叶子节点存储整行数据</p><ol start="2"><li>普通索引(二级索引)</li></ol><p>叶子节点存储的是主键的值</p><h5 id="主键索引和非主键索引的区别"><a href="#主键索引和非主键索引的区别" class="headerlink" title="主键索引和非主键索引的区别"></a>主键索引和非主键索引的区别</h5><ol><li>通过主键查询的方式，就是直接搜索主键索引这棵B+树。</li><li>如果通过普通索引的方式，则是先通过普通索引B+树查询到主键值，再通过主键值去主键索引B+树里面所有(回表)</li></ol><blockquote><p>普通索引会多扫描一次索引，应该优先使用主键索引</p></blockquote><h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><blockquote><p>B+树维护了索引的有效性，当插入新值的时候，就要做必要的维护</p></blockquote><ol><li>页分裂</li></ol><p>当插入数据所在页的数据页满了，就要重新申请一个新的数据页，让后再挪动部分数据过去。性能受影响。</p><ol start="2"><li>页合并</li></ol><p>相邻两个数据页因为删除了数据，利用率很低之后，会将数据页进行合并。</p><h4 id="自增字段的重要性"><a href="#自增字段的重要性" class="headerlink" title="自增字段的重要性"></a>自增字段的重要性</h4><blockquote><p>索引的维护过程中，会出现页分裂和页合并的现象，这些是比较耗费性能的。所以现在的建表规范里面都要求使用自增字段。那自增字段能够对索引维护起到什么作用吗？</p></blockquote><ul><li>自增逐渐的插入数据模式都是追加操作，不会涉及挪动其他记录，不会触发叶子节点的分裂。—-性能</li><li>如果使用业务字段做主键，不容易保证有序插入，写数据成本高。—-性能</li><li>自增逐渐相比业务字段作逐渐节省存储空间。如果使用身份证之类的作为主键，那么普通索引的叶子节点(主键)就会占用比较多的存储空间(字符串20个字节)，整型(4个字节)，长整型(8个字节)。—-存储空间</li></ul><blockquote><p>主键长度约小，普通索引的叶子节点就越小，普通索引占用的空间就越小</p></blockquote><p>业务字段作为主键的场景：</p><ol><li>只有一个索引</li><li>该索引是唯一索引</li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="执行流程-和查询流程保持一致"><a href="#执行流程-和查询流程保持一致" class="headerlink" title="执行流程(和查询流程保持一致)"></a>执行流程(和查询流程保持一致)</h3><ul><li>连接器 –&gt; 连接数据库</li><li>分析器 –&gt; 词法和语法分析这是一条更新语句</li><li>优化器 –&gt; 决定使用哪个索引</li><li>执行器 –&gt; 找到具体的某一行，然后更新</li></ul><h3 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h3><blockquote><p>SQL更新过程中涉及两个重要的日志模块</p></blockquote><h4 id="redo-log-重做日志"><a href="#redo-log-重做日志" class="headerlink" title="redo log(重做日志)"></a>redo log(重做日志)</h4><ul><li>WHAT<br>redo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘)</li><li>WHY<br>mysql的每一次更新过程IO成本和查找成本很高。每一次更新操作都要在磁盘中找到对应的记录然后更新。当更新比较频繁的时候，性能就非常的不好。</li><li>HOW<br>当一条记录需要更新的时候：</li></ul><ol><li>InnoDB引擎先把记录写到redo log</li><li>更新内存</li><li>InnoDB引擎在系统空闲的时候，将操作记录更新到磁盘中</li></ol><p>PS：</p><ul><li>redo log是InnoDB特有的日志</li><li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li><li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li><li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li></ul><h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p><h4 id="redolog与binlog的区别"><a href="#redolog与binlog的区别" class="headerlink" title="redolog与binlog的区别"></a>redolog与binlog的区别</h4><ul><li>redolog是InnoDB独有, binlog是Server层实现的，所有引擎都可以使用</li><li>redolog是物理日志，记录某个数据页做了什么改动，binlog是逻辑日志，记录语句的原始逻辑</li><li>redolog是循环写，空间固定会用完，binlog可以最佳写入，并不会覆盖以前的日志。</li></ul><h3 id="update语句执行的内部流程"><a href="#update语句执行的内部流程" class="headerlink" title="update语句执行的内部流程"></a>update语句执行的内部流程</h3><ol><li>执行器通过引擎找到对应的记录。如果这一行所在数据页在内存中，引擎就从内存中取，否则就从磁盘读入。</li><li>执行器拿到对应的数据，进行更新，然后调用引擎接口写入数据</li><li>引擎将数据更新到内存，同时将更新操作记录到redo日志，此时redo log处于prepare状态，告知执行器执行完成。</li><li>执行器生成binlog,并将binlog写入磁盘</li><li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态</li></ol><blockquote><p>以上的流程包含了一个两阶段提交</p></blockquote><h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><ul><li>what<br>保证redolog与binlog的数据逻辑一致性。</li></ul><ol><li>先写redolog后写binlog<br>redolog写完，binlog还没写完的时候，MySQL异常重启,可以通过redolog将记录恢复。但是当我们需要通过binlog恢复临时库的时候，由于binlog丢失，临时库的数据会少一次更新操作</li><li>先写binlog厚些redolog<br>binlog写完，redolog还没写，系统崩溃之后，由此数据没有被更新。但是binlog已经有了更新的日志，之后用binlog来恢复数据的时候就多了一条更新。</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;blockquote&gt;
-&lt;p&gt;索引类似于书本的目录，能够提高数据查询效率。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;常见的索引模型&quot;&gt;&lt;a href=&quot;#常见的索引模型&quot; class=&quot;headerlink&quot; title=&quot;常见的索引模型&quot;&gt;&lt;/a&gt;常见的索引模型&lt;
+        &lt;h3 id=&quot;执行流程-和查询流程保持一致&quot;&gt;&lt;a href=&quot;#执行流程-和查询流程保持一致&quot; class=&quot;headerlink&quot; title=&quot;执行流程(和查询流程保持一致)&quot;&gt;&lt;/a&gt;执行流程(和查询流程保持一致)&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;连接器 –&amp;gt; 连接数据
       
     
     </summary>
@@ -184,62 +256,11 @@
   </entry>
   
   <entry>
-    <title>02|一条SQL更新语句是如何执行的</title>
-    <link href="https://shawnyou.tech/2019/11/21/mysql-notes/02%7C%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
-    <id>https://shawnyou.tech/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/</id>
-    <published>2019-11-21T14:47:29.000Z</published>
-    <updated>2019-11-22T14:30:14.854Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="执行流程-和查询流程保持一致"><a href="#执行流程-和查询流程保持一致" class="headerlink" title="执行流程(和查询流程保持一致)"></a>执行流程(和查询流程保持一致)</h3><ul><li>连接器 –&gt; 连接数据库</li><li>分析器 –&gt; 词法和语法分析这是一条更新语句</li><li>优化器 –&gt; 决定使用哪个索引</li><li>执行器 –&gt; 找到具体的某一行，然后更新</li></ul><h3 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h3><blockquote><p>SQL更新过程中涉及两个重要的日志模块</p></blockquote><h4 id="redo-log-重做日志"><a href="#redo-log-重做日志" class="headerlink" title="redo log(重做日志)"></a>redo log(重做日志)</h4><ul><li>WHAT<br>redo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘)</li><li>WHY<br>mysql的每一次更新过程IO成本和查找成本很高。每一次更新操作都要在磁盘中找到对应的记录然后更新。当更新比较频繁的时候，性能就非常的不好。</li><li>HOW<br>当一条记录需要更新的时候：</li></ul><ol><li>InnoDB引擎先把记录写到redo log</li><li>更新内存</li><li>InnoDB引擎在系统空闲的时候，将操作记录更新到磁盘中</li></ol><p>PS：</p><ul><li>redo log是InnoDB特有的日志</li><li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li><li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li><li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li></ul><h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p><h4 id="redolog与binlog的区别"><a href="#redolog与binlog的区别" class="headerlink" title="redolog与binlog的区别"></a>redolog与binlog的区别</h4><ul><li>redolog是InnoDB独有, binlog是Server层实现的，所有引擎都可以使用</li><li>redolog是物理日志，记录某个数据页做了什么改动，binlog是逻辑日志，记录语句的原始逻辑</li><li>redolog是循环写，空间固定会用完，binlog可以最佳写入，并不会覆盖以前的日志。</li></ul><h3 id="update语句执行的内部流程"><a href="#update语句执行的内部流程" class="headerlink" title="update语句执行的内部流程"></a>update语句执行的内部流程</h3><ol><li>执行器通过引擎找到对应的记录。如果这一行所在数据页在内存中，引擎就从内存中取，否则就从磁盘读入。</li><li>执行器拿到对应的数据，进行更新，然后调用引擎接口写入数据</li><li>引擎将数据更新到内存，同时将更新操作记录到redo日志，此时redo log处于prepare状态，告知执行器执行完成。</li><li>执行器生成binlog,并将binlog写入磁盘</li><li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态</li></ol><blockquote><p>以上的流程包含了一个两阶段提交</p></blockquote><h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><ul><li>what<br>保证redolog与binlog的数据逻辑一致性。</li></ul><ol><li>先写redolog后写binlog<br>redolog写完，binlog还没写完的时候，MySQL异常重启,可以通过redolog将记录恢复。但是当我们需要通过binlog恢复临时库的时候，由于binlog丢失，临时库的数据会少一次更新操作</li><li>先写binlog厚些redolog<br>binlog写完，redolog还没写，系统崩溃之后，由此数据没有被更新。但是binlog已经有了更新的日志，之后用binlog来恢复数据的时候就多了一条更新。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;执行流程-和查询流程保持一致&quot;&gt;&lt;a href=&quot;#执行流程-和查询流程保持一致&quot; class=&quot;headerlink&quot; title=&quot;执行流程(和查询流程保持一致)&quot;&gt;&lt;/a&gt;执行流程(和查询流程保持一致)&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;连接器 –&amp;gt; 连接数据
-      
-    
-    </summary>
-    
-      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>01|一条SQL查询语句是如何执行的</title>
-    <link href="https://shawnyou.tech/2019/11/20/mysql-notes/01%7C%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
-    <id>https://shawnyou.tech/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/</id>
-    <published>2019-11-20T14:47:29.000Z</published>
-    <updated>2019-11-21T12:57:59.293Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h3><h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><blockquote><p>负责与客户端建立连接。<br>shou processlist (查看连接)<br>长连接内存占用过大OOM如何解决：</p><ul><li>定期断开长连接</li><li>MySQL5.7以及以上版本，可以在执行完比较大的操作后，通过mysql_reset_connection重新初始化连接资源，使连接恢复到刚刚创建完时的状态。</li></ul></blockquote><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><blockquote><p>建立连接后会优先查询缓存，查询缓存弊大于利，MySQL8.0将查询缓存删除。</p><ul><li>对于一张经常变更的表，缓存经常被清空，缓存的命中率非常低，对于静态表适合做查询缓存。</li><li>按需使用查询缓存。</li></ul></blockquote><h4 id="分析器-分析要做什么"><a href="#分析器-分析要做什么" class="headerlink" title="分析器(分析要做什么)"></a>分析器(分析要做什么)</h4><blockquote><p>如何没有命中查询缓存，就要开始执行SQl语句了。</p><ul><li>词法分析：识别关键词，如select, from ,table….</li><li>语法分析：根据语法规则判断SQL语句的正确性。</li></ul></blockquote><h4 id="优化器-确定执行方案"><a href="#优化器-确定执行方案" class="headerlink" title="优化器(确定执行方案)"></a>优化器(确定执行方案)</h4><ul><li>当存在多个索引的时候，决定索引的选择</li><li>多表关联的时候，决定多个表的连接顺序<h4 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h4><blockquote><p>根据选择的存储引擎调用引擎接口从第一行开始比对，直到最后一行找出所有满足条件的记录返回结果集。</p></blockquote></li><li>慢查询日志：rows_examined(语句执行过程中的扫描行)</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;MySQL基础架构&quot;&gt;&lt;a href=&quot;#MySQL基础架构&quot; class=&quot;headerlink&quot; title=&quot;MySQL基础架构&quot;&gt;&lt;/a&gt;MySQL基础架构&lt;/h3&gt;&lt;h4 id=&quot;连接器&quot;&gt;&lt;a href=&quot;#连接器&quot; class=&quot;headerlink
-      
-    
-    </summary>
-    
-      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
     <title>08|接口与抽象类</title>
     <link href="https://shawnyou.tech/2019/11/20/design-pattern-notes/08%7C%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/"/>
     <id>https://shawnyou.tech/2019/11/20/design-pattern-notes/08|接口与抽象类/</id>
     <published>2019-11-20T14:47:29.000Z</published>
-    <updated>2019-12-02T14:29:55.367Z</updated>
+    <updated>2019-12-05T13:19:36.573Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>接口和抽象类是很多设计模式、设计思想、设计原则编程实现的基础。</p></blockquote><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><ul><li>不允许被实例化</li><li>抽象类包含属性和方法。其中方法可以包含代码实现，也可以不包含代码实现(抽象方法)</li><li>子类集成抽象类。子类必须实现抽象类的抽象方法。</li></ul><h3 id="接口类"><a href="#接口类" class="headerlink" title="接口类"></a>接口类</h3><ul><li>接口不能包含属性(成员变量)</li><li>接口只能声明方法，方法不能包含方法实现</li><li>类实现接口的时候，必须实现接口的所有方法。</li></ul><h3 id="抽象类与接口类的区别"><a href="#抽象类与接口类的区别" class="headerlink" title="抽象类与接口类的区别"></a>抽象类与接口类的区别</h3><ul><li>抽象类的本质是类，主要只能被子类去继承，体现着is-a的继承关系</li><li>接口类表示一种has-a的关系，体现具有某些功能，表现为一种约定和协议。</li></ul><h3 id="抽象类和接口类能解决什么问题"><a href="#抽象类和接口类能解决什么问题" class="headerlink" title="抽象类和接口类能解决什么问题"></a>抽象类和接口类能解决什么问题</h3><h4 id="抽象类-1"><a href="#抽象类-1" class="headerlink" title="抽象类"></a>抽象类</h4><ul><li>代码复用，避免在子类中编写相同的代码</li></ul><blockquote><p>同样是代码复用，为什么不直接用继承，而要使用抽象类来实现？相比继承来说，抽象类的实现更加的优雅</p></blockquote><ul><li>父类中定义一个被子类继承的无意义的log()方法会使代码的可读性变差。</li><li>创建子类的时候，会忘记重写log()。然而抽象类会强制子类实现。</li><li>继承中，父类是可以被实例化的，我们可以调用空的log()方法，会增加类误用的风险。(可以通过设置私有构造函数解决)</li></ul><h4 id="接口类-1"><a href="#接口类-1" class="headerlink" title="接口类"></a>接口类</h4><blockquote><p>侧重于解耦。对行为进行抽象，之关系接口的协议，不关心具体实现，实现约定与实现相分离。</p></blockquote><h3 id="模拟接口类和抽象类"><a href="#模拟接口类和抽象类" class="headerlink" title="模拟接口类和抽象类"></a>模拟接口类和抽象类</h3><h4 id="模拟接口类"><a href="#模拟接口类" class="headerlink" title="模拟接口类"></a>模拟接口类</h4><blockquote><p>普通类模拟接口类</p></blockquote><ul><li>protect访问权限，避免类被实例化</li><li>不含具体实现的方法</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockInteface</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">MockInteface</span><span class="params">()</span> </span>&#123;&#125; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcA</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> MethodUnSupportedException(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="抽象类和接口类的使用"><a href="#抽象类和接口类的使用" class="headerlink" title="抽象类和接口类的使用"></a>抽象类和接口类的使用</h3><ul><li>抽象类：is-a的关系，解决代码复用的问题</li><li>接口类：has-a的关系，解决耦合的问题，表示一组行为特征，隔离接口和具体实现</li></ul>]]></content>
     
@@ -256,6 +277,31 @@
     </summary>
     
       <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>01|一条SQL查询语句是如何执行的</title>
+    <link href="https://shawnyou.tech/2019/11/20/mysql-notes/01%7C%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
+    <id>https://shawnyou.tech/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/</id>
+    <published>2019-11-20T14:47:29.000Z</published>
+    <updated>2019-12-08T08:51:42.749Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h3><h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><blockquote><p>负责与客户端建立连接。<br>shou processlist (查看连接)<br>长连接内存占用过大OOM如何解决：</p><ul><li>定期断开长连接</li><li>MySQL5.7以及以上版本，可以在执行完比较大的操作后，通过mysql_reset_connection重新初始化连接资源，使连接恢复到刚刚创建完时的状态。</li></ul></blockquote><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><blockquote><p>建立连接后会优先查询缓存，查询缓存弊大于利，MySQL8.0将查询缓存删除。</p><ul><li>对于一张经常变更的表，缓存经常被清空，缓存的命中率非常低，对于静态表适合做查询缓存。</li><li>按需使用查询缓存。</li></ul></blockquote><h4 id="分析器-分析要做什么"><a href="#分析器-分析要做什么" class="headerlink" title="分析器(分析要做什么)"></a>分析器(分析要做什么)</h4><blockquote><p>如何没有命中查询缓存，就要开始执行SQl语句了。</p><ul><li>词法分析：识别关键词，如select, from ,table….</li><li>语法分析：根据语法规则判断SQL语句的正确性。</li></ul></blockquote><h4 id="优化器-确定执行方案"><a href="#优化器-确定执行方案" class="headerlink" title="优化器(确定执行方案)"></a>优化器(确定执行方案)</h4><ul><li>当存在多个索引的时候，决定索引的选择</li><li>多表关联的时候，决定多个表的连接顺序<h4 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h4><blockquote><p>根据选择的存储引擎调用引擎接口从第一行开始比对，直到最后一行找出所有满足条件的记录返回结果集。</p></blockquote></li><li>慢查询日志：rows_examined(语句执行过程中的扫描行)</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;MySQL基础架构&quot;&gt;&lt;a href=&quot;#MySQL基础架构&quot; class=&quot;headerlink&quot; title=&quot;MySQL基础架构&quot;&gt;&lt;/a&gt;MySQL基础架构&lt;/h3&gt;&lt;h4 id=&quot;连接器&quot;&gt;&lt;a href=&quot;#连接器&quot; class=&quot;headerlink
+      
+    
+    </summary>
+    
+      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
     
     
       <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
@@ -359,31 +405,6 @@
   </entry>
   
   <entry>
-    <title>SpringBoot源码|初识AutoProxyRegistrar</title>
-    <link href="https://shawnyou.tech/2019/06/24/Spring-boot/%E5%88%9D%E8%AF%86AutoProxyRegistrar/"/>
-    <id>https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/</id>
-    <published>2019-06-24T14:51:50.000Z</published>
-    <updated>2019-06-27T13:37:13.879Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="AutoProxyRegistrar源码分析"><a href="#AutoProxyRegistrar源码分析" class="headerlink" title="AutoProxyRegistrar源码分析"></a>AutoProxyRegistrar源码分析</h3>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;a href=&quot;#AutoProxyRegistrar源码分析&quot; class=&quot;headerlink&quot; title=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;/a&gt;AutoProxyRegistrar源码
-      
-    
-    </summary>
-    
-      <category term="SpringBoot" scheme="https://shawnyou.tech/categories/SpringBoot/"/>
-    
-    
-      <category term="源码" scheme="https://shawnyou.tech/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
     <title>SpringCache源码| SpringCache源码总览</title>
     <link href="https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
     <id>https://shawnyou.tech/2019/06/24/Spring-boot/SpringCache源码解析/</id>
@@ -402,6 +423,31 @@
     </summary>
     
       <category term="Spring" scheme="https://shawnyou.tech/categories/Spring/"/>
+    
+    
+      <category term="源码" scheme="https://shawnyou.tech/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot源码|初识AutoProxyRegistrar</title>
+    <link href="https://shawnyou.tech/2019/06/24/Spring-boot/%E5%88%9D%E8%AF%86AutoProxyRegistrar/"/>
+    <id>https://shawnyou.tech/2019/06/24/Spring-boot/初识AutoProxyRegistrar/</id>
+    <published>2019-06-24T14:51:50.000Z</published>
+    <updated>2019-06-27T13:37:13.879Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="AutoProxyRegistrar源码分析"><a href="#AutoProxyRegistrar源码分析" class="headerlink" title="AutoProxyRegistrar源码分析"></a>AutoProxyRegistrar源码分析</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;a href=&quot;#AutoProxyRegistrar源码分析&quot; class=&quot;headerlink&quot; title=&quot;AutoProxyRegistrar源码分析&quot;&gt;&lt;/a&gt;AutoProxyRegistrar源码
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="https://shawnyou.tech/categories/SpringBoot/"/>
     
     
       <category term="源码" scheme="https://shawnyou.tech/tags/%E6%BA%90%E7%A0%81/"/>
@@ -482,57 +528,6 @@
     
     
       <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>适配器模式</title>
-    <link href="https://shawnyou.tech/2019/04/14/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://shawnyou.tech/2019/04/14/适配器模式/</id>
-    <published>2019-04-14T01:44:58.000Z</published>
-    <updated>2019-11-10T05:13:01.343Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="什么是适配器模式"><a href="#什么是适配器模式" class="headerlink" title="什么是适配器模式"></a>什么是适配器模式</h3><blockquote><p>将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法一起工作的两个类能够一起工作。<br>生活中不乏这样的案例，如电脑的电源适配器，它的作用主要是解决家用电和电脑之间的兼容问题</p></blockquote><p>通过适配器模式可以解决‘现有程序’和‘所需程序’之间的差异，让现有程序和所需程序能够完美的兼容。</p><h3 id="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"><a href="#如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器" class="headerlink" title="如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器"></a>如何做一个将”交流100伏特电压”转换成“直流12伏特电压”的适配器</h3><h3 id="适配器模式的两种实现"><a href="#适配器模式的两种实现" class="headerlink" title="适配器模式的两种实现"></a>适配器模式的两种实现</h3><ul><li>类适配器模式(继承）</li><li>对象适配器模式(委托)</li></ul><h4 id="继承适配器模式"><a href="#继承适配器模式" class="headerlink" title="继承适配器模式"></a>继承适配器模式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Banner</span></span>&#123;</span><br><span class="line">    <span class="comment">//现有的实际情况</span></span><br><span class="line">    <span class="keyword">private</span> String string;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithParen</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showWithAster</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">""</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//需求接口</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Banner</span> <span class="keyword">implements</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//适配器类：在实现了现有的需求接口的方法中对原有的功能情况进行包装，以达到适配以前功能的目的。</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Print p = <span class="keyword">new</span> PringBanner(<span class="string">"hello"</span>);</span><br><span class="line">p.pritWeak();</span><br><span class="line">p.printStrong();</span><br></pre></td></tr></table></figure><h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><ul><li>面向接口编程，客户端代码只需要通过Print接口进行调用，隐藏了方法实现。(连接笔记本电脑的12伏特电压就有可能是由100伏特交流电压通过适配器转换而成的)</li></ul><h4 id="委托适配器模式"><a href="#委托适配器模式" class="headerlink" title="委托适配器模式"></a>委托适配器模式</h4><p>通过委托来实现适配器</p><ul><li>适配器(PrintBanner)通过调用现有需求的方法(Print)来间接调用以前的的功能(Banner)</li><li>Banner通过委托的形式传入到适配器(PrintBanner)中,现有功能(Print)作为抽象类被适配器继承。</li></ul><blockquote><p>Talk is cheap, show me the code</p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">publc <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//抽象类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintBanner</span> <span class="keyword">extends</span> <span class="title">Print</span></span>&#123;</span><br><span class="line">    <span class="comment">//通过委托的形式将原有功能注入进来，由此虽然调用的是新的功能方法，但实际调用的还是以前的老功能，由此实现了新、老功能之间的适配兼容。</span></span><br><span class="line">    <span class="keyword">private</span> Banner banner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printWeak</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.shouwWithParen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStrong</span><span class="params">()</span></span>&#123;</span><br><span class="line">        banner.showWithAster();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;什么是适配器模式&quot;&gt;&lt;a href=&quot;#什么是适配器模式&quot; class=&quot;headerlink&quot; title=&quot;什么是适配器模式&quot;&gt;&lt;/a&gt;什么是适配器模式&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;将一个接口变换成客户期待的另一个的接口，从而使原本因接口不匹配无法
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="https://shawnyou.tech/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="Design" scheme="https://shawnyou.tech/tags/Design/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>策略模式</title>
-    <link href="https://shawnyou.tech/2019/04/13/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://shawnyou.tech/2019/04/13/策略模式/</id>
-    <published>2019-04-13T12:44:43.000Z</published>
-    <updated>2019-04-14T11:53:15.621Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h3><h4 id="一个主题切换案例"><a href="#一个主题切换案例" class="headerlink" title="一个主题切换案例"></a>一个主题切换案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Theme</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultTheme</span> <span class="keyword">implements</span> <span class="title">Theme</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"设置默认主题"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DarkTheme</span> <span class="keyword">implements</span> <span class="title">Theme</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"设置暗黑风格主题"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ColorfulTheme</span> <span class="keyword">implements</span> <span class="title">Theme</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"设置彩色风格主题"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThemeManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Theme theme;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThemeManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.theme = <span class="keyword">new</span> DefaultTheme();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTheme</span><span class="params">(Theme theme)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.theme = theme;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyTheme</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.theme.applyTheme();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThemeManager themeManager = <span class="keyword">new</span> ThemeManager();</span><br><span class="line">        <span class="comment">//设置黑暗风格主题</span></span><br><span class="line">        themeManager.setTheme(<span class="keyword">new</span> DarkTheme());</span><br><span class="line">        themeManager.applyTheme();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>主题模式更换的案例中，不同的主题风格就是一个个策略，我们可以根须需要选择不同的策略。</p><h3 id="如何理解策略模式"><a href="#如何理解策略模式" class="headerlink" title="如何理解策略模式"></a>如何理解策略模式</h3><blockquote><p>定义椅子算法，将每个算法都以类的方式凤凰钻起来，并且使他们可以互相交换。</p></blockquote><p>类图（TODO）</p><p>策略模式模型抽象</p><ul><li>Context封装角色</li></ul><p>主题更换案例中的ThemeManager就是一个封装角色，也叫上下文角色，拼比高层对策略的直接访问。</p><ul><li>Strategy抽象策略角色</li></ul><p>定义每个策略必须具有的方法和属性</p><ul><li>ConcreteStrategy具体策略角色</li></ul><p>抽象策略的实现，具体的算法</p><h3 id="策略模式的优点"><a href="#策略模式的优点" class="headerlink" title="策略模式的优点"></a>策略模式的优点</h3><ul><li>算法可以自由切换</li><li>避免了多重条件的判断</li><li>良好的扩展性(符合开闭原则)</li></ul><h3 id="策略模式的缺点"><a href="#策略模式的缺点" class="headerlink" title="策略模式的缺点"></a>策略模式的缺点</h3><ul><li>策略类会逐渐增多(超过四个考虑使用混合模式)</li><li>策略类必须向外暴露(违反迪米特法则) — 上层模块必须知道哪些策略，才能使用哪些策略，可用工厂方法模式修正</li></ul><h3 id="策略模式的具体应用"><a href="#策略模式的具体应用" class="headerlink" title="策略模式的具体应用"></a>策略模式的具体应用</h3><ul><li>Shiro权限控制框架有三种验证策略</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;实际案例&quot;&gt;&lt;a href=&quot;#实际案例&quot; class=&quot;headerlink&quot; title=&quot;实际案例&quot;&gt;&lt;/a&gt;实际案例&lt;/h3&gt;&lt;h4 id=&quot;一个主题切换案例&quot;&gt;&lt;a href=&quot;#一个主题切换案例&quot; class=&quot;headerlink&quot; title=&quot;一
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="https://shawnyou.tech/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="Design" scheme="https://shawnyou.tech/tags/Design/"/>
     
   </entry>
   
