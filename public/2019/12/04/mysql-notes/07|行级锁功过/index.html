@@ -17,20 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Hexo</title>
-  <meta name="description" content="重构总结（TODO）简介1.什么是重构 重构是对软件的内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高代码可理解性，降低维护成本。  关键：  更好的可读性 更好的可扩展性 功能保持一致  为什么要重构 改进软件设计整理代码，使代码结构回到最初设计，维持代码该有的形态，避免软件腐烂变质。 使软件更容易理解代码是人与及其交互的语言。保持语言的简洁有助于：（1）理解代码（2）后来者维护代">
+  <title>07|行级锁功过 | Hexo</title>
+  <meta name="description" content="MySQL行级别由各个存储引擎实现，但是有些存储引擎不支持行级锁，例如MyISAM，所以只能使用表级锁。所以在并发控制的粒度上更粗一些。InnoDB是支持行级锁的，这也是InnoDB取代MyISAM的重要原因  两阶段锁   事务A 事务B     begin;update t set k=k+1 where id=1;update t set k= k+1 where id = 2 没有">
+<meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="攻城虱">
-<meta property="og:url" content="https://shawnyou.tech/2019/07/03/重构/重构/index.html">
+<meta property="og:title" content="07|行级锁功过">
+<meta property="og:url" content="https://shawnyou.tech/2019/12/04/mysql-notes/07|行级锁功过/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="重构总结（TODO）简介1.什么是重构 重构是对软件的内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高代码可理解性，降低维护成本。  关键：  更好的可读性 更好的可扩展性 功能保持一致  为什么要重构 改进软件设计整理代码，使代码结构回到最初设计，维持代码该有的形态，避免软件腐烂变质。 使软件更容易理解代码是人与及其交互的语言。保持语言的简洁有助于：（1）理解代码（2）后来者维护代">
+<meta property="og:description" content="MySQL行级别由各个存储引擎实现，但是有些存储引擎不支持行级锁，例如MyISAM，所以只能使用表级锁。所以在并发控制的粒度上更粗一些。InnoDB是支持行级锁的，这也是InnoDB取代MyISAM的重要原因  两阶段锁   事务A 事务B     begin;update t set k=k+1 where id=1;update t set k= k+1 where id = 2 没有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-08T13:50:08.148Z">
+<meta property="og:updated_time" content="2019-12-08T10:31:26.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="攻城虱">
-<meta name="twitter:description" content="重构总结（TODO）简介1.什么是重构 重构是对软件的内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高代码可理解性，降低维护成本。  关键：  更好的可读性 更好的可扩展性 功能保持一致  为什么要重构 改进软件设计整理代码，使代码结构回到最初设计，维持代码该有的形态，避免软件腐烂变质。 使软件更容易理解代码是人与及其交互的语言。保持语言的简洁有助于：（1）理解代码（2）后来者维护代">
+<meta name="twitter:title" content="07|行级锁功过">
+<meta name="twitter:description" content="MySQL行级别由各个存储引擎实现，但是有些存储引擎不支持行级锁，例如MyISAM，所以只能使用表级锁。所以在并发控制的粒度上更粗一些。InnoDB是支持行级锁的，这也是InnoDB取代MyISAM的重要原因  两阶段锁   事务A 事务B     begin;update t set k=k+1 where id=1;update t set k= k+1 where id = 2 没有">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/07/03/重构/重构/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2019/12/04/mysql-notes/07|行级锁功过/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -341,99 +342,138 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-重构/重构" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-mysql-notes/07|行级锁功过" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      07|行级锁功过
+    </h1>
+  
+
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/07/03/重构/重构/" class="article-date">
-	  <time datetime="2019-07-03T14:43:46.340Z" itemprop="datePublished">2019-07-03</time>
+	<a href="/2019/12/04/mysql-notes/07|行级锁功过/" class="article-date">
+	  <time datetime="2019-12-04T07:40:29.000Z" itemprop="datePublished">2019-12-04</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/mysql-notes/">mysql-notes</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Notes/">Notes</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/03/重构/重构/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/04/mysql-notes/07|行级锁功过/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="重构总结（TODO）"><a href="#重构总结（TODO）" class="headerlink" title="重构总结（TODO）"></a>重构总结（TODO）</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="1-什么是重构"><a href="#1-什么是重构" class="headerlink" title="1.什么是重构"></a>1.什么是重构</h2><blockquote>
-<p>重构是对软件的内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高代码可理解性，降低维护成本。</p>
+        <blockquote>
+<p>MySQL行级别由各个存储引擎实现，但是有些存储引擎不支持行级锁，例如MyISAM，所以只能使用表级锁。所以在并发控制的粒度上更粗一些。InnoDB是支持行级锁的，这也是InnoDB取代MyISAM的重要原因</p>
 </blockquote>
-<p>关键：</p>
+<h3 id="两阶段锁"><a href="#两阶段锁" class="headerlink" title="两阶段锁"></a>两阶段锁</h3><table>
+<thead>
+<tr>
+<th>事务A</th>
+<th>事务B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>begin;update t set k=k+1 where id=1;update t set k= k+1 where id = 2</td>
+<td>没有</td>
+</tr>
+<tr>
+<td>没有</td>
+<td>begin;update t set k=k+2 where id = 1</td>
+</tr>
+<tr>
+<td>commit</td>
+<td>没有</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>更好的可读性</li>
-<li>更好的可扩展性</li>
-<li>功能保持一致</li>
+<li>事务A未执行完毕之前，事务B的操作会被锁住，事务A持有了id=1和id=2的行级锁。所以尽量把持有多个行的锁的事务操作放在最后，使其影响最小。</li>
 </ul>
-<h2 id="为什么要重构"><a href="#为什么要重构" class="headerlink" title="为什么要重构"></a>为什么要重构</h2><ul>
-<li>改进软件设计<br>整理代码，使代码结构回到最初设计，维持代码该有的形态，避免软件腐烂变质。</li>
-<li>使软件更容易理解<br>代码是人与及其交互的语言。保持语言的简洁有助于：<br>（1）理解代码<br>（2）后来者维护代码</li>
-<li>帮助找到Bug<br>重构过程可以重新梳理逻辑，找到潜在的Bug。</li>
-<li>提高编程速度<br>良好的设计师快速开发的根本。</li>
-</ul>
-<h2 id="何时进行重构"><a href="#何时进行重构" class="headerlink" title="何时进行重构"></a>何时进行重构</h2><p>事不过三，三则重构</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><ol>
+<li>顾客A余额扣除电影票价</li>
+<li>影院B余额增加电影票价</li>
+<li>记录一条交易日志</li>
+</ol>
+<p>问题：如何调整顺序，使其影响最小</p>
 <ul>
-<li>添加功能时重构<br>添加功能时，理解需要修改的代码，使添加功能更加轻松。</li>
-<li>修改错误时候重构<br>好的代码是足够清晰以至于能够肉眼观察bug，所以当遇到bug时，说明设计不够清晰，因而需要重构</li>
-<li>复审代码时重构</li>
+<li>三个操作都是原子性操作，放在一个事务里面</li>
+<li>另一个顾客买票时，有事务冲突的就是2,需要修改同一条记录数据。</li>
+<li>按照3、1、2的顺序，语句2的锁时间最小，减少了事务之间的锁等待，提高了并发度</li>
 </ul>
-<h3 id="重构的期望"><a href="#重构的期望" class="headerlink" title="重构的期望"></a>重构的期望</h3><ul>
-<li>容易阅读</li>
-<li>所有的逻辑都只在唯一地点指定</li>
-<li>新的改动不会危及现有行为</li>
-<li>尽可能简单的表达条件逻辑</li>
+<h3 id="死锁与死锁监测"><a href="#死锁与死锁监测" class="headerlink" title="死锁与死锁监测"></a>死锁与死锁监测</h3><blockquote>
+<p>当并发系统中不同线程出现循环资源依赖。涉及的线程就回等待别的线程释放资源，就回导致几个线程进入无线等待的状态,从而导致死锁。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>事务A</th>
+<th>事务B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>begin;update t set k=k+1 where id =1</td>
+<td>begin;</td>
+</tr>
+<tr>
+<td>没有</td>
+<td>update t set k=k+1 where id = 2</td>
+</tr>
+<tr>
+<td>update t set k = k+1 where id = 2</td>
+<td>没有</td>
+</tr>
+<tr>
+<td>没有</td>
+<td>update t set k=k+1 where id = 1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>事务A在等待事务B中id=2的行锁</li>
+<li>事务B在等待事务A中id=1的行锁</li>
 </ul>
-<h2 id="代码的坏味道（什么样的代码需要重构）"><a href="#代码的坏味道（什么样的代码需要重构）" class="headerlink" title="代码的坏味道（什么样的代码需要重构）"></a>代码的坏味道（什么样的代码需要重构）</h2><ol>
-<li>重复代码（Duplicated Code）</li>
+<h4 id="如何解决死锁问题"><a href="#如何解决死锁问题" class="headerlink" title="如何解决死锁问题"></a>如何解决死锁问题</h4><ol>
+<li>设置超时时间(innodb_lock_wait_timeout)</li>
 </ol>
 <ul>
-<li>同一个类中的两个函数具有相同的代码，可以使用Extract Method提炼吃重复代码</li>
-<li>两个兄弟子类具有相同的代码，则提炼相同代码（Extract Method）,再将提炼出来的函数推送给父类（Pull up method）</li>
-<li>对于部分相同的情况，则分离出相似部分和差异部分，使用模板设计模式。</li>
-<li>两个不相关类出现重复代码，则将重复代码提取到一个独立类。 </li>
+<li>默认50s,第一个被锁住的线程在50s会超时退出。等待时间太长，对于在线服务不能容忍。</li>
+<li>设置超时时间1s,如果只是简单的锁等待，容易造成误伤。</li>
 </ul>
 <ol start="2">
-<li>过长的函数（Long method）</li>
+<li>死锁检测<blockquote>
+<p>每当一个事务被所得时候，就要看它所依赖的线程有没有被人锁住，最后判断你是否出现了循环等待。</p>
+</blockquote>
+</li>
 </ol>
+<p>死锁监测方案：</p>
 <ul>
-<li>小型函数作为“间接层”具有解释能力、共享能力、选择能力</li>
-<li>当需要用注释来描述代码的时候，就应该对函数进行分解，把需要说明的部分放入独立的函数，以其用途来命名</li>
-<li>函数传参里有过多的参数和临时变量，应该尽量消除临时变量，使参数列表更加简洁。</li>
+<li>如果所有事务都更新同一行记录，死锁监测的成本非常高，会导致性能问题。如1000个并发线程同时更新同一条记录，死锁监测的操作就是100万级别。这期间会消耗大量的CPU资源，效率很低。</li>
+<li>关闭死锁监测，由业务上来保证不出现死锁。关掉死锁监测有一定的风险，当出现超时的时候，对业务是有损的。</li>
+<li>控制并发度，使其死锁检测成本变低。当客户端很多的时候，及时每个客户端只有五个并发线程，峰值并发也可能达到3000</li>
+<li>从设计上解决。将数据库的一行操作改成逻辑上的多行操作来减少锁冲突。如影院的余额设置在多条记录上，每次给应选加金额的时候，随机选一条来加，由此冲突概率将变成原来的1/10。</li>
 </ul>
-<ol start="3">
-<li>过大的类（Large Class）</li>
-<li>过长的参数列（Long Paramenter List）</li>
-<li>发散式变化（Divergent Change）</li>
-<li>散弹式修改（Shotgun Surgery）</li>
-<li>依恋情节（Feature Envy）</li>
-<li>数据泥团（Data Clumps）</li>
-<li>基本类型偏执（Primitive Obsession）</li>
-<li>Switch现身（Switch Statement）</li>
-<li>平行继承体系（Parallel Inheritance Hierarchies）</li>
-<li>冗赘类（Lazy Class）</li>
-<li>夸夸其谈未来性（Speculative Generality）</li>
-<li>令人迷惑的临时字段（Temporary Field）</li>
-<li>过度耦合的消息链（Message Chains）</li>
-<li>中间人（Middle Man）</li>
-<li>狎昵关系（Inappropriate Intimacy）</li>
-<li>异曲同工的类（Alternative Classes with Different Interfaces）</li>
-<li>不完美的库类（Incomplete Library Class）</li>
-<li>纯稚的数据类（Data Class）</li>
-<li>被拒绝的遗赠（Refused Bequest）</li>
-<li>过多的注释（Comments）</li>
-</ol>
-<p>重构列表</p>
-<p>重新组织函数</p>
-<ol>
-<li>提炼函数（Extract Method）<br>适用场景</li>
-</ol>
 
       
     </div>
@@ -443,7 +483,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/07/03/重构/重构/" title target="_blank" rel="external">https://shawnyou.tech/2019/07/03/重构/重构/</a>
+      <a href="https://shawnyou.tech/2019/12/04/mysql-notes/07|行级锁功过/" title="07|行级锁功过" target="_blank" rel="external">https://shawnyou.tech/2019/12/04/mysql-notes/07|行级锁功过/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -490,12 +530,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2019/10/22/迭代器模式/" title="迭代器模式|手写一个迭代器"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/2019/12/04/design-pattern-notes/15|单一职责原则/" title="15|单一职责原则"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2019/06/27/Spring-boot/缓存方法拦截/" title="SpringCache源码| Spring Cache的AOP实现原理"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/12/04/mysql-notes/06|全局锁与表锁/" title="06|全局锁与表锁"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -623,7 +663,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '', 
+  id: '07|行级锁功过', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
