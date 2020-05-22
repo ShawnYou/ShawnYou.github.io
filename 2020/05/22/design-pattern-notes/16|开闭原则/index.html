@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>16|开闭原则 | Hexo</title>
+  <meta name="description" content="开闭原则开闭原则（Open Close Principle）即对扩展开发，对修改关闭，指的是我们尽量新增功能代码（新增模块、类、方法），而不是去修改原有的功能代码（修改模块、功能、方法）。 如何实现具有开闭原则的代码需求变更的时候通常是以新增功能代码的形式，而不是修改原有的功能代码，主要体现在以下几个方面  尽量不会修改以前的单元测试 没有破坏以往代码的正常执行 新增功能时候通常以新增类、方法的形">
+<meta name="keywords" content="Notes,设计原则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16|开闭原则">
+<meta property="og:url" content="https://shawnyou.tech/2020/05/22/design-pattern-notes/16|开闭原则/index.html">
+<meta property="og:site_name" content="攻城虱">
+<meta property="og:description" content="开闭原则开闭原则（Open Close Principle）即对扩展开发，对修改关闭，指的是我们尽量新增功能代码（新增模块、类、方法），而不是去修改原有的功能代码（修改模块、功能、方法）。 如何实现具有开闭原则的代码需求变更的时候通常是以新增功能代码的形式，而不是修改原有的功能代码，主要体现在以下几个方面  尽量不会修改以前的单元测试 没有破坏以往代码的正常执行 新增功能时候通常以新增类、方法的形">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-22T11:41:36.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="16|开闭原则">
+<meta name="twitter:description" content="开闭原则开闭原则（Open Close Principle）即对扩展开发，对修改关闭，指的是我们尽量新增功能代码（新增模块、类、方法），而不是去修改原有的功能代码（修改模块、功能、方法）。 如何实现具有开闭原则的代码需求变更的时候通常是以新增功能代码的形式，而不是修改原有的功能代码，主要体现在以下几个方面  尽量不会修改以前的单元测试 没有破坏以往代码的正常执行 新增功能时候通常以新增类、方法的形">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://shawnyou.tech/2020/05/22/design-pattern-notes/16|开闭原则/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css">
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ShawnYou" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpeg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Saga</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ShawnYou" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎来到Shawn You的个人博客</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-notes/">design-notes</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql-notes/">mysql-notes</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记-Effective-Java/">读书笔记(Effective Java)</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notes/">Notes</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notes-设计原则/">Notes,设计原则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Design/" style="font-size: 14px;">Design</a> <a href="/tags/Notes/" style="font-size: 13.67px;">Notes</a> <a href="/tags/Notes-设计原则/" style="font-size: 13px;">Notes,设计原则</a> <a href="/tags/源码/" style="font-size: 13.33px;">源码</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/design-notes/">design-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/05/22/design-pattern-notes/16|开闭原则/" class="title">16|开闭原则</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-05-22T12:40:29.000Z" itemprop="datePublished">2020-05-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/mysql-notes/">mysql-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/12/05/mysql-notes/08|事务到底是隔离的还是不隔离的/" class="title">08|事务到底是隔离的还是不隔离的</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-12-05T07:40:29.000Z" itemprop="datePublished">2019-12-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/design-notes/">design-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/12/04/design-pattern-notes/15|单一职责原则/" class="title">15|单一职责原则</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-12-04T12:40:29.000Z" itemprop="datePublished">2019-12-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/mysql-notes/">mysql-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/12/04/mysql-notes/07|行级锁功过/" class="title">07|行级锁功过</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-12-04T07:40:29.000Z" itemprop="datePublished">2019-12-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/mysql-notes/">mysql-notes</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/12/04/mysql-notes/06|全局锁与表锁/" class="title">06|全局锁与表锁</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-12-04T04:40:29.000Z" itemprop="datePublished">2019-12-04</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-design-pattern-notes/16|开闭原则" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      16|开闭原则
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/05/22/design-pattern-notes/16|开闭原则/" class="article-date">
+	  <time datetime="2020-05-22T12:40:29.000Z" itemprop="datePublished">2020-05-22</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/design-notes/">design-notes</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Notes-设计原则/">Notes,设计原则</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/22/design-pattern-notes/16|开闭原则/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>开闭原则（Open Close Principle）即对扩展开发，对修改关闭，指的是我们尽量新增功能代码（新增模块、类、方法），而不是去修改原有的功能代码（修改模块、功能、方法）。</p>
+<h3 id="如何实现具有开闭原则的代码"><a href="#如何实现具有开闭原则的代码" class="headerlink" title="如何实现具有开闭原则的代码"></a>如何实现具有开闭原则的代码</h3><p>需求变更的时候通常是以新增功能代码的形式，而不是修改原有的功能代码，主要体现在以下几个方面</p>
+<ol>
+<li>尽量不会修改以前的单元测试</li>
+<li>没有破坏以往代码的正常执行</li>
+<li>新增功能时候通常以新增类、方法的形式，对应的单元测试也是新加的而不改变以前的单元测试。</li>
+</ol>
+<h3 id="扩展与修改没有明确的界限"><a href="#扩展与修改没有明确的界限" class="headerlink" title="扩展与修改没有明确的界限"></a>扩展与修改没有明确的界限</h3><ul>
+<li>扩展与修改之间由于代码粒度的不同，他们之间的联系没有绝对的界限。同样的一个代码改动，在粗粒度的代码下被认为是修改，而在细粒度的代码下认为是扩展。只要能够保证系统功能的正常运行，没有破坏原有的单元测试，我们就认为是符合开闭原则的。</li>
+<li><p>有些情况下，适当的代码修改是可以被接受的。我们要做的是尽量让修改操作更集中、更少、更上层，尽量让最核心、最复杂的那部分逻辑代码满足开闭原则。</p>
+<h3 id="如何做到开闭原则"><a href="#如何做到开闭原则" class="headerlink" title="如何做到开闭原则"></a>如何做到开闭原则</h3></li>
+<li><p>时刻具备扩展意识、抽象意识、封装意识，在代码设计过程要训练向后思考的能力，为后面的需求变更留下扩展点。</p>
+</li>
+<li>识别代码的可变部分和不可变部分，对可变部分进行抽象封装，提供不可变的抽象接口，当以后出现其他的变化的时候，我们基于这个不可变的抽象接口，实现新的变化来替换以前的部分。</li>
+</ul>
+<h3 id="如何运用开闭原则"><a href="#如何运用开闭原则" class="headerlink" title="如何运用开闭原则"></a>如何运用开闭原则</h3><p>预留扩展点</p>
+<ul>
+<li>对于业务系统，需要对业务有足够的了解，需要掌握未来可能会有的需求变化，从而预留扩展点</li>
+<li>对于底层技术系统，需要掌握系统如何使用，未来可能有哪些需求变化。</li>
+<li>预留扩展点并不是需要识别出所有的扩展点，因为我们不可能在设计阶段就掌握的所有的需求变化，通常我们会针对一些短期的、成本不高的扩展点进行预留，对于复杂的、成本较高的可以等需求驱动的时候进行重构添加扩展点。</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://shawnyou.tech/2020/05/22/design-pattern-notes/16|开闭原则/" title="16|开闭原则" target="_blank" rel="external">https://shawnyou.tech/2020/05/22/design-pattern-notes/16|开闭原则/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ShawnYou" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpeg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ShawnYou" target="_blank"><span class="text-dark">Saga</span><small class="ml-1x"></small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/12/05/mysql-notes/08|事务到底是隔离的还是不隔离的/" title="08|事务到底是隔离的还是不隔离的"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="wechat" data-mobile-sites="weibo,qq"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ShawnYou" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+<script src="//cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js"></script>
+<script>
+var gitment = new Gitment({
+  // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
+  // https://github.com/imsun/gitment/issues/55
+  // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
+  id: '16|开闭原则', 
+  owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
+  repo: 'ShawnYou.github.io',
+  oauth: {
+    client_id: 'ad9e44e7c78905977cb3',
+    client_secret: '8b8efd38cc9e57ec134e6412805825ca632689f7',
+  }
+})
+gitment.render('comments')
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
