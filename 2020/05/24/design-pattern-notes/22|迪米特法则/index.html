@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>20|KISS与YAGNI原则 | Hexo</title>
-  <meta name="description" content="KISS原则Keep it short and simple(KISS)的意思即尽量保持简单。如何才能写出满足KISS原则的代码  不要使用同事不懂的技术来实现代码，如正则表达式(正则表达式荣易出错) 不要重复造轮子，要善于使用已有的工具类 不要过度优化，不要使用一些奇技淫巧来优化代码从而影响了代码的可读性。  YAGNI原则You ain’t gonna need it – 不要去设计当前用不到">
+  <title>22|迪米特法则 | Hexo</title>
+  <meta name="description" content="迪米特法则迪米特法则(LOD)–最小知识原则，即不该有直接依赖关系的类之间不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口。  不该有直接依赖关系的类之间不要有依赖  NetworkTransporter底层通讯类尽可能通用，所以不应该依赖于太具体的请求对象HtmlRequest。  有依赖关系的类之间，尽量只依赖必要的接口  序列化与饭序列化。对于序列化功能应该分成序列化、反序列化两个独立的">
 <meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20|KISS与YAGNI原则">
-<meta property="og:url" content="https://shawnyou.tech/2020/05/24/design-pattern-notes/20|KISS与YAGNI/index.html">
+<meta property="og:title" content="22|迪米特法则">
+<meta property="og:url" content="https://shawnyou.tech/2020/05/24/design-pattern-notes/22|迪米特法则/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="KISS原则Keep it short and simple(KISS)的意思即尽量保持简单。如何才能写出满足KISS原则的代码  不要使用同事不懂的技术来实现代码，如正则表达式(正则表达式荣易出错) 不要重复造轮子，要善于使用已有的工具类 不要过度优化，不要使用一些奇技淫巧来优化代码从而影响了代码的可读性。  YAGNI原则You ain’t gonna need it – 不要去设计当前用不到">
+<meta property="og:description" content="迪米特法则迪米特法则(LOD)–最小知识原则，即不该有直接依赖关系的类之间不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口。  不该有直接依赖关系的类之间不要有依赖  NetworkTransporter底层通讯类尽可能通用，所以不应该依赖于太具体的请求对象HtmlRequest。  有依赖关系的类之间，尽量只依赖必要的接口  序列化与饭序列化。对于序列化功能应该分成序列化、反序列化两个独立的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-24T07:03:03.461Z">
+<meta property="og:updated_time" content="2020-05-24T08:40:28.313Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20|KISS与YAGNI原则">
-<meta name="twitter:description" content="KISS原则Keep it short and simple(KISS)的意思即尽量保持简单。如何才能写出满足KISS原则的代码  不要使用同事不懂的技术来实现代码，如正则表达式(正则表达式荣易出错) 不要重复造轮子，要善于使用已有的工具类 不要过度优化，不要使用一些奇技淫巧来优化代码从而影响了代码的可读性。  YAGNI原则You ain’t gonna need it – 不要去设计当前用不到">
+<meta name="twitter:title" content="22|迪米特法则">
+<meta name="twitter:description" content="迪米特法则迪米特法则(LOD)–最小知识原则，即不该有直接依赖关系的类之间不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口。  不该有直接依赖关系的类之间不要有依赖  NetworkTransporter底层通讯类尽可能通用，所以不应该依赖于太具体的请求对象HtmlRequest。  有依赖关系的类之间，尽量只依赖必要的接口  序列化与饭序列化。对于序列化功能应该分成序列化、反序列化两个独立的">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2020/05/24/design-pattern-notes/20|KISS与YAGNI/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2020/05/24/design-pattern-notes/22|迪米特法则/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -342,14 +342,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-design-pattern-notes/20|KISS与YAGNI" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-design-pattern-notes/22|迪米特法则" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      20|KISS与YAGNI原则
+      22|迪米特法则
     </h1>
   
 
@@ -357,8 +357,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/05/24/design-pattern-notes/20|KISS与YAGNI/" class="article-date">
-	  <time datetime="2020-05-24T06:40:29.000Z" itemprop="datePublished">2020-05-24</time>
+	<a href="/2020/05/24/design-pattern-notes/22|迪米特法则/" class="article-date">
+	  <time datetime="2020-05-24T07:45:29.000Z" itemprop="datePublished">2020-05-24</time>
 	</a>
 </span>
         
@@ -376,26 +376,35 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/24/design-pattern-notes/20|KISS与YAGNI/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/24/design-pattern-notes/22|迪米特法则/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="KISS原则"><a href="#KISS原则" class="headerlink" title="KISS原则"></a>KISS原则</h3><p>Keep it short and simple(KISS)的意思即尽量保持简单。<br>如何才能写出满足KISS原则的代码</p>
+        <h3 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h3><p>迪米特法则(LOD)–最小知识原则，即不该有直接依赖关系的类之间不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口。</p>
 <ol>
-<li>不要使用同事不懂的技术来实现代码，如正则表达式(正则表达式荣易出错)</li>
-<li>不要重复造轮子，要善于使用已有的工具类</li>
-<li>不要过度优化，不要使用一些奇技淫巧来优化代码从而影响了代码的可读性。</li>
+<li>不该有直接依赖关系的类之间不要有依赖</li>
 </ol>
-<h3 id="YAGNI原则"><a href="#YAGNI原则" class="headerlink" title="YAGNI原则"></a>YAGNI原则</h3><p>You ain’t gonna need it – 不要去设计当前用不到的功能(不要过度设计)</p>
+<p>NetworkTransporter底层通讯类尽可能通用，所以不应该依赖于太具体的请求对象HtmlRequest。</p>
+<ol start="2">
+<li>有依赖关系的类之间，尽量只依赖必要的接口</li>
+</ol>
+<p>序列化与饭序列化。对于序列化功能应该分成序列化、反序列化两个独立的接口，这样的话，对于只需要序列化的类就不必去依赖反序列化的功能</p>
+<h3 id="如何理解高内聚、低耦合"><a href="#如何理解高内聚、低耦合" class="headerlink" title="如何理解高内聚、低耦合"></a>如何理解高内聚、低耦合</h3><blockquote>
+<p>高内聚、低耦合是重要的设计思想，能够提高代码的可读性与可维护性，缩小功能改动导致的代码改动范围。</p>
+</blockquote>
 <ol>
-<li>不要在项目提前引入不需要的依赖包。 </li>
+<li>高内聚</li>
 </ol>
-<h3 id="KISS与YAGNI原则"><a href="#KISS与YAGNI原则" class="headerlink" title="KISS与YAGNI原则"></a>KISS与YAGNI原则</h3><ol>
-<li>KISS原则讲的是如何做的问题，如何做才能保持尽量简单。</li>
-<li>YAGNI原则讲的是要不要做的问题，当前不需要做的就不要做，由此来保持简单。</li>
+<p>指导类的设计，相近的功能放在一个类，不相近的功能放在另一个类，由此修改比较集中，符合高内聚的特点。</p>
+<ol start="2">
+<li>低耦合</li>
 </ol>
+<p>指导类与类之间的依赖关系，即一个类的改动不会或者很少导致其他类的代码改动。</p>
+<blockquote>
+<p>迪米特法则减少类之间的耦合，让类更加的独立，很少去了解系统的其他部分，一旦需求变化，则需要了解这一变化的类就比较少。</p>
+</blockquote>
 
       
     </div>
@@ -405,7 +414,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2020/05/24/design-pattern-notes/20|KISS与YAGNI/" title="20|KISS与YAGNI原则" target="_blank" rel="external">https://shawnyou.tech/2020/05/24/design-pattern-notes/20|KISS与YAGNI/</a>
+      <a href="https://shawnyou.tech/2020/05/24/design-pattern-notes/22|迪米特法则/" title="22|迪米特法则" target="_blank" rel="external">https://shawnyou.tech/2020/05/24/design-pattern-notes/22|迪米特法则/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -451,13 +460,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/05/24/design-pattern-notes/21|DRY原则/" title="21|DRY原则"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/05/24/design-pattern-notes/19|依赖注入(D)/" title="19|依赖注入"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/05/24/design-pattern-notes/21|DRY原则/" title="21|DRY原则"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -585,7 +590,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '20|KISS与YAGNI原则', 
+  id: '22|迪米特法则', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
