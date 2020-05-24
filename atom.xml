@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shawnyou.tech/"/>
-  <updated>2020-05-24T06:49:45.147Z</updated>
+  <updated>2020-05-24T07:03:03.461Z</updated>
   <id>https://shawnyou.tech/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>20|KISS与YAGNI原则</title>
+    <link href="https://shawnyou.tech/2020/05/24/design-pattern-notes/20%7CKISS%E4%B8%8EYAGNI/"/>
+    <id>https://shawnyou.tech/2020/05/24/design-pattern-notes/20|KISS与YAGNI/</id>
+    <published>2020-05-24T06:40:29.000Z</published>
+    <updated>2020-05-24T07:03:03.461Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="KISS原则"><a href="#KISS原则" class="headerlink" title="KISS原则"></a>KISS原则</h3><p>Keep it short and simple(KISS)的意思即尽量保持简单。<br>如何才能写出满足KISS原则的代码</p><ol><li>不要使用同事不懂的技术来实现代码，如正则表达式(正则表达式荣易出错)</li><li>不要重复造轮子，要善于使用已有的工具类</li><li>不要过度优化，不要使用一些奇技淫巧来优化代码从而影响了代码的可读性。</li></ol><h3 id="YAGNI原则"><a href="#YAGNI原则" class="headerlink" title="YAGNI原则"></a>YAGNI原则</h3><p>You ain’t gonna need it – 不要去设计当前用不到的功能(不要过度设计)</p><ol><li>不要在项目提前引入不需要的依赖包。 </li></ol><h3 id="KISS与YAGNI原则"><a href="#KISS与YAGNI原则" class="headerlink" title="KISS与YAGNI原则"></a>KISS与YAGNI原则</h3><ol><li>KISS原则讲的是如何做的问题，如何做才能保持尽量简单。</li><li>YAGNI原则讲的是要不要做的问题，当前不需要做的就不要做，由此来保持简单。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;KISS原则&quot;&gt;&lt;a href=&quot;#KISS原则&quot; class=&quot;headerlink&quot; title=&quot;KISS原则&quot;&gt;&lt;/a&gt;KISS原则&lt;/h3&gt;&lt;p&gt;Keep it short and simple(KISS)的意思即尽量保持简单。&lt;br&gt;如何才能写出满足K
+      
+    
+    </summary>
+    
+      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
   
   <entry>
     <title>19|依赖注入</title>
@@ -382,6 +407,32 @@
   </entry>
   
   <entry>
+    <title>02|一条SQL更新语句是如何执行的</title>
+    <link href="https://shawnyou.tech/2019/11/21/mysql-notes/02%7C%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
+    <id>https://shawnyou.tech/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/</id>
+    <published>2019-11-21T14:47:29.000Z</published>
+    <updated>2019-11-22T14:30:14.854Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="执行流程-和查询流程保持一致"><a href="#执行流程-和查询流程保持一致" class="headerlink" title="执行流程(和查询流程保持一致)"></a>执行流程(和查询流程保持一致)</h3><ul><li>连接器 –&gt; 连接数据库</li><li>分析器 –&gt; 词法和语法分析这是一条更新语句</li><li>优化器 –&gt; 决定使用哪个索引</li><li>执行器 –&gt; 找到具体的某一行，然后更新</li></ul><h3 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h3><blockquote><p>SQL更新过程中涉及两个重要的日志模块</p></blockquote><h4 id="redo-log-重做日志"><a href="#redo-log-重做日志" class="headerlink" title="redo log(重做日志)"></a>redo log(重做日志)</h4><ul><li>WHAT<br>redo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘)</li><li>WHY<br>mysql的每一次更新过程IO成本和查找成本很高。每一次更新操作都要在磁盘中找到对应的记录然后更新。当更新比较频繁的时候，性能就非常的不好。</li><li>HOW<br>当一条记录需要更新的时候：</li></ul><ol><li>InnoDB引擎先把记录写到redo log</li><li>更新内存</li><li>InnoDB引擎在系统空闲的时候，将操作记录更新到磁盘中</li></ol><p>PS：</p><ul><li>redo log是InnoDB特有的日志</li><li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li><li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li><li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li></ul><h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p><h4 id="redolog与binlog的区别"><a href="#redolog与binlog的区别" class="headerlink" title="redolog与binlog的区别"></a>redolog与binlog的区别</h4><ul><li>redolog是InnoDB独有, binlog是Server层实现的，所有引擎都可以使用</li><li>redolog是物理日志，记录某个数据页做了什么改动，binlog是逻辑日志，记录语句的原始逻辑</li><li>redolog是循环写，空间固定会用完，binlog可以最佳写入，并不会覆盖以前的日志。</li></ul><h3 id="update语句执行的内部流程"><a href="#update语句执行的内部流程" class="headerlink" title="update语句执行的内部流程"></a>update语句执行的内部流程</h3><ol><li>执行器通过引擎找到对应的记录。如果这一行所在数据页在内存中，引擎就从内存中取，否则就从磁盘读入。</li><li>执行器拿到对应的数据，进行更新，然后调用引擎接口写入数据</li><li>引擎将数据更新到内存，同时将更新操作记录到redo日志，此时redo log处于prepare状态，告知执行器执行完成。</li><li>执行器生成binlog,并将binlog写入磁盘</li><li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态</li></ol><blockquote><p>以上的流程包含了一个两阶段提交</p></blockquote><h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><ul><li>what<br>保证redolog与binlog的数据逻辑一致性。</li></ul><ol><li>先写redolog后写binlog<br>redolog写完，binlog还没写完的时候，MySQL异常重启,可以通过redolog将记录恢复。但是当我们需要通过binlog恢复临时库的时候，由于binlog丢失，临时库的数据会少一次更新操作</li><li>先写binlog厚些redolog<br>binlog写完，redolog还没写，系统崩溃之后，由此数据没有被更新。但是binlog已经有了更新的日志，之后用binlog来恢复数据的时候就多了一条更新。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;执行流程-和查询流程保持一致&quot;&gt;&lt;a href=&quot;#执行流程-和查询流程保持一致&quot; class=&quot;headerlink&quot; title=&quot;执行流程(和查询流程保持一致)&quot;&gt;&lt;/a&gt;执行流程(和查询流程保持一致)&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;连接器 –&amp;gt; 连接数据
+      
+    
+    </summary>
+    
+      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
     <title>为什么基于接口而非实现编程</title>
     <link href="https://shawnyou.tech/2019/11/21/design-pattern-notes/09%7C%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A8%8B/"/>
     <id>https://shawnyou.tech/2019/11/21/design-pattern-notes/09|基于接口而非实现编程/</id>
@@ -410,20 +461,19 @@
   </entry>
   
   <entry>
-    <title>02|一条SQL更新语句是如何执行的</title>
-    <link href="https://shawnyou.tech/2019/11/21/mysql-notes/02%7C%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
-    <id>https://shawnyou.tech/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/</id>
-    <published>2019-11-21T14:47:29.000Z</published>
-    <updated>2019-11-22T14:30:14.854Z</updated>
+    <title>01|一条SQL查询语句是如何执行的</title>
+    <link href="https://shawnyou.tech/2019/11/20/mysql-notes/01%7C%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
+    <id>https://shawnyou.tech/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/</id>
+    <published>2019-11-20T14:47:29.000Z</published>
+    <updated>2019-12-08T08:51:42.749Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="执行流程-和查询流程保持一致"><a href="#执行流程-和查询流程保持一致" class="headerlink" title="执行流程(和查询流程保持一致)"></a>执行流程(和查询流程保持一致)</h3><ul><li>连接器 –&gt; 连接数据库</li><li>分析器 –&gt; 词法和语法分析这是一条更新语句</li><li>优化器 –&gt; 决定使用哪个索引</li><li>执行器 –&gt; 找到具体的某一行，然后更新</li></ul><h3 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h3><blockquote><p>SQL更新过程中涉及两个重要的日志模块</p></blockquote><h4 id="redo-log-重做日志"><a href="#redo-log-重做日志" class="headerlink" title="redo log(重做日志)"></a>redo log(重做日志)</h4><ul><li>WHAT<br>redo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘)</li><li>WHY<br>mysql的每一次更新过程IO成本和查找成本很高。每一次更新操作都要在磁盘中找到对应的记录然后更新。当更新比较频繁的时候，性能就非常的不好。</li><li>HOW<br>当一条记录需要更新的时候：</li></ul><ol><li>InnoDB引擎先把记录写到redo log</li><li>更新内存</li><li>InnoDB引擎在系统空闲的时候，将操作记录更新到磁盘中</li></ol><p>PS：</p><ul><li>redo log是InnoDB特有的日志</li><li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li><li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li><li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li></ul><h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p><h4 id="redolog与binlog的区别"><a href="#redolog与binlog的区别" class="headerlink" title="redolog与binlog的区别"></a>redolog与binlog的区别</h4><ul><li>redolog是InnoDB独有, binlog是Server层实现的，所有引擎都可以使用</li><li>redolog是物理日志，记录某个数据页做了什么改动，binlog是逻辑日志，记录语句的原始逻辑</li><li>redolog是循环写，空间固定会用完，binlog可以最佳写入，并不会覆盖以前的日志。</li></ul><h3 id="update语句执行的内部流程"><a href="#update语句执行的内部流程" class="headerlink" title="update语句执行的内部流程"></a>update语句执行的内部流程</h3><ol><li>执行器通过引擎找到对应的记录。如果这一行所在数据页在内存中，引擎就从内存中取，否则就从磁盘读入。</li><li>执行器拿到对应的数据，进行更新，然后调用引擎接口写入数据</li><li>引擎将数据更新到内存，同时将更新操作记录到redo日志，此时redo log处于prepare状态，告知执行器执行完成。</li><li>执行器生成binlog,并将binlog写入磁盘</li><li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态</li></ol><blockquote><p>以上的流程包含了一个两阶段提交</p></blockquote><h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><ul><li>what<br>保证redolog与binlog的数据逻辑一致性。</li></ul><ol><li>先写redolog后写binlog<br>redolog写完，binlog还没写完的时候，MySQL异常重启,可以通过redolog将记录恢复。但是当我们需要通过binlog恢复临时库的时候，由于binlog丢失，临时库的数据会少一次更新操作</li><li>先写binlog厚些redolog<br>binlog写完，redolog还没写，系统崩溃之后，由此数据没有被更新。但是binlog已经有了更新的日志，之后用binlog来恢复数据的时候就多了一条更新。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h3><h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><blockquote><p>负责与客户端建立连接。<br>shou processlist (查看连接)<br>长连接内存占用过大OOM如何解决：</p><ul><li>定期断开长连接</li><li>MySQL5.7以及以上版本，可以在执行完比较大的操作后，通过mysql_reset_connection重新初始化连接资源，使连接恢复到刚刚创建完时的状态。</li></ul></blockquote><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><blockquote><p>建立连接后会优先查询缓存，查询缓存弊大于利，MySQL8.0将查询缓存删除。</p><ul><li>对于一张经常变更的表，缓存经常被清空，缓存的命中率非常低，对于静态表适合做查询缓存。</li><li>按需使用查询缓存。</li></ul></blockquote><h4 id="分析器-分析要做什么"><a href="#分析器-分析要做什么" class="headerlink" title="分析器(分析要做什么)"></a>分析器(分析要做什么)</h4><blockquote><p>如何没有命中查询缓存，就要开始执行SQl语句了。</p><ul><li>词法分析：识别关键词，如select, from ,table….</li><li>语法分析：根据语法规则判断SQL语句的正确性。</li></ul></blockquote><h4 id="优化器-确定执行方案"><a href="#优化器-确定执行方案" class="headerlink" title="优化器(确定执行方案)"></a>优化器(确定执行方案)</h4><ul><li>当存在多个索引的时候，决定索引的选择</li><li>多表关联的时候，决定多个表的连接顺序<h4 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h4><blockquote><p>根据选择的存储引擎调用引擎接口从第一行开始比对，直到最后一行找出所有满足条件的记录返回结果集。</p></blockquote></li><li>慢查询日志：rows_examined(语句执行过程中的扫描行)</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;执行流程-和查询流程保持一致&quot;&gt;&lt;a href=&quot;#执行流程-和查询流程保持一致&quot; class=&quot;headerlink&quot; title=&quot;执行流程(和查询流程保持一致)&quot;&gt;&lt;/a&gt;执行流程(和查询流程保持一致)&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;连接器 –&amp;gt; 连接数据
+        &lt;h3 id=&quot;MySQL基础架构&quot;&gt;&lt;a href=&quot;#MySQL基础架构&quot; class=&quot;headerlink&quot; title=&quot;MySQL基础架构&quot;&gt;&lt;/a&gt;MySQL基础架构&lt;/h3&gt;&lt;h4 id=&quot;连接器&quot;&gt;&lt;a href=&quot;#连接器&quot; class=&quot;headerlink
       
     
     </summary>
@@ -464,31 +514,6 @@
   </entry>
   
   <entry>
-    <title>01|一条SQL查询语句是如何执行的</title>
-    <link href="https://shawnyou.tech/2019/11/20/mysql-notes/01%7C%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
-    <id>https://shawnyou.tech/2019/11/20/mysql-notes/01|一条SQL查询语句是如何执行的/</id>
-    <published>2019-11-20T14:47:29.000Z</published>
-    <updated>2019-12-08T08:51:42.749Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h3><h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><blockquote><p>负责与客户端建立连接。<br>shou processlist (查看连接)<br>长连接内存占用过大OOM如何解决：</p><ul><li>定期断开长连接</li><li>MySQL5.7以及以上版本，可以在执行完比较大的操作后，通过mysql_reset_connection重新初始化连接资源，使连接恢复到刚刚创建完时的状态。</li></ul></blockquote><h4 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h4><blockquote><p>建立连接后会优先查询缓存，查询缓存弊大于利，MySQL8.0将查询缓存删除。</p><ul><li>对于一张经常变更的表，缓存经常被清空，缓存的命中率非常低，对于静态表适合做查询缓存。</li><li>按需使用查询缓存。</li></ul></blockquote><h4 id="分析器-分析要做什么"><a href="#分析器-分析要做什么" class="headerlink" title="分析器(分析要做什么)"></a>分析器(分析要做什么)</h4><blockquote><p>如何没有命中查询缓存，就要开始执行SQl语句了。</p><ul><li>词法分析：识别关键词，如select, from ,table….</li><li>语法分析：根据语法规则判断SQL语句的正确性。</li></ul></blockquote><h4 id="优化器-确定执行方案"><a href="#优化器-确定执行方案" class="headerlink" title="优化器(确定执行方案)"></a>优化器(确定执行方案)</h4><ul><li>当存在多个索引的时候，决定索引的选择</li><li>多表关联的时候，决定多个表的连接顺序<h4 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h4><blockquote><p>根据选择的存储引擎调用引擎接口从第一行开始比对，直到最后一行找出所有满足条件的记录返回结果集。</p></blockquote></li><li>慢查询日志：rows_examined(语句执行过程中的扫描行)</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;MySQL基础架构&quot;&gt;&lt;a href=&quot;#MySQL基础架构&quot; class=&quot;headerlink&quot; title=&quot;MySQL基础架构&quot;&gt;&lt;/a&gt;MySQL基础架构&lt;/h3&gt;&lt;h4 id=&quot;连接器&quot;&gt;&lt;a href=&quot;#连接器&quot; class=&quot;headerlink
-      
-    
-    </summary>
-    
-      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
     <title>迭代器模式|手写一个迭代器</title>
     <link href="https://shawnyou.tech/2019/10/22/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>https://shawnyou.tech/2019/10/22/迭代器模式/</id>
@@ -510,27 +535,6 @@
     
     
       <category term="Design" scheme="https://shawnyou.tech/tags/Design/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://shawnyou.tech/2019/07/03/%E9%87%8D%E6%9E%84/%E9%87%8D%E6%9E%84/"/>
-    <id>https://shawnyou.tech/2019/07/03/重构/重构/</id>
-    <published>2019-07-03T14:43:46.340Z</published>
-    <updated>2019-07-08T13:50:08.148Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="重构总结（TODO）"><a href="#重构总结（TODO）" class="headerlink" title="重构总结（TODO）"></a>重构总结（TODO）</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="1-什么是重构"><a href="#1-什么是重构" class="headerlink" title="1.什么是重构"></a>1.什么是重构</h2><blockquote><p>重构是对软件的内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高代码可理解性，降低维护成本。</p></blockquote><p>关键：</p><ul><li>更好的可读性</li><li>更好的可扩展性</li><li>功能保持一致</li></ul><h2 id="为什么要重构"><a href="#为什么要重构" class="headerlink" title="为什么要重构"></a>为什么要重构</h2><ul><li>改进软件设计<br>整理代码，使代码结构回到最初设计，维持代码该有的形态，避免软件腐烂变质。</li><li>使软件更容易理解<br>代码是人与及其交互的语言。保持语言的简洁有助于：<br>（1）理解代码<br>（2）后来者维护代码</li><li>帮助找到Bug<br>重构过程可以重新梳理逻辑，找到潜在的Bug。</li><li>提高编程速度<br>良好的设计师快速开发的根本。</li></ul><h2 id="何时进行重构"><a href="#何时进行重构" class="headerlink" title="何时进行重构"></a>何时进行重构</h2><p>事不过三，三则重构</p><ul><li>添加功能时重构<br>添加功能时，理解需要修改的代码，使添加功能更加轻松。</li><li>修改错误时候重构<br>好的代码是足够清晰以至于能够肉眼观察bug，所以当遇到bug时，说明设计不够清晰，因而需要重构</li><li>复审代码时重构</li></ul><h3 id="重构的期望"><a href="#重构的期望" class="headerlink" title="重构的期望"></a>重构的期望</h3><ul><li>容易阅读</li><li>所有的逻辑都只在唯一地点指定</li><li>新的改动不会危及现有行为</li><li>尽可能简单的表达条件逻辑</li></ul><h2 id="代码的坏味道（什么样的代码需要重构）"><a href="#代码的坏味道（什么样的代码需要重构）" class="headerlink" title="代码的坏味道（什么样的代码需要重构）"></a>代码的坏味道（什么样的代码需要重构）</h2><ol><li>重复代码（Duplicated Code）</li></ol><ul><li>同一个类中的两个函数具有相同的代码，可以使用Extract Method提炼吃重复代码</li><li>两个兄弟子类具有相同的代码，则提炼相同代码（Extract Method）,再将提炼出来的函数推送给父类（Pull up method）</li><li>对于部分相同的情况，则分离出相似部分和差异部分，使用模板设计模式。</li><li>两个不相关类出现重复代码，则将重复代码提取到一个独立类。 </li></ul><ol start="2"><li>过长的函数（Long method）</li></ol><ul><li>小型函数作为“间接层”具有解释能力、共享能力、选择能力</li><li>当需要用注释来描述代码的时候，就应该对函数进行分解，把需要说明的部分放入独立的函数，以其用途来命名</li><li>函数传参里有过多的参数和临时变量，应该尽量消除临时变量，使参数列表更加简洁。</li></ul><ol start="3"><li>过大的类（Large Class）</li><li>过长的参数列（Long Paramenter List）</li><li>发散式变化（Divergent Change）</li><li>散弹式修改（Shotgun Surgery）</li><li>依恋情节（Feature Envy）</li><li>数据泥团（Data Clumps）</li><li>基本类型偏执（Primitive Obsession）</li><li>Switch现身（Switch Statement）</li><li>平行继承体系（Parallel Inheritance Hierarchies）</li><li>冗赘类（Lazy Class）</li><li>夸夸其谈未来性（Speculative Generality）</li><li>令人迷惑的临时字段（Temporary Field）</li><li>过度耦合的消息链（Message Chains）</li><li>中间人（Middle Man）</li><li>狎昵关系（Inappropriate Intimacy）</li><li>异曲同工的类（Alternative Classes with Different Interfaces）</li><li>不完美的库类（Incomplete Library Class）</li><li>纯稚的数据类（Data Class）</li><li>被拒绝的遗赠（Refused Bequest）</li><li>过多的注释（Comments）</li></ol><p>重构列表</p><p>重新组织函数</p><ol><li>提炼函数（Extract Method）<br>适用场景</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;重构总结（TODO）&quot;&gt;&lt;a href=&quot;#重构总结（TODO）&quot; class=&quot;headerlink&quot; title=&quot;重构总结（TODO）&quot;&gt;&lt;/a&gt;重构总结（TODO）&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerli
-      
-    
-    </summary>
-    
     
   </entry>
   
