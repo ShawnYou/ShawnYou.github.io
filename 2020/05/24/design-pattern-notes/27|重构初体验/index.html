@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>04|深入浅出索引(上) | Hexo</title>
-  <meta name="description" content="索引类似于书本的目录，能够提高数据查询效率。  常见的索引模型 哈希表 key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。     插入很快。因为可以直接往后追加 区间查询速度很慢。因为因为数据存储不是有序的。 哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)   有序数组 有序数">
+  <title>27|重构初体验 | Hexo</title>
+  <meta name="description" content="重构 重构是对软件内部结构的改善，目的是在不改变可见行为的前提下，使其更易理解，修改成本更低。  重构的目的(Why) 防止代码腐化到无可救药的地步。 避免过度设计的有效手段，因为项目的初期不可能遇见未来100%的需求，需要不断的持续迭代重构来完善它，所以我们可以借助重构来避免过度设计。 重构能够帮助我们应用比较经典的设计思想、设计原则以及编程规范。  重构的对象(What) 大型重构(系统、模块">
 <meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="04|深入浅出索引(上)">
-<meta property="og:url" content="https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/index.html">
+<meta property="og:title" content="27|重构初体验">
+<meta property="og:url" content="https://shawnyou.tech/2020/05/24/design-pattern-notes/27|重构初体验/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="索引类似于书本的目录，能够提高数据查询效率。  常见的索引模型 哈希表 key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。     插入很快。因为可以直接往后追加 区间查询速度很慢。因为因为数据存储不是有序的。 哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)   有序数组 有序数">
+<meta property="og:description" content="重构 重构是对软件内部结构的改善，目的是在不改变可见行为的前提下，使其更易理解，修改成本更低。  重构的目的(Why) 防止代码腐化到无可救药的地步。 避免过度设计的有效手段，因为项目的初期不可能遇见未来100%的需求，需要不断的持续迭代重构来完善它，所以我们可以借助重构来避免过度设计。 重构能够帮助我们应用比较经典的设计思想、设计原则以及编程规范。  重构的对象(What) 大型重构(系统、模块">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-24T07:42:08.760Z">
+<meta property="og:updated_time" content="2020-05-24T13:49:27.433Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="04|深入浅出索引(上)">
-<meta name="twitter:description" content="索引类似于书本的目录，能够提高数据查询效率。  常见的索引模型 哈希表 key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。     插入很快。因为可以直接往后追加 区间查询速度很慢。因为因为数据存储不是有序的。 哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)   有序数组 有序数">
+<meta name="twitter:title" content="27|重构初体验">
+<meta name="twitter:description" content="重构 重构是对软件内部结构的改善，目的是在不改变可见行为的前提下，使其更易理解，修改成本更低。  重构的目的(Why) 防止代码腐化到无可救药的地步。 避免过度设计的有效手段，因为项目的初期不可能遇见未来100%的需求，需要不断的持续迭代重构来完善它，所以我们可以借助重构来避免过度设计。 重构能够帮助我们应用比较经典的设计思想、设计原则以及编程规范。  重构的对象(What) 大型重构(系统、模块">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/index.html">
+  <link rel="canonical" href="https://shawnyou.tech/2020/05/24/design-pattern-notes/27|重构初体验/index.html">
   
     <link rel="alternate" href="/atom.xml" title="攻城虱" type="application/atom+xml">
   
@@ -342,14 +342,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-mysql-notes/04|深入浅出索引(上)" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-design-pattern-notes/27|重构初体验" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      04|深入浅出索引(上)
+      27|重构初体验
     </h1>
   
 
@@ -357,14 +357,14 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/11/22/mysql-notes/04|深入浅出索引(上)/" class="article-date">
-	  <time datetime="2019-11-22T14:47:29.000Z" itemprop="datePublished">2019-11-22</time>
+	<a href="/2020/05/24/design-pattern-notes/27|重构初体验/" class="article-date">
+	  <time datetime="2020-05-24T11:45:29.000Z" itemprop="datePublished">2020-05-24</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/mysql-notes/">mysql-notes</a>
+    <a class="article-category-link" href="/categories/design-notes/">design-notes</a>
   </span>
 
         
@@ -376,95 +376,40 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/22/mysql-notes/04|深入浅出索引(上)/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/24/design-pattern-notes/27|重构初体验/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <blockquote>
-<p>索引类似于书本的目录，能够提高数据查询效率。</p>
+        <h3 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h3><blockquote>
+<p>重构是对软件内部结构的改善，目的是在不改变可见行为的前提下，使其更易理解，修改成本更低。</p>
 </blockquote>
-<h3 id="常见的索引模型"><a href="#常见的索引模型" class="headerlink" title="常见的索引模型"></a>常见的索引模型</h3><ol>
-<li>哈希表<blockquote>
-<p>key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。</p>
-</blockquote>
-</li>
+<h4 id="重构的目的-Why"><a href="#重构的目的-Why" class="headerlink" title="重构的目的(Why)"></a>重构的目的(Why)</h4><ol>
+<li>防止代码腐化到无可救药的地步。</li>
+<li>避免过度设计的有效手段，因为项目的初期不可能遇见未来100%的需求，需要不断的持续迭代重构来完善它，所以我们可以借助重构来避免过度设计。</li>
+<li>重构能够帮助我们应用比较经典的设计思想、设计原则以及编程规范。</li>
 </ol>
-<ul>
-<li>插入很快。因为可以直接往后追加</li>
-<li>区间查询速度很慢。因为因为数据存储不是有序的。</li>
-<li>哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)</li>
-</ul>
+<h4 id="重构的对象-What"><a href="#重构的对象-What" class="headerlink" title="重构的对象(What)"></a>重构的对象(What)</h4><ol>
+<li>大型重构(系统、模块、代码结构等)</li>
+</ol>
+<p>手段： 分层、模块化、解耦、抽象可复用组件<br>风险： 引入bug的风险较大</p>
 <ol start="2">
-<li>有序数组<blockquote>
-<p>有序数组在等值查询和范围查询的场景中的性能都非常优秀。</p>
-</blockquote>
-</li>
+<li>小型重构(类、函数、变量等代码细节)</li>
 </ol>
-<ul>
-<li>查询效率高，利用二分法进行查询。，同样也支持范围查询</li>
-<li>新增记录成本太高，因为每增加一条新纪录，都要挪动后面所有的记录</li>
-</ul>
-<p>所以有序数组适合静态存储引擎，如2017年某个城市的所有人口信息。</p>
-<ol start="3">
-<li>搜索树</li>
+<p>手段：提取重复代码、规范命名、消除超大类。<br>风险：引入bug的风险小</p>
+<h4 id="重构的时机-When"><a href="#重构的时机-When" class="headerlink" title="重构的时机(When)"></a>重构的时机(When)</h4><p>可持续重构：持续重构应该成为一种开发习惯，形成一种可持续、可演进的方式。</p>
+<h4 id="重构的方法-How"><a href="#重构的方法-How" class="headerlink" title="重构的方法(How)"></a>重构的方法(How)</h4><ol>
+<li>大型重构</li>
 </ol>
-<ul>
-<li>二叉搜索树</li>
-</ul>
-<p>左子节点小于父节点，父节点小于右子节点。</p>
-<p>查询复杂度：O(log(n))<br>更新时间复杂度：O(log(n))</p>
-<ul>
-<li>数据库为什么不使用二叉树而选择多叉树</li>
-</ul>
-<p>（1）二叉树虽然效率高，但是每一层存储的数据量比较少。假如在特别大的数据量的情况下，使用二叉树会导致树的层数非常高。层数越多，访问磁盘的次数越多，磁盘读取往往是性能的瓶颈，所以二叉树的读取性能就回很差。</p>
-<p>（2）为了尽量的少读磁盘，让查询过程访问尽量少的数据块，应该使用多叉树。假如一个N=1200的多叉树，树高为4，可以存储1200的三次方的数据(17亿)。也就是在这17亿的数据中，查找一条记录，最多访问磁盘三次。</p>
-<h3 id="InnoDB的索引模型"><a href="#InnoDB的索引模型" class="headerlink" title="InnoDB的索引模型"></a>InnoDB的索引模型</h3><blockquote>
-<p>InnoDB的索引模型：B+树索引模型,每一个索引在InnoDB中就对应一棵B+树</p>
-</blockquote>
-<h4 id="B-树索引类型"><a href="#B-树索引类型" class="headerlink" title="B+树索引类型"></a>B+树索引类型</h4><ol>
-<li>主键索引(聚簇索引)</li>
-</ol>
-<p>叶子节点存储整行数据</p>
+<p>分阶段进行，小步重构，保证仓库内的代码始终是处于可运行、逻辑正确的状态。</p>
 <ol start="2">
-<li>普通索引(二级索引)</li>
+<li>小型重构：</li>
 </ol>
-<p>叶子节点存储的是主键的值</p>
-<h5 id="主键索引和非主键索引的区别"><a href="#主键索引和非主键索引的区别" class="headerlink" title="主键索引和非主键索引的区别"></a>主键索引和非主键索引的区别</h5><ol>
-<li>通过主键查询的方式，就是直接搜索主键索引这棵B+树。</li>
-<li>如果通过普通索引的方式，则是先通过普通索引B+树查询到主键值，再通过主键值去主键索引B+树里面所有(回表)</li>
-</ol>
+<p>只要有时间随时都可以做。</p>
 <blockquote>
-<p>普通索引会多扫描一次索引，应该优先使用主键索引</p>
+<p>对于重构的事情，项目leader要担起责任来，始终要保持项目中的代码处于良好的状态，避免形成“破窗效应”</p>
 </blockquote>
-<h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><blockquote>
-<p>B+树维护了索引的有效性，当插入新值的时候，就要做必要的维护</p>
-</blockquote>
-<ol>
-<li>页分裂</li>
-</ol>
-<p>当插入数据所在页的数据页满了，就要重新申请一个新的数据页，让后再挪动部分数据过去。性能受影响。</p>
-<ol start="2">
-<li>页合并</li>
-</ol>
-<p>相邻两个数据页因为删除了数据，利用率很低之后，会将数据页进行合并。</p>
-<h4 id="自增字段的重要性"><a href="#自增字段的重要性" class="headerlink" title="自增字段的重要性"></a>自增字段的重要性</h4><blockquote>
-<p>索引的维护过程中，会出现页分裂和页合并的现象，这些是比较耗费性能的。所以现在的建表规范里面都要求使用自增字段。那自增字段能够对索引维护起到什么作用吗？</p>
-</blockquote>
-<ul>
-<li>自增逐渐的插入数据模式都是追加操作，不会涉及挪动其他记录，不会触发叶子节点的分裂。—-性能</li>
-<li>如果使用业务字段做主键，不容易保证有序插入，写数据成本高。—-性能</li>
-<li>自增逐渐相比业务字段作逐渐节省存储空间。如果使用身份证之类的作为主键，那么普通索引的叶子节点(主键)就会占用比较多的存储空间(字符串20个字节)，整型(4个字节)，长整型(8个字节)。—-存储空间</li>
-</ul>
-<blockquote>
-<p>主键长度约小，普通索引的叶子节点就越小，普通索引占用的空间就越小</p>
-</blockquote>
-<p>业务字段作为主键的场景：</p>
-<ol>
-<li>只有一个索引</li>
-<li>该索引是唯一索引</li>
-</ol>
 
       
     </div>
@@ -474,7 +419,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/" title="04|深入浅出索引(上)" target="_blank" rel="external">https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/</a>
+      <a href="https://shawnyou.tech/2020/05/24/design-pattern-notes/27|重构初体验/" title="27|重构初体验" target="_blank" rel="external">https://shawnyou.tech/2020/05/24/design-pattern-notes/27|重构初体验/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -520,13 +465,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/11/22/mysql-notes/03|事务隔离/" title="03|事务隔离"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/" title="02|一条SQL更新语句是如何执行的"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/05/24/design-pattern-notes/22|迪米特法则/" title="22|迪米特法则"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -654,7 +595,7 @@ var gitment = new Gitment({
   // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
   // https://github.com/imsun/gitment/issues/55
   // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: '04|深入浅出索引(上)', 
+  id: '27|重构初体验', 
   owner: 'ad9e44e7c78905977cb3', // 可以是你的GitHub用户名，也可以是github id
   repo: 'ShawnYou.github.io',
   oauth: {
