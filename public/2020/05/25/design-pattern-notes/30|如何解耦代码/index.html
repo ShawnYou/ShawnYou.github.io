@@ -18,18 +18,18 @@
   
   
   <title>30|如何解耦代码 | Hexo</title>
-  <meta name="description" content="什么是代码的可测试性 代码的可测试性就是根据代码编写单元测试的容易程度。对测试性差的代码往往难以编写单元测试，因为他们没有遵循设计原则与思想，比如基于接口而非实现编程，依赖反转等。  如何编写可测试性的代码 依赖注入  通过依赖注入的形式引入其他类、方法，可以便于外部服务的Mock.  Mock  对于外界服务，我们不关系外部系统服务的正确性，所以我们对外部服务进行Mock,然后采用依赖注入的形式">
+  <meta name="description" content="解耦为何重要人处理复杂性的能力有限 -&amp;gt; 通过解耦的手段来保证代码不至于复杂到无法控制的地步。 高内聚、低耦合 代码结构清晰 分层和模块化合理 依赖关系简单 模块或类之间耦合小  如何判定代码需要解耦 修改代码牵一发而动全身 类与类之间的关系过于复杂  如何给代码解耦 封装与抽象封装与抽象可以有效的屏蔽实现的复杂性，隔离易变性，给依赖的模块提供稳定且易用的抽象接口。  中间层引入中间层进行过">
 <meta name="keywords" content="Notes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="30|如何解耦代码">
 <meta property="og:url" content="https://shawnyou.tech/2020/05/25/design-pattern-notes/30|如何解耦代码/index.html">
 <meta property="og:site_name" content="攻城虱">
-<meta property="og:description" content="什么是代码的可测试性 代码的可测试性就是根据代码编写单元测试的容易程度。对测试性差的代码往往难以编写单元测试，因为他们没有遵循设计原则与思想，比如基于接口而非实现编程，依赖反转等。  如何编写可测试性的代码 依赖注入  通过依赖注入的形式引入其他类、方法，可以便于外部服务的Mock.  Mock  对于外界服务，我们不关系外部系统服务的正确性，所以我们对外部服务进行Mock,然后采用依赖注入的形式">
+<meta property="og:description" content="解耦为何重要人处理复杂性的能力有限 -&amp;gt; 通过解耦的手段来保证代码不至于复杂到无法控制的地步。 高内聚、低耦合 代码结构清晰 分层和模块化合理 依赖关系简单 模块或类之间耦合小  如何判定代码需要解耦 修改代码牵一发而动全身 类与类之间的关系过于复杂  如何给代码解耦 封装与抽象封装与抽象可以有效的屏蔽实现的复杂性，隔离易变性，给依赖的模块提供稳定且易用的抽象接口。  中间层引入中间层进行过">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-25T01:48:59.292Z">
+<meta property="og:updated_time" content="2020-05-25T05:47:56.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="30|如何解耦代码">
-<meta name="twitter:description" content="什么是代码的可测试性 代码的可测试性就是根据代码编写单元测试的容易程度。对测试性差的代码往往难以编写单元测试，因为他们没有遵循设计原则与思想，比如基于接口而非实现编程，依赖反转等。  如何编写可测试性的代码 依赖注入  通过依赖注入的形式引入其他类、方法，可以便于外部服务的Mock.  Mock  对于外界服务，我们不关系外部系统服务的正确性，所以我们对外部服务进行Mock,然后采用依赖注入的形式">
+<meta name="twitter:description" content="解耦为何重要人处理复杂性的能力有限 -&amp;gt; 通过解耦的手段来保证代码不至于复杂到无法控制的地步。 高内聚、低耦合 代码结构清晰 分层和模块化合理 依赖关系简单 模块或类之间耦合小  如何判定代码需要解耦 修改代码牵一发而动全身 类与类之间的关系过于复杂  如何给代码解耦 封装与抽象封装与抽象可以有效的屏蔽实现的复杂性，隔离易变性，给依赖的模块提供稳定且易用的抽象接口。  中间层引入中间层进行过">
   <!-- Canonical links -->
   <link rel="canonical" href="https://shawnyou.tech/2020/05/25/design-pattern-notes/30|如何解耦代码/index.html">
   
@@ -382,28 +382,49 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="什么是代码的可测试性"><a href="#什么是代码的可测试性" class="headerlink" title="什么是代码的可测试性"></a>什么是代码的可测试性</h3><blockquote>
-<p>代码的可测试性就是根据代码编写单元测试的容易程度。对测试性差的代码往往难以编写单元测试，因为他们没有遵循设计原则与思想，比如基于接口而非实现编程，依赖反转等。</p>
-</blockquote>
-<h3 id="如何编写可测试性的代码"><a href="#如何编写可测试性的代码" class="headerlink" title="如何编写可测试性的代码"></a>如何编写可测试性的代码</h3><ol>
+        <h3 id="解耦为何重要"><a href="#解耦为何重要" class="headerlink" title="解耦为何重要"></a>解耦为何重要</h3><p>人处理复杂性的能力有限 -&gt; 通过解耦的手段来保证代码不至于复杂到无法控制的地步。</p>
+<h4 id="高内聚、低耦合"><a href="#高内聚、低耦合" class="headerlink" title="高内聚、低耦合"></a>高内聚、低耦合</h4><ol>
+<li>代码结构清晰</li>
+<li>分层和模块化合理</li>
+<li>依赖关系简单</li>
+<li>模块或类之间耦合小</li>
+</ol>
+<h3 id="如何判定代码需要解耦"><a href="#如何判定代码需要解耦" class="headerlink" title="如何判定代码需要解耦"></a>如何判定代码需要解耦</h3><ol>
+<li>修改代码牵一发而动全身</li>
+<li>类与类之间的关系过于复杂</li>
+</ol>
+<h3 id="如何给代码解耦"><a href="#如何给代码解耦" class="headerlink" title="如何给代码解耦"></a>如何给代码解耦</h3><ol>
+<li><p>封装与抽象<br>封装与抽象可以有效的屏蔽实现的复杂性，隔离易变性，给依赖的模块提供稳定且易用的抽象接口。</p>
+</li>
+<li><p>中间层<br>引入中间层进行过渡</p>
+</li>
+<li><p>模块化</p>
+</li>
+</ol>
+<p>合理划分模块进行解耦代码，提高代码的可读性与可维护性，每个模块只提供封装了内部实现细节的接口给其他模块使用。</p>
+<ol start="4">
+<li>其他设计思想与原则</li>
+</ol>
+<ul>
+<li>单一职责原则</li>
+</ul>
+<p>高内聚的代码会使代码更加松耦合，而实现高内聚的指导原则就是单一职责原则。类设计功能单一，那么依赖的类就比较少，耦合也降低了。</p>
+<ul>
+<li>基于接口而非实现编程</li>
+</ul>
+<p>通过接口这样的中间层去隔离变化与具体的实现，这样的话互相依赖的类或者模块，一个类的改动不会影响另一个类或者模块。把一种强耦合(强依赖)的关系降成了松耦合(弱依赖)的关系</p>
+<ul>
 <li>依赖注入</li>
-</ol>
-<p>通过依赖注入的形式引入其他类、方法，可以便于外部服务的Mock.</p>
-<ol start="2">
-<li>Mock</li>
-</ol>
-<p>对于外界服务，我们不关系外部系统服务的正确性，所以我们对外部服务进行Mock,然后采用依赖注入的形式</p>
-<ol start="3">
-<li>抽象封装<br>比如代码中有一段是关于日期过期的判断，这种情况可以将这块代码封装起来。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Transction transaction = new Transaction(null, buyerId, sellerId, productId, orderId) &#123; protected boolean isExpired() &#123; return true; &#125; &#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="测试性差的代码"><a href="#测试性差的代码" class="headerlink" title="测试性差的代码"></a>测试性差的代码</h3><ol>
-<li>代码中包含未决行为逻辑</li>
-<li>滥用可变全局变量</li>
-<li>滥用静态方法</li>
-<li>使用复杂的继承关系</li>
-<li>高度耦合的代码</li>
-</ol>
+</ul>
+<p>依赖注入将代码之间的强耦合变成弱耦合，耦合关系没那么紧密，做到容易替换插拔。</p>
+<ul>
+<li>多用组合少用继承</li>
+</ul>
+<p>继承是一种强耦合关系，父类与子类高度耦合，容易牵一发而动全身；组合是一种弱依赖的关系，更加的灵活。</p>
+<ul>
+<li>迪米特法则</li>
+</ul>
+<p>不该有直接依赖关系的类之间，不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口，实现代码的松耦合。</p>
 
       
     </div>
