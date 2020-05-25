@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shawnyou.tech/"/>
-  <updated>2020-05-24T13:49:27.433Z</updated>
+  <updated>2020-05-25T01:48:59.292Z</updated>
   <id>https://shawnyou.tech/</id>
   
   <author>
@@ -15,6 +15,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>30|如何解耦代码</title>
+    <link href="https://shawnyou.tech/2020/05/25/design-pattern-notes/30%7C%E5%A6%82%E4%BD%95%E8%A7%A3%E8%80%A6%E4%BB%A3%E7%A0%81/"/>
+    <id>https://shawnyou.tech/2020/05/25/design-pattern-notes/30|如何解耦代码/</id>
+    <published>2020-05-25T01:50:29.000Z</published>
+    <updated>2020-05-25T01:48:59.292Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是代码的可测试性"><a href="#什么是代码的可测试性" class="headerlink" title="什么是代码的可测试性"></a>什么是代码的可测试性</h3><blockquote><p>代码的可测试性就是根据代码编写单元测试的容易程度。对测试性差的代码往往难以编写单元测试，因为他们没有遵循设计原则与思想，比如基于接口而非实现编程，依赖反转等。</p></blockquote><h3 id="如何编写可测试性的代码"><a href="#如何编写可测试性的代码" class="headerlink" title="如何编写可测试性的代码"></a>如何编写可测试性的代码</h3><ol><li>依赖注入</li></ol><p>通过依赖注入的形式引入其他类、方法，可以便于外部服务的Mock.</p><ol start="2"><li>Mock</li></ol><p>对于外界服务，我们不关系外部系统服务的正确性，所以我们对外部服务进行Mock,然后采用依赖注入的形式</p><ol start="3"><li>抽象封装<br>比如代码中有一段是关于日期过期的判断，这种情况可以将这块代码封装起来。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Transction transaction = new Transaction(null, buyerId, sellerId, productId, orderId) &#123; protected boolean isExpired() &#123; return true; &#125; &#125;;</span><br></pre></td></tr></table></figure><h3 id="测试性差的代码"><a href="#测试性差的代码" class="headerlink" title="测试性差的代码"></a>测试性差的代码</h3><ol><li>代码中包含未决行为逻辑</li><li>滥用可变全局变量</li><li>滥用静态方法</li><li>使用复杂的继承关系</li><li>高度耦合的代码</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;什么是代码的可测试性&quot;&gt;&lt;a href=&quot;#什么是代码的可测试性&quot; class=&quot;headerlink&quot; title=&quot;什么是代码的可测试性&quot;&gt;&lt;/a&gt;什么是代码的可测试性&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;代码的可测试性就是根据代码编写单元测试的容易程度。
+      
+    
+    </summary>
+    
+      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>29|代码的可测试性</title>
+    <link href="https://shawnyou.tech/2020/05/25/design-pattern-notes/29%7C%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8F%AF%E6%B5%8B%E8%AF%95%E6%80%A7/"/>
+    <id>https://shawnyou.tech/2020/05/25/design-pattern-notes/29|代码的可测试性/</id>
+    <published>2020-05-25T01:45:29.000Z</published>
+    <updated>2020-05-25T01:48:01.786Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是代码的可测试性"><a href="#什么是代码的可测试性" class="headerlink" title="什么是代码的可测试性"></a>什么是代码的可测试性</h3><blockquote><p>代码的可测试性就是根据代码编写单元测试的容易程度。对测试性差的代码往往难以编写单元测试，因为他们没有遵循设计原则与思想，比如基于接口而非实现编程，依赖反转等。</p></blockquote><h3 id="如何编写可测试性的代码"><a href="#如何编写可测试性的代码" class="headerlink" title="如何编写可测试性的代码"></a>如何编写可测试性的代码</h3><ol><li>依赖注入</li></ol><p>通过依赖注入的形式引入其他类、方法，可以便于外部服务的Mock.</p><ol start="2"><li>Mock</li></ol><p>对于外界服务，我们不关系外部系统服务的正确性，所以我们对外部服务进行Mock,然后采用依赖注入的形式</p><ol start="3"><li>抽象封装<br>比如代码中有一段是关于日期过期的判断，这种情况可以将这块代码封装起来。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Transction transaction = new Transaction(null, buyerId, sellerId, productId, orderId) &#123; protected boolean isExpired() &#123; return true; &#125; &#125;;</span><br></pre></td></tr></table></figure><h3 id="测试性差的代码"><a href="#测试性差的代码" class="headerlink" title="测试性差的代码"></a>测试性差的代码</h3><ol><li>代码中包含未决行为逻辑</li><li>滥用可变全局变量</li><li>滥用静态方法</li><li>使用复杂的继承关系</li><li>高度耦合的代码</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;什么是代码的可测试性&quot;&gt;&lt;a href=&quot;#什么是代码的可测试性&quot; class=&quot;headerlink&quot; title=&quot;什么是代码的可测试性&quot;&gt;&lt;/a&gt;什么是代码的可测试性&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;代码的可测试性就是根据代码编写单元测试的容易程度。
+      
+    
+    </summary>
+    
+      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>28|重构的技术手段</title>
+    <link href="https://shawnyou.tech/2020/05/25/design-pattern-notes/28%7C%E9%87%8D%E6%9E%84%E7%9A%84%E6%8A%80%E6%9C%AF%E6%89%8B%E6%AE%B5/"/>
+    <id>https://shawnyou.tech/2020/05/25/design-pattern-notes/28|重构的技术手段/</id>
+    <published>2020-05-25T00:45:29.000Z</published>
+    <updated>2020-05-25T00:39:09.223Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="重构的技术手段"><a href="#重构的技术手段" class="headerlink" title="重构的技术手段"></a>重构的技术手段</h3><blockquote><p>最能保证重构不出错的手段 – 单元测试</p></blockquote><h3 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试"></a>什么是单元测试</h3><ol><li>测试粒度小</li><li>测试对象：类或者函数</li></ol><h3 id="为什么要写单元测试"><a href="#为什么要写单元测试" class="headerlink" title="为什么要写单元测试"></a>为什么要写单元测试</h3><ol><li>帮助发现代码中的bug</li><li>帮助发现代码设计中的问题</li></ol><p>代码的可测试性是衡量代码质量的一个标准，如果单元测试写起来很吃力，说明代码设计有些问题。</p><ol start="3"><li>单元测试是对集成测试的有力补充。</li><li>写单元测试的过程就是代码重构的过程</li><li>阅读单元测试可以快速熟悉代码</li><li>单元测试是TDD落地执行的改进方案。</li></ol><h3 id="如何编写单元测试"><a href="#如何编写单元测试" class="headerlink" title="如何编写单元测试"></a>如何编写单元测试</h3><ol><li>利用测试框架，如JUnit,TestNG,Spring Test等</li><li>设计覆盖各种输入、异常、边界条件的测试用例</li></ol><ul><li>编写单元测试尽管繁琐，但并不是太耗时；</li><li>我们可以稍微放低对单元测试代码质量的要求；</li><li>覆盖率作为衡量单元测试质量的唯一标准是不合理的；</li><li>单元测试不要依赖被测代码的具体实现逻辑；</li><li>单元测试框架无法测试，多半是因为代码的可测试性不好。</li></ul><h3 id="单元测试为何难以落地"><a href="#单元测试为何难以落地" class="headerlink" title="单元测试为何难以落地"></a>单元测试为何难以落地</h3><ol><li>单元测试繁琐，技术挑战小，不愿意执行。</li><li>研发氛围“快、糙、猛”，难以执行。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;重构的技术手段&quot;&gt;&lt;a href=&quot;#重构的技术手段&quot; class=&quot;headerlink&quot; title=&quot;重构的技术手段&quot;&gt;&lt;/a&gt;重构的技术手段&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;最能保证重构不出错的手段 – 单元测试&lt;/p&gt;
+&lt;/blockquote&gt;
+      
+    
+    </summary>
+    
+      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
   
   <entry>
     <title>27|重构初体验</title>
@@ -330,6 +409,24 @@
   </entry>
   
   <entry>
+    <title>12|基于充血模型的DDD模式来开发虚拟钱包系统</title>
+    <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/12%7C%E5%9F%BA%E4%BA%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%9E%8B%E7%9A%84DDD%E5%BC%80%E5%8F%91%E8%99%9A%E6%8B%9F%E9%92%B1%E5%8C%85%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/12|基于充血模型的DDD开发虚拟钱包系统/</id>
+    <published>2019-12-02T12:40:29.000Z</published>
+    <updated>2019-12-10T13:22:15.885Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
     <title>11|贫血模式与充血模式</title>
     <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/11%7C%E8%B4%AB%E8%A1%80%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%BC%8F/"/>
     <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/11|贫血模式与充血模式/</id>
@@ -347,24 +444,6 @@
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;贫血模型与充血模式&quot;&gt;&lt;a href=&quot;#贫血模型与充血模式&quot; class=&quot;headerlink&quot; titl
       
-    
-    </summary>
-    
-      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>12|基于充血模型的DDD模式来开发虚拟钱包系统</title>
-    <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/12%7C%E5%9F%BA%E4%BA%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%9E%8B%E7%9A%84DDD%E5%BC%80%E5%8F%91%E8%99%9A%E6%8B%9F%E9%92%B1%E5%8C%85%E7%B3%BB%E7%BB%9F/"/>
-    <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/12|基于充血模型的DDD开发虚拟钱包系统/</id>
-    <published>2019-12-02T12:40:29.000Z</published>
-    <updated>2019-12-10T13:22:15.885Z</updated>
-    
-    <summary type="html">
     
     </summary>
     
@@ -452,88 +531,6 @@
     </summary>
     
       <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>04|深入浅出索引(上)</title>
-    <link href="https://shawnyou.tech/2019/11/22/mysql-notes/04%7C%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95(%E4%B8%8A)/"/>
-    <id>https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/</id>
-    <published>2019-11-22T14:47:29.000Z</published>
-    <updated>2019-11-24T07:42:08.760Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>索引类似于书本的目录，能够提高数据查询效率。</p></blockquote><h3 id="常见的索引模型"><a href="#常见的索引模型" class="headerlink" title="常见的索引模型"></a>常见的索引模型</h3><ol><li>哈希表<blockquote><p>key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。</p></blockquote></li></ol><ul><li>插入很快。因为可以直接往后追加</li><li>区间查询速度很慢。因为因为数据存储不是有序的。</li><li>哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)</li></ul><ol start="2"><li>有序数组<blockquote><p>有序数组在等值查询和范围查询的场景中的性能都非常优秀。</p></blockquote></li></ol><ul><li>查询效率高，利用二分法进行查询。，同样也支持范围查询</li><li>新增记录成本太高，因为每增加一条新纪录，都要挪动后面所有的记录</li></ul><p>所以有序数组适合静态存储引擎，如2017年某个城市的所有人口信息。</p><ol start="3"><li>搜索树</li></ol><ul><li>二叉搜索树</li></ul><p>左子节点小于父节点，父节点小于右子节点。</p><p>查询复杂度：O(log(n))<br>更新时间复杂度：O(log(n))</p><ul><li>数据库为什么不使用二叉树而选择多叉树</li></ul><p>（1）二叉树虽然效率高，但是每一层存储的数据量比较少。假如在特别大的数据量的情况下，使用二叉树会导致树的层数非常高。层数越多，访问磁盘的次数越多，磁盘读取往往是性能的瓶颈，所以二叉树的读取性能就回很差。</p><p>（2）为了尽量的少读磁盘，让查询过程访问尽量少的数据块，应该使用多叉树。假如一个N=1200的多叉树，树高为4，可以存储1200的三次方的数据(17亿)。也就是在这17亿的数据中，查找一条记录，最多访问磁盘三次。</p><h3 id="InnoDB的索引模型"><a href="#InnoDB的索引模型" class="headerlink" title="InnoDB的索引模型"></a>InnoDB的索引模型</h3><blockquote><p>InnoDB的索引模型：B+树索引模型,每一个索引在InnoDB中就对应一棵B+树</p></blockquote><h4 id="B-树索引类型"><a href="#B-树索引类型" class="headerlink" title="B+树索引类型"></a>B+树索引类型</h4><ol><li>主键索引(聚簇索引)</li></ol><p>叶子节点存储整行数据</p><ol start="2"><li>普通索引(二级索引)</li></ol><p>叶子节点存储的是主键的值</p><h5 id="主键索引和非主键索引的区别"><a href="#主键索引和非主键索引的区别" class="headerlink" title="主键索引和非主键索引的区别"></a>主键索引和非主键索引的区别</h5><ol><li>通过主键查询的方式，就是直接搜索主键索引这棵B+树。</li><li>如果通过普通索引的方式，则是先通过普通索引B+树查询到主键值，再通过主键值去主键索引B+树里面所有(回表)</li></ol><blockquote><p>普通索引会多扫描一次索引，应该优先使用主键索引</p></blockquote><h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><blockquote><p>B+树维护了索引的有效性，当插入新值的时候，就要做必要的维护</p></blockquote><ol><li>页分裂</li></ol><p>当插入数据所在页的数据页满了，就要重新申请一个新的数据页，让后再挪动部分数据过去。性能受影响。</p><ol start="2"><li>页合并</li></ol><p>相邻两个数据页因为删除了数据，利用率很低之后，会将数据页进行合并。</p><h4 id="自增字段的重要性"><a href="#自增字段的重要性" class="headerlink" title="自增字段的重要性"></a>自增字段的重要性</h4><blockquote><p>索引的维护过程中，会出现页分裂和页合并的现象，这些是比较耗费性能的。所以现在的建表规范里面都要求使用自增字段。那自增字段能够对索引维护起到什么作用吗？</p></blockquote><ul><li>自增逐渐的插入数据模式都是追加操作，不会涉及挪动其他记录，不会触发叶子节点的分裂。—-性能</li><li>如果使用业务字段做主键，不容易保证有序插入，写数据成本高。—-性能</li><li>自增逐渐相比业务字段作逐渐节省存储空间。如果使用身份证之类的作为主键，那么普通索引的叶子节点(主键)就会占用比较多的存储空间(字符串20个字节)，整型(4个字节)，长整型(8个字节)。—-存储空间</li></ul><blockquote><p>主键长度约小，普通索引的叶子节点就越小，普通索引占用的空间就越小</p></blockquote><p>业务字段作为主键的场景：</p><ol><li>只有一个索引</li><li>该索引是唯一索引</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;索引类似于书本的目录，能够提高数据查询效率。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;常见的索引模型&quot;&gt;&lt;a href=&quot;#常见的索引模型&quot; class=&quot;headerlink&quot; title=&quot;常见的索引模型&quot;&gt;&lt;/a&gt;常见的索引模型&lt;
-      
-    
-    </summary>
-    
-      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>02|一条SQL更新语句是如何执行的</title>
-    <link href="https://shawnyou.tech/2019/11/21/mysql-notes/02%7C%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84/"/>
-    <id>https://shawnyou.tech/2019/11/21/mysql-notes/02|一条SQL更新语句是如何执行的/</id>
-    <published>2019-11-21T14:47:29.000Z</published>
-    <updated>2019-11-22T14:30:14.854Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="执行流程-和查询流程保持一致"><a href="#执行流程-和查询流程保持一致" class="headerlink" title="执行流程(和查询流程保持一致)"></a>执行流程(和查询流程保持一致)</h3><ul><li>连接器 –&gt; 连接数据库</li><li>分析器 –&gt; 词法和语法分析这是一条更新语句</li><li>优化器 –&gt; 决定使用哪个索引</li><li>执行器 –&gt; 找到具体的某一行，然后更新</li></ul><h3 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h3><blockquote><p>SQL更新过程中涉及两个重要的日志模块</p></blockquote><h4 id="redo-log-重做日志"><a href="#redo-log-重做日志" class="headerlink" title="redo log(重做日志)"></a>redo log(重做日志)</h4><ul><li>WHAT<br>redo log(重做日志)类似于掌柜账本记账的模式，先记账(先写日志)，后清账(再写磁盘)</li><li>WHY<br>mysql的每一次更新过程IO成本和查找成本很高。每一次更新操作都要在磁盘中找到对应的记录然后更新。当更新比较频繁的时候，性能就非常的不好。</li><li>HOW<br>当一条记录需要更新的时候：</li></ul><ol><li>InnoDB引擎先把记录写到redo log</li><li>更新内存</li><li>InnoDB引擎在系统空闲的时候，将操作记录更新到磁盘中</li></ol><p>PS：</p><ul><li>redo log是InnoDB特有的日志</li><li>如果更新特别频繁，redo log特别多，系统会放下工作，将一部分redo log的任务更新到磁盘中，为redo log腾出空间</li><li>redo log是固定大小的，可以配置一组四个文件，每个文件1GB, 从头开始写，写到末尾然后继续回到开头写</li><li>InnoDB 可以依靠redo log保证数据库发生异常重启的时候，之前的记录不会丢失(crash-safe)</li></ul><h4 id="binlog-归档日志"><a href="#binlog-归档日志" class="headerlink" title="binlog(归档日志)"></a>binlog(归档日志)</h4><p>bin log是server层实现的日志，可以应用于所有存储引擎</p><h4 id="redolog与binlog的区别"><a href="#redolog与binlog的区别" class="headerlink" title="redolog与binlog的区别"></a>redolog与binlog的区别</h4><ul><li>redolog是InnoDB独有, binlog是Server层实现的，所有引擎都可以使用</li><li>redolog是物理日志，记录某个数据页做了什么改动，binlog是逻辑日志，记录语句的原始逻辑</li><li>redolog是循环写，空间固定会用完，binlog可以最佳写入，并不会覆盖以前的日志。</li></ul><h3 id="update语句执行的内部流程"><a href="#update语句执行的内部流程" class="headerlink" title="update语句执行的内部流程"></a>update语句执行的内部流程</h3><ol><li>执行器通过引擎找到对应的记录。如果这一行所在数据页在内存中，引擎就从内存中取，否则就从磁盘读入。</li><li>执行器拿到对应的数据，进行更新，然后调用引擎接口写入数据</li><li>引擎将数据更新到内存，同时将更新操作记录到redo日志，此时redo log处于prepare状态，告知执行器执行完成。</li><li>执行器生成binlog,并将binlog写入磁盘</li><li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态</li></ol><blockquote><p>以上的流程包含了一个两阶段提交</p></blockquote><h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><ul><li>what<br>保证redolog与binlog的数据逻辑一致性。</li></ul><ol><li>先写redolog后写binlog<br>redolog写完，binlog还没写完的时候，MySQL异常重启,可以通过redolog将记录恢复。但是当我们需要通过binlog恢复临时库的时候，由于binlog丢失，临时库的数据会少一次更新操作</li><li>先写binlog厚些redolog<br>binlog写完，redolog还没写，系统崩溃之后，由此数据没有被更新。但是binlog已经有了更新的日志，之后用binlog来恢复数据的时候就多了一条更新。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;执行流程-和查询流程保持一致&quot;&gt;&lt;a href=&quot;#执行流程-和查询流程保持一致&quot; class=&quot;headerlink&quot; title=&quot;执行流程(和查询流程保持一致)&quot;&gt;&lt;/a&gt;执行流程(和查询流程保持一致)&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;连接器 –&amp;gt; 连接数据
-      
-    
-    </summary>
-    
-      <category term="mysql-notes" scheme="https://shawnyou.tech/categories/mysql-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么基于接口而非实现编程</title>
-    <link href="https://shawnyou.tech/2019/11/21/design-pattern-notes/09%7C%E5%9F%BA%E4%BA%8E%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A8%8B/"/>
-    <id>https://shawnyou.tech/2019/11/21/design-pattern-notes/09|基于接口而非实现编程/</id>
-    <published>2019-11-21T14:47:29.000Z</published>
-    <updated>2019-12-02T14:29:51.884Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>基于接口而非实现编程是一种非常高效且提高代码质量的手段。</p></blockquote><h3 id="接口的含义"><a href="#接口的含义" class="headerlink" title="接口的含义"></a>接口的含义</h3><ol><li>抽象层面的接口</li></ol><ul><li>服务端与客户端之间的“接口”</li><li>类库提供的“接口”</li><li>通信协议接口</li></ul><ol start="2"><li>代码接口</li></ol><ul><li>编程语言中的接口类或者抽象类</li></ul><h3 id="接口的意义"><a href="#接口的意义" class="headerlink" title="接口的意义"></a>接口的意义</h3><blockquote><p>“面向接口而非实现编程”也可以表述为”基于抽象而非实现编程”，抽象是提高代码扩展性、灵活性、可维护性的最优先手段之一。</p></blockquote><ul><li>将接口与实现相分离，封装不稳定的实现，暴露稳定的接口。</li><li>抽象、顶层、脱离具体实现的设计可以提高代码的灵活性，应对未来复杂的需求变化。</li></ul><h3 id="基于接口而非实现编程的要求"><a href="#基于接口而非实现编程的要求" class="headerlink" title="基于接口而非实现编程的要求"></a>基于接口而非实现编程的要求</h3><ol><li>函数命名不能暴露任何实现细节，适配未来的需求变化，应该取一个较为宽泛且概括中心概念的名字。</li><li>封装具体实现细节</li><li>为实现类定义抽象的接口。使用者依赖接口，而非具体的实现类编程。</li></ol><h3 id="接口实现的度"><a href="#接口实现的度" class="headerlink" title="接口实现的度"></a>接口实现的度</h3><blockquote><p>任何事情都要讲一个度,对于基于接口而非实现编程的‘度’应该如何把握呢？哪些可以直接使用实现类进行编程？</p></blockquote><ol><li>业务场景中，某个功能只有一种实现方式，我来也不可能会被其他方式替代，就没必要设计接口，直接使用实现类</li><li>系统特别稳定，基本不做维护，就没必要在扩展性投入不必要的开发时间。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;基于接口而非实现编程是一种非常高效且提高代码质量的手段。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;接口的含义&quot;&gt;&lt;a href=&quot;#接口的含义&quot; class=&quot;headerlink&quot; title=&quot;接口的含义&quot;&gt;&lt;/a&gt;接口的含义&lt;/h
-      
-    
-    </summary>
-    
-      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
     
     
       <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
