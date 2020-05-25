@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shawnyou.tech/"/>
-  <updated>2020-05-25T01:48:59.292Z</updated>
+  <updated>2020-05-25T05:47:56.376Z</updated>
   <id>https://shawnyou.tech/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://shawnyou.tech/2020/05/25/design-pattern-notes/30%7C%E5%A6%82%E4%BD%95%E8%A7%A3%E8%80%A6%E4%BB%A3%E7%A0%81/"/>
     <id>https://shawnyou.tech/2020/05/25/design-pattern-notes/30|如何解耦代码/</id>
     <published>2020-05-25T01:50:29.000Z</published>
-    <updated>2020-05-25T01:48:59.292Z</updated>
+    <updated>2020-05-25T05:47:56.376Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="什么是代码的可测试性"><a href="#什么是代码的可测试性" class="headerlink" title="什么是代码的可测试性"></a>什么是代码的可测试性</h3><blockquote><p>代码的可测试性就是根据代码编写单元测试的容易程度。对测试性差的代码往往难以编写单元测试，因为他们没有遵循设计原则与思想，比如基于接口而非实现编程，依赖反转等。</p></blockquote><h3 id="如何编写可测试性的代码"><a href="#如何编写可测试性的代码" class="headerlink" title="如何编写可测试性的代码"></a>如何编写可测试性的代码</h3><ol><li>依赖注入</li></ol><p>通过依赖注入的形式引入其他类、方法，可以便于外部服务的Mock.</p><ol start="2"><li>Mock</li></ol><p>对于外界服务，我们不关系外部系统服务的正确性，所以我们对外部服务进行Mock,然后采用依赖注入的形式</p><ol start="3"><li>抽象封装<br>比如代码中有一段是关于日期过期的判断，这种情况可以将这块代码封装起来。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Transction transaction = new Transaction(null, buyerId, sellerId, productId, orderId) &#123; protected boolean isExpired() &#123; return true; &#125; &#125;;</span><br></pre></td></tr></table></figure><h3 id="测试性差的代码"><a href="#测试性差的代码" class="headerlink" title="测试性差的代码"></a>测试性差的代码</h3><ol><li>代码中包含未决行为逻辑</li><li>滥用可变全局变量</li><li>滥用静态方法</li><li>使用复杂的继承关系</li><li>高度耦合的代码</li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="解耦为何重要"><a href="#解耦为何重要" class="headerlink" title="解耦为何重要"></a>解耦为何重要</h3><p>人处理复杂性的能力有限 -&gt; 通过解耦的手段来保证代码不至于复杂到无法控制的地步。</p><h4 id="高内聚、低耦合"><a href="#高内聚、低耦合" class="headerlink" title="高内聚、低耦合"></a>高内聚、低耦合</h4><ol><li>代码结构清晰</li><li>分层和模块化合理</li><li>依赖关系简单</li><li>模块或类之间耦合小</li></ol><h3 id="如何判定代码需要解耦"><a href="#如何判定代码需要解耦" class="headerlink" title="如何判定代码需要解耦"></a>如何判定代码需要解耦</h3><ol><li>修改代码牵一发而动全身</li><li>类与类之间的关系过于复杂</li></ol><h3 id="如何给代码解耦"><a href="#如何给代码解耦" class="headerlink" title="如何给代码解耦"></a>如何给代码解耦</h3><ol><li><p>封装与抽象<br>封装与抽象可以有效的屏蔽实现的复杂性，隔离易变性，给依赖的模块提供稳定且易用的抽象接口。</p></li><li><p>中间层<br>引入中间层进行过渡</p></li><li><p>模块化</p></li></ol><p>合理划分模块进行解耦代码，提高代码的可读性与可维护性，每个模块只提供封装了内部实现细节的接口给其他模块使用。</p><ol start="4"><li>其他设计思想与原则</li></ol><ul><li>单一职责原则</li></ul><p>高内聚的代码会使代码更加松耦合，而实现高内聚的指导原则就是单一职责原则。类设计功能单一，那么依赖的类就比较少，耦合也降低了。</p><ul><li>基于接口而非实现编程</li></ul><p>通过接口这样的中间层去隔离变化与具体的实现，这样的话互相依赖的类或者模块，一个类的改动不会影响另一个类或者模块。把一种强耦合(强依赖)的关系降成了松耦合(弱依赖)的关系</p><ul><li>依赖注入</li></ul><p>依赖注入将代码之间的强耦合变成弱耦合，耦合关系没那么紧密，做到容易替换插拔。</p><ul><li>多用组合少用继承</li></ul><p>继承是一种强耦合关系，父类与子类高度耦合，容易牵一发而动全身；组合是一种弱依赖的关系，更加的灵活。</p><ul><li>迪米特法则</li></ul><p>不该有直接依赖关系的类之间，不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口，实现代码的松耦合。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;什么是代码的可测试性&quot;&gt;&lt;a href=&quot;#什么是代码的可测试性&quot; class=&quot;headerlink&quot; title=&quot;什么是代码的可测试性&quot;&gt;&lt;/a&gt;什么是代码的可测试性&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;代码的可测试性就是根据代码编写单元测试的容易程度。
+        &lt;h3 id=&quot;解耦为何重要&quot;&gt;&lt;a href=&quot;#解耦为何重要&quot; class=&quot;headerlink&quot; title=&quot;解耦为何重要&quot;&gt;&lt;/a&gt;解耦为何重要&lt;/h3&gt;&lt;p&gt;人处理复杂性的能力有限 -&amp;gt; 通过解耦的手段来保证代码不至于复杂到无法控制的地步。&lt;/p&gt;
+&lt;h4 i
       
     
     </summary>
@@ -409,24 +409,6 @@
   </entry>
   
   <entry>
-    <title>12|基于充血模型的DDD模式来开发虚拟钱包系统</title>
-    <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/12%7C%E5%9F%BA%E4%BA%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%9E%8B%E7%9A%84DDD%E5%BC%80%E5%8F%91%E8%99%9A%E6%8B%9F%E9%92%B1%E5%8C%85%E7%B3%BB%E7%BB%9F/"/>
-    <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/12|基于充血模型的DDD开发虚拟钱包系统/</id>
-    <published>2019-12-02T12:40:29.000Z</published>
-    <updated>2019-12-10T13:22:15.885Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
-    
-    
-      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
-    
-  </entry>
-  
-  <entry>
     <title>11|贫血模式与充血模式</title>
     <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/11%7C%E8%B4%AB%E8%A1%80%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%BC%8F/"/>
     <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/11|贫血模式与充血模式/</id>
@@ -444,6 +426,24 @@
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;贫血模型与充血模式&quot;&gt;&lt;a href=&quot;#贫血模型与充血模式&quot; class=&quot;headerlink&quot; titl
       
+    
+    </summary>
+    
+      <category term="design-notes" scheme="https://shawnyou.tech/categories/design-notes/"/>
+    
+    
+      <category term="Notes" scheme="https://shawnyou.tech/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>12|基于充血模型的DDD模式来开发虚拟钱包系统</title>
+    <link href="https://shawnyou.tech/2019/12/02/design-pattern-notes/12%7C%E5%9F%BA%E4%BA%8E%E5%85%85%E8%A1%80%E6%A8%A1%E5%9E%8B%E7%9A%84DDD%E5%BC%80%E5%8F%91%E8%99%9A%E6%8B%9F%E9%92%B1%E5%8C%85%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://shawnyou.tech/2019/12/02/design-pattern-notes/12|基于充血模型的DDD开发虚拟钱包系统/</id>
+    <published>2019-12-02T12:40:29.000Z</published>
+    <updated>2019-12-10T13:22:15.885Z</updated>
+    
+    <summary type="html">
     
     </summary>
     
@@ -510,22 +510,22 @@
   </entry>
   
   <entry>
-    <title>03|事务隔离</title>
-    <link href="https://shawnyou.tech/2019/11/22/mysql-notes/03%7C%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/"/>
-    <id>https://shawnyou.tech/2019/11/22/mysql-notes/03|事务隔离/</id>
+    <title>04|深入浅出索引(上)</title>
+    <link href="https://shawnyou.tech/2019/11/22/mysql-notes/04%7C%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95(%E4%B8%8A)/"/>
+    <id>https://shawnyou.tech/2019/11/22/mysql-notes/04|深入浅出索引(上)/</id>
     <published>2019-11-22T14:47:29.000Z</published>
-    <updated>2019-11-23T10:37:43.518Z</updated>
+    <updated>2019-11-24T07:42:08.760Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>事务保证一组数据库操作，要么全部成功，要么全部失败。</p></blockquote><h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><ol><li>Atomicity(原子性)</li><li>Consistency(一致性)</li><li>Isolation(隔离性)</li><li>Durability(持久性)</li></ol><h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><blockquote><p>为什么需要隔离性</p></blockquote><p>因为多个事务同时执行的时候，容易引发脏读、不可重复读、幻读等问题。</p><ol><li>脏读</li></ol><p>一个事务在处理过程中，读取了别的事务未提交的脏数据。如果别的事务回滚，那么我们拿到的数据是不准确的，由此会造成一定的问题。</p><ol start="2"><li><p>不可重复读<br>一个事务在处理过程，两次查询的数据不一样。这是因为第二次查询读取了别的事务已经提交的变更。那么我们在这个事务操作中就能看到别的事务提交的变更。</p></li><li><p>幻读<br>一个事务在处理过程中，两次查询的数据不一样，第二次查询读取了别的事务已经提交的变更。</p></li></ol><ul><li>不可重复读和幻读都在还未提交的事务过程中读取了另一个已经提交的事务变更。不可重读读针对的是同一个数据项，而幻读针对的是一批数据整体。例如小编去取钱，</li><li>不可重复读：重点在于修改，两次读取的数据不一样</li><li>幻读：重点在新增和删除，比如这里有一个事务1要查询公司里面工资1000元以上的职工有10人，这时另一个事务2里面，HR新增了一个新员工，工资也在1000元以上。这时候事务1在次查询，发现工资1000元以上的人员增加到了11个人。</li></ul><h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><blockquote><p>多个事务同时执行，引发的脏读、不可重复读、幻读等问题，就产生了‘隔离级别’的概念。隔离越严实，效率就越低，但数据一致性的程度越高。由此需要在隔离性和效率之间寻找一个平衡点。</p></blockquote><ol><li>读未提交(read uncommitted)</li></ol><blockquote><p>一个事务还未提交的时候，它的变更能被别的事务看到。</p></blockquote><ol start="2"><li>读提交(read committed)</li></ol><p>一个事务提交之后，它的改动才能被其他事务看到。事务A修改了一项数据，B事务读取不到变动，只有等事务A提交之后，B事务才能够读取。由此可以避免脏读，但是会造成不可重复读和幻读。</p><ol start="3"><li>可重复读(repeatable read)</li></ol><p>一个事务在执行过程中看到的数据和事务启动是看到的数据时一致的。当事务A开始读取一条记录的时候，事务B是不能够进行修改的。由此可以避免不可重复读，但是还是会造成幻读(事务A读取一些数据，事务B插入或者删除一些数据，这时候在此读取，会发现数据多了或者少了)。</p><ol start="4"><li>串行化(serializable)</li></ol><p>‘读’和‘写’会进行加锁，读写锁发生冲突时候，后访问的事务必须等前一个事务执行完成。</p><h4 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h4><blockquote><p>事务的隔离级别往往和视图有关系，不同的隔离级别创建视图的顺序是不一样。视图可以理解为数据副本，每次创建视图，将当前已持久化的数据创建副本，后面直接从副本读取，从而达到数据隔离。</p></blockquote><ol><li>读未提交</li></ol><p>没有视图概念，不同事务在读未提交的隔离级别上直接读取记录的最新值，容易出现脏读的情况。</p><ol start="2"><li>读提交</li></ol><p>视图在每个SQL开始执行的时候创建的。所以第二次查询的时候，别的事务已经提交了数据，重新建立的视图里面包含已经变更的数据。因此能够读取别的事务修改的数据。</p><ol start="3"><li>可重复读</li></ol><p>视图是在事务启动的时候创建的。（TODO）</p><ol start="4"><li>串行化</li></ol><p>直接用加锁的方式避免并行访问</p><h3 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h3><h4 id="MVCC-多版本并发控制"><a href="#MVCC-多版本并发控制" class="headerlink" title="MVCC(多版本并发控制)"></a>MVCC(多版本并发控制)</h4><p>同一条记录在系统中可以存在多个版本。</p><h4 id="避免使用长事务"><a href="#避免使用长事务" class="headerlink" title="避免使用长事务"></a>避免使用长事务</h4><ul><li>长事务存在很老的事务视图，在未提交之前，所有的回滚记录都必须保留，会导致大量占用存储空间。</li><li>占用锁资源，拖垮数据库。</li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>索引类似于书本的目录，能够提高数据查询效率。</p></blockquote><h3 id="常见的索引模型"><a href="#常见的索引模型" class="headerlink" title="常见的索引模型"></a>常见的索引模型</h3><ol><li>哈希表<blockquote><p>key-value的数据存储结构。通过哈希函数将key换算成一个具体的数组位置，将value放在对应的数组位置。多余哈希冲突，则使用拉链法进行解决。</p></blockquote></li></ol><ul><li>插入很快。因为可以直接往后追加</li><li>区间查询速度很慢。因为因为数据存储不是有序的。</li><li>哈希表适合等值查询的场景(Memcached和一些NoSQL引擎)</li></ul><ol start="2"><li>有序数组<blockquote><p>有序数组在等值查询和范围查询的场景中的性能都非常优秀。</p></blockquote></li></ol><ul><li>查询效率高，利用二分法进行查询。，同样也支持范围查询</li><li>新增记录成本太高，因为每增加一条新纪录，都要挪动后面所有的记录</li></ul><p>所以有序数组适合静态存储引擎，如2017年某个城市的所有人口信息。</p><ol start="3"><li>搜索树</li></ol><ul><li>二叉搜索树</li></ul><p>左子节点小于父节点，父节点小于右子节点。</p><p>查询复杂度：O(log(n))<br>更新时间复杂度：O(log(n))</p><ul><li>数据库为什么不使用二叉树而选择多叉树</li></ul><p>（1）二叉树虽然效率高，但是每一层存储的数据量比较少。假如在特别大的数据量的情况下，使用二叉树会导致树的层数非常高。层数越多，访问磁盘的次数越多，磁盘读取往往是性能的瓶颈，所以二叉树的读取性能就回很差。</p><p>（2）为了尽量的少读磁盘，让查询过程访问尽量少的数据块，应该使用多叉树。假如一个N=1200的多叉树，树高为4，可以存储1200的三次方的数据(17亿)。也就是在这17亿的数据中，查找一条记录，最多访问磁盘三次。</p><h3 id="InnoDB的索引模型"><a href="#InnoDB的索引模型" class="headerlink" title="InnoDB的索引模型"></a>InnoDB的索引模型</h3><blockquote><p>InnoDB的索引模型：B+树索引模型,每一个索引在InnoDB中就对应一棵B+树</p></blockquote><h4 id="B-树索引类型"><a href="#B-树索引类型" class="headerlink" title="B+树索引类型"></a>B+树索引类型</h4><ol><li>主键索引(聚簇索引)</li></ol><p>叶子节点存储整行数据</p><ol start="2"><li>普通索引(二级索引)</li></ol><p>叶子节点存储的是主键的值</p><h5 id="主键索引和非主键索引的区别"><a href="#主键索引和非主键索引的区别" class="headerlink" title="主键索引和非主键索引的区别"></a>主键索引和非主键索引的区别</h5><ol><li>通过主键查询的方式，就是直接搜索主键索引这棵B+树。</li><li>如果通过普通索引的方式，则是先通过普通索引B+树查询到主键值，再通过主键值去主键索引B+树里面所有(回表)</li></ol><blockquote><p>普通索引会多扫描一次索引，应该优先使用主键索引</p></blockquote><h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><blockquote><p>B+树维护了索引的有效性，当插入新值的时候，就要做必要的维护</p></blockquote><ol><li>页分裂</li></ol><p>当插入数据所在页的数据页满了，就要重新申请一个新的数据页，让后再挪动部分数据过去。性能受影响。</p><ol start="2"><li>页合并</li></ol><p>相邻两个数据页因为删除了数据，利用率很低之后，会将数据页进行合并。</p><h4 id="自增字段的重要性"><a href="#自增字段的重要性" class="headerlink" title="自增字段的重要性"></a>自增字段的重要性</h4><blockquote><p>索引的维护过程中，会出现页分裂和页合并的现象，这些是比较耗费性能的。所以现在的建表规范里面都要求使用自增字段。那自增字段能够对索引维护起到什么作用吗？</p></blockquote><ul><li>自增逐渐的插入数据模式都是追加操作，不会涉及挪动其他记录，不会触发叶子节点的分裂。—-性能</li><li>如果使用业务字段做主键，不容易保证有序插入，写数据成本高。—-性能</li><li>自增逐渐相比业务字段作逐渐节省存储空间。如果使用身份证之类的作为主键，那么普通索引的叶子节点(主键)就会占用比较多的存储空间(字符串20个字节)，整型(4个字节)，长整型(8个字节)。—-存储空间</li></ul><blockquote><p>主键长度约小，普通索引的叶子节点就越小，普通索引占用的空间就越小</p></blockquote><p>业务字段作为主键的场景：</p><ol><li>只有一个索引</li><li>该索引是唯一索引</li></ol>]]></content>
     
     <summary type="html">
     
       
       
         &lt;blockquote&gt;
-&lt;p&gt;事务保证一组数据库操作，要么全部成功，要么全部失败。&lt;/p&gt;
+&lt;p&gt;索引类似于书本的目录，能够提高数据查询效率。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;ACID&quot;&gt;&lt;a href=&quot;#ACID&quot; class=&quot;headerlink&quot; title=&quot;ACID&quot;&gt;&lt;/a&gt;ACID&lt;/h3&gt;&lt;ol&gt;
+&lt;h3 id=&quot;常见的索引模型&quot;&gt;&lt;a href=&quot;#常见的索引模型&quot; class=&quot;headerlink&quot; title=&quot;常见的索引模型&quot;&gt;&lt;/a&gt;常见的索引模型&lt;
       
     
     </summary>
